@@ -86,6 +86,82 @@ class ImagesService:
             log_exception(logger, e, "Unexpected error in GPT image generation")
             raise ImagesAPIError(f"Service error: {str(e)}")
     
+    async def create_gpt_image_edit(
+        self,
+        image: Union[str, bytes],
+        prompt: str,
+        mask: Optional[Union[str, bytes]] = None,
+        n: str = "1",
+        size: str = "1024x1024",
+        response_format: str = "url"
+    ) -> Dict[str, Any]:
+        """
+        创建GPT图像编辑任务
+        
+        在给定原始图像和提示的情况下创建编辑或扩展图像
+        
+        Args:
+            image: 要编辑的图像，必须是有效的PNG文件，小于4MB，方形
+            prompt: 所需图像的文本描述，最大长度为1000个字符
+            mask: 可选的遮罩图像，透明区域指示要编辑的位置
+            n: 要生成的图像数，必须介于1和10之间
+            size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
+            response_format: 生成的图像返回格式，必须是url或b64_json
+        
+        Returns:
+            编辑任务结果
+        """
+        try:
+            logger.info(f"Creating GPT image edit task: {prompt[:50]}...")
+            
+            # 参数验证
+            if not prompt or not prompt.strip():
+                raise ValueError("Prompt cannot be empty")
+            
+            if len(prompt.strip()) > 1000:
+                raise ValueError("Prompt cannot exceed 1000 characters")
+            
+            if not image:
+                raise ValueError("Image is required")
+                
+            # 验证n参数
+            try:
+                n_int = int(n)
+                if n_int < 1 or n_int > 10:
+                    raise ValueError("Number of images must be between 1 and 10")
+            except ValueError:
+                raise ValueError("n must be a valid integer between 1 and 10")
+                
+            # 验证size参数
+            if size not in ["256x256", "512x512", "1024x1024"]:
+                raise ValueError("Size must be one of: 256x256, 512x512, 1024x1024")
+                
+            # 验证response_format参数
+            if response_format not in ["url", "b64_json"]:
+                raise ValueError("Response format must be 'url' or 'b64_json'")
+            
+            result = await self.client.gpt_edits(
+                image=image,
+                prompt=prompt.strip(),
+                mask=mask,
+                n=n,
+                size=size,
+                response_format=response_format
+            )
+            
+            logger.info(f"GPT image edit task created successfully")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for GPT image edit: {e}")
+            raise
+        except ImagesAPIError as e:
+            log_exception(logger, e, "Failed to create GPT image edit task")
+            raise
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in GPT image edit")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
     # =============================================================================
     # Recraft图像生成服务
     # =============================================================================

@@ -13,6 +13,8 @@ import json
 from typing import Dict, List, Optional, Any, Union
 from datetime import datetime
 import time
+import os
+from io import BytesIO
 
 from .config import settings
 from .logger import get_images_client_logger, log_exception, log_performance
@@ -204,6 +206,189 @@ class ImagesAPIClient:
             "style": style
         }
         return await self._make_request("POST", "/v1/images/generations", data)
+    
+    async def gpt_edits(
+        self,
+        image: Union[str, bytes],
+        prompt: str,
+        mask: Optional[Union[str, bytes]] = None,
+        n: str = "1",
+        size: str = "1024x1024",
+        response_format: str = "url"
+    ) -> Dict[str, Any]:
+        """
+        GPT图像编辑
+        
+        在给定原始图像和提示的情况下创建编辑或扩展图像
+        
+        Args:
+            image: 要编辑的图像，必须是有效的PNG文件，小于4MB，方形
+            prompt: 所需图像的文本描述，最大长度为1000个字符
+            mask: 可选的遮罩图像，透明区域指示要编辑的位置
+            n: 要生成的图像数，必须介于1和10之间
+            size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
+            response_format: 生成的图像返回格式，必须是url或b64_json
+        
+        Returns:
+            API响应数据
+        """
+        return await self._make_multipart_request(
+            "POST", 
+            "/v1/images/edits",
+            files={
+                "image": image,
+                "mask": mask
+            },
+            data={
+                "prompt": prompt,
+                "n": n,
+                "size": size,
+                "response_format": response_format
+            }
+        )
+    
+    async def _make_multipart_request(
+        self,
+        method: str,
+        endpoint: str,
+        files: Optional[Dict[str, Union[str, bytes, None]]] = None,
+        data: Optional[Dict[str, Any]] = None,
+        headers: Optional[Dict[str, str]] = None,
+        retry_count: int = 0
+    ) -> Dict[str, Any]:
+        """
+        发起multipart/form-data请求
+        """
+        start_time = time.time()
+        url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        
+        request_headers = {}
+        if headers:
+            request_headers.update(headers)
+        
+        try:
+            session = await self._get_session()
+            
+            # 构建multipart form data
+            form_data = aiohttp.FormData()
+            
+            # 添加文件
+            if files:
+                for field_name, file_data in files.items():
+                    if file_data is None:
+                        continue
+                        
+                    if isinstance(file_data, str):
+                        # 如果是URL，先下载文件
+                        if file_data.startswith(('http://', 'https://')):
+                            async with session.get(file_data) as resp:
+                                if resp.status == 200:
+                                    file_content = await resp.read()
+                                    filename = file_data.split('/')[-1].split('?')[0]
+                                    if not filename.endswith(('.png', '.jpg', '.jpeg')):
+                                        filename += '.png'
+                                    form_data.add_field(
+                                        field_name,
+                                        file_content,
+                                        filename=filename,
+                                        content_type='image/png'
+                                    )
+                                else:
+                                    raise ImagesAPIError(f"Failed to download image from URL: {file_data}")
+                        else:
+                            # 如果是文件路径
+                            if os.path.exists(file_data):
+                                with open(file_data, 'rb') as f:
+                                    file_content = f.read()
+                                filename = os.path.basename(file_data)
+                                content_type = 'image/png' if filename.endswith('.png') else 'image/jpeg'
+                                form_data.add_field(
+                                    field_name,
+                                    file_content,
+                                    filename=filename,
+                                    content_type=content_type
+                                )
+                            else:
+                                raise ImagesAPIError(f"File not found: {file_data}")
+                    elif isinstance(file_data, bytes):
+                        # 直接使用字节数据
+                        form_data.add_field(
+                            field_name,
+                            file_data,
+                            filename=f"{field_name}.png",
+                            content_type='image/png'
+                        )
+            
+            # 添加表单数据
+            if data:
+                for key, value in data.items():
+                    if value is not None:
+                        form_data.add_field(key, str(value))
+            
+            logger.debug(f"Making multipart {method} request to {url}")
+            
+            async with session.request(method, url, data=form_data, headers=request_headers) as response:
+                response_text = await response.text()
+                
+                # 计算性能指标
+                duration = time.time() - start_time
+                self._request_count += 1
+                self._total_time += duration
+                
+                log_performance(
+                    logger, 
+                    f"{method} {endpoint} (multipart)", 
+                    duration,
+                    status_code=response.status,
+                    request_count=self._request_count
+                )
+                
+                # 处理响应
+                if response.status == 200:
+                    if not response_text.strip():
+                        return {"status": "success", "data": None, "message": "Request accepted"}
+                    try:
+                        return json.loads(response_text)
+                    except json.JSONDecodeError as e:
+                        logger.warning(f"Non-JSON response from API: {response_text[:200]}")
+                        return {"status": "success", "data": response_text, "message": "Non-JSON response"}
+                
+                # 处理错误响应
+                error_data = {}
+                try:
+                    error_data = json.loads(response_text)
+                except json.JSONDecodeError:
+                    error_data = {"message": response_text}
+                
+                error_message = error_data.get("error", {}).get("message") or error_data.get("message", f"HTTP {response.status}")
+                error_code = error_data.get("error", {}).get("code") or str(response.status)
+                
+                # 判断是否需要重试
+                if retry_count < self.max_retries and response.status in [429, 500, 502, 503, 504]:
+                    retry_delay = 2 ** retry_count
+                    logger.warning(f"Multipart request failed with status {response.status}, retrying in {retry_delay}s (attempt {retry_count + 1}/{self.max_retries})")
+                    await asyncio.sleep(retry_delay)
+                    return await self._make_multipart_request(method, endpoint, files, data, headers, retry_count + 1)
+                
+                raise ImagesAPIError(
+                    error_message,
+                    status_code=response.status,
+                    error_code=error_code
+                )
+                
+        except aiohttp.ClientError as e:
+            logger.error(f"Network error in multipart request: {str(e)}")
+            if retry_count < self.max_retries:
+                retry_delay = 2 ** retry_count
+                logger.warning(f"Network error, retrying multipart request in {retry_delay}s (attempt {retry_count + 1}/{self.max_retries})")
+                await asyncio.sleep(retry_delay)
+                return await self._make_multipart_request(method, endpoint, files, data, headers, retry_count + 1)
+            
+            raise ImagesAPIError(f"Network error: {str(e)}")
+        
+        except Exception as e:
+            log_exception(logger, e, f"Unexpected error in multipart {method} {endpoint}")
+            raise ImagesAPIError(f"Unexpected error: {str(e)}")
     
     # =============================================================================
     # Recraft图像生成API

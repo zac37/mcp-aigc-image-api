@@ -98,6 +98,24 @@ class SimpleMCPServer:
             }
         )
         
+        # GPT图像编辑工具
+        tools['create_gpt_image_edit'] = MCPTool(
+            name='create_gpt_image_edit',
+            description='创建GPT图像编辑任务 - 在给定原始图像和提示的情况下创建编辑或扩展图像',
+            parameters={
+                'type': 'object',
+                'properties': {
+                    'image_url': {'type': 'string', 'description': '要编辑的图像URL地址，必须是有效的PNG文件，小于4MB，方形'},
+                    'prompt': {'type': 'string', 'description': '所需图像的文本描述，最大长度为1000个字符'},
+                    'mask_url': {'type': 'string', 'description': '可选的遮罩图像URL，透明区域指示要编辑的位置'},
+                    'n': {'type': 'string', 'default': '1', 'description': '要生成的图像数，必须介于1和10之间'},
+                    'size': {'type': 'string', 'default': '1024x1024', 'description': '生成图像的大小，必须是256x256、512x512或1024x1024之一'},
+                    'response_format': {'type': 'string', 'default': 'url', 'description': '生成的图像返回格式，必须是url或b64_json'}
+                },
+                'required': ['image_url', 'prompt']
+            }
+        )
+        
         # Recraft图像生成工具
         tools['create_recraft_image'] = MCPTool(
             name='create_recraft_image',

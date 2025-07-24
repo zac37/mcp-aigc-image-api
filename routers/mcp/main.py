@@ -16,6 +16,7 @@ from core.logger import get_mcp_logger
 from .simple_mcp_server import SimpleMCPServer
 from .images_tools import (
     create_gpt_image_tool,
+    create_gpt_image_edit_tool,
     create_recraft_image_tool,
     create_seedream_image_tool,
     create_seededit_image_tool,
@@ -51,11 +52,13 @@ class ImagesMCPServer(SimpleMCPServer):
         logger.info(f"   🛠️ 工具函数: {len(self._tool_functions)}")
         logger.info(f"   📋 资源数量: {len(getattr(self, 'resources', {}))}")
         logger.info(f"   💡 提示数量: {len(getattr(self, 'prompts', {}))}")
+        logger.info(f"   ✅ GPT图像编辑工具已注册")
     
     def _setup_tool_functions(self):
         """设置工具函数映射"""
         self._tool_functions = {
             'create_gpt_image': create_gpt_image_tool,
+            'create_gpt_image_edit': create_gpt_image_edit_tool,
             'create_recraft_image': create_recraft_image_tool,
             'create_seedream_image': create_seedream_image_tool,
             'create_seededit_image': create_seededit_image_tool,

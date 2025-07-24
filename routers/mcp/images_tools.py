@@ -66,6 +66,63 @@ async def create_gpt_image_tool(
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
 
+async def create_gpt_image_edit_tool(
+    image_url: str,
+    prompt: str,
+    mask_url: Optional[str] = None,
+    n: str = "1",
+    size: str = "1024x1024",
+    response_format: str = "url"
+) -> str:
+    """
+    创建GPT图像编辑任务
+    
+    在给定原始图像和提示的情况下创建编辑或扩展图像
+    
+    Args:
+        image_url: 要编辑的图像URL地址，必须是有效的PNG文件，小于4MB，方形
+        prompt: 所需图像的文本描述，最大长度为1000个字符
+        mask_url: 可选的遮罩图像URL，透明区域指示要编辑的位置
+        n: 要生成的图像数，必须介于1和10之间
+        size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
+        response_format: 生成的图像返回格式，必须是url或b64_json
+    
+    Returns:
+        JSON格式的图像编辑结果，包含编辑后的图像URL和相关信息
+    """
+    try:
+        service = get_images_service()
+        
+        result = await service.create_gpt_image_edit(
+            image=image_url,
+            prompt=prompt,
+            mask=mask_url,
+            n=n,
+            size=size,
+            response_format=response_format
+        )
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except ImagesAPIError as e:
+        logger.error(f"GPT image edit API error: {e}")
+        error_result = {
+            "error": True,
+            "message": e.message,
+            "status_code": e.status_code,
+            "error_code": e.error_code
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to create GPT image edit")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
 async def create_recraft_image_tool(
     prompt: str,
     style: str = "realistic_image",  # 使用文档中正确的默认风格

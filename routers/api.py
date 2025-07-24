@@ -136,6 +136,61 @@ async def create_gpt_image(
         log_exception(logger, e, f"[{request_id}] Unexpected error")
         raise HTTPException(status_code=500, detail="Internal server error")
 
+@router.post("/gpt/edits", response_model=ImagesAPIResponse)
+async def create_gpt_image_edit(
+    image: UploadFile = File(..., description="要编辑的图像，必须是有效的PNG文件，小于4MB，方形"),
+    prompt: str = Query(..., description="所需图像的文本描述，最大长度为1000个字符"),
+    mask: Optional[UploadFile] = File(None, description="可选的遮罩图像，透明区域指示要编辑的位置"),
+    n: str = Query(default="1", description="要生成的图像数，必须介于1和10之间"),
+    size: str = Query(default="1024x1024", description="生成图像的大小，必须是256x256、512x512或1024x1024之一"),
+    response_format: str = Query(default="url", description="生成的图像返回格式，必须是url或b64_json"),
+    service: ImagesService = Depends(get_service)
+):
+    """
+    GPT图像编辑接口
+    
+    在给定原始图像和提示的情况下创建编辑或扩展图像
+    """
+    request_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[{request_id}] Creating GPT image edit task")
+        
+        # 读取图像文件
+        image_content = await image.read()
+        
+        # 读取遮罩文件（如果提供）
+        mask_content = None
+        if mask:
+            mask_content = await mask.read()
+        
+        result = await service.create_gpt_image_edit(
+            image=image_content,
+            prompt=prompt,
+            mask=mask_content,
+            n=n,
+            size=size,
+            response_format=response_format
+        )
+        
+        return ImagesAPIResponse(
+            success=True,
+            data=result,
+            request_id=request_id
+        )
+        
+    except ValueError as e:
+        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+        
+    except ImagesAPIError as e:
+        log_exception(logger, e, f"[{request_id}] Images API error")
+        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
+        
+    except Exception as e:
+        log_exception(logger, e, f"[{request_id}] Unexpected error")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
 @router.post("/recraft/generate", response_model=ImagesAPIResponse)
 async def create_recraft_image(
     request: RecraftImageRequest,
