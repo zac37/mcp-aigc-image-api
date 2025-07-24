@@ -59,9 +59,10 @@ async def create_gpt_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create GPT image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in GPT image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -116,9 +117,10 @@ async def create_gpt_image_edit_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create GPT image edit")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in GPT image edit: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -160,9 +162,10 @@ async def create_recraft_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Recraft image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in Recraft image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -202,9 +205,10 @@ async def create_seedream_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Seedream image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in Seedream image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -250,9 +254,10 @@ async def create_seededit_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create SeedEdit image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in SeedEdit image editing: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -292,9 +297,10 @@ async def create_flux_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create FLUX image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in FLUX image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -322,9 +328,10 @@ async def create_stable_diffusion_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create StableDiffusion image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in StableDiffusion image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -350,9 +357,10 @@ async def create_hailuo_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Hailuo image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in Hailuo image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -378,9 +386,10 @@ async def create_doubao_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Doubao image")
+        error_message = str(e) if str(e).strip() else f"Unexpected error in Doubao image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": str(e),
+            "message": error_message,
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)

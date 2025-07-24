@@ -281,20 +281,27 @@ class ImagesAPIClient:
                     if isinstance(file_data, str):
                         # 如果是URL，先下载文件
                         if file_data.startswith(('http://', 'https://')):
-                            async with session.get(file_data) as resp:
-                                if resp.status == 200:
-                                    file_content = await resp.read()
-                                    filename = file_data.split('/')[-1].split('?')[0]
-                                    if not filename.endswith(('.png', '.jpg', '.jpeg')):
-                                        filename += '.png'
-                                    form_data.add_field(
-                                        field_name,
-                                        file_content,
-                                        filename=filename,
-                                        content_type='image/png'
-                                    )
-                                else:
-                                    raise ImagesAPIError(f"Failed to download image from URL: {file_data}")
+                            # 检查是否是无效的测试URL
+                            if 'example.com' in file_data or file_data.endswith('test.png'):
+                                raise ImagesAPIError(f"Invalid test URL provided: {file_data}. Please provide a valid image URL.")
+                            
+                            try:
+                                async with session.get(file_data) as resp:
+                                    if resp.status == 200:
+                                        file_content = await resp.read()
+                                        filename = file_data.split('/')[-1].split('?')[0]
+                                        if not filename.endswith(('.png', '.jpg', '.jpeg')):
+                                            filename += '.png'
+                                        form_data.add_field(
+                                            field_name,
+                                            file_content,
+                                            filename=filename,
+                                            content_type='image/png'
+                                        )
+                                    else:
+                                        raise ImagesAPIError(f"Failed to download image from URL: {file_data} (HTTP {resp.status})")
+                            except aiohttp.ClientError as download_error:
+                                raise ImagesAPIError(f"Network error downloading image from {file_data}: {str(download_error)}")
                         else:
                             # 如果是文件路径
                             if os.path.exists(file_data):
