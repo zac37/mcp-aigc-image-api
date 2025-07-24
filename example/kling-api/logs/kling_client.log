@@ -1,0 +1,306 @@
+2025-07-22 23:49:39 - kling_api.client - [32mINFO[0m - PERF POST /YOUR_BASE_URL/kling/v1/images/generations duration=0.135s status_code=200 attempt=1
+2025-07-22 23:49:39 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:49:40 - kling_api.client - [32mINFO[0m - PERF POST /YOUR_BASE_URL/kling/v1/images/generations duration=1.173s status_code=200 attempt=2
+2025-07-22 23:49:40 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:49:42 - kling_api.client - [32mINFO[0m - PERF POST /YOUR_BASE_URL/kling/v1/images/generations duration=3.214s status_code=200 attempt=3
+2025-07-22 23:49:42 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:49:46 - kling_api.client - [32mINFO[0m - PERF POST /YOUR_BASE_URL/kling/v1/images/generations duration=7.256s status_code=200 attempt=4
+2025-07-22 23:49:46 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:51:00 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=1.689s status_code=200 attempt=1
+2025-07-22 23:51:38 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=0.122s status_code=503 attempt=1
+2025-07-22 23:51:38 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:51:39 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=1.164s status_code=503 attempt=2
+2025-07-22 23:51:39 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:51:41 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=3.215s status_code=503 attempt=3
+2025-07-22 23:51:41 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:51:45 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=7.256s status_code=503 attempt=4
+2025-07-22 23:51:45 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text-to-video: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+2025-07-22 23:52:20 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=0.118s status_code=503 attempt=1
+2025-07-22 23:52:20 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:52:21 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=1.168s status_code=503 attempt=2
+2025-07-22 23:52:21 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:52:23 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=3.207s status_code=503 attempt=3
+2025-07-22 23:52:23 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:52:27 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=7.245s status_code=503 attempt=4
+2025-07-22 23:52:27 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/image-to-video: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+2025-07-22 23:53:01 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=0.116s status_code=503 attempt=1
+2025-07-22 23:53:01 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:53:02 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=1.159s status_code=503 attempt=2
+2025-07-22 23:53:02 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:53:04 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=3.220s status_code=503 attempt=3
+2025-07-22 23:53:04 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-22 23:53:08 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=7.261s status_code=503 attempt=4
+2025-07-22 23:53:08 - kling_api.client - [31mERROR[0m - Request to /kling/v1/try-on/virtual: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+2025-07-22 23:53:44 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=0.105s status_code=400 attempt=1
+2025-07-22 23:53:44 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:53:45 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=1.141s status_code=400 attempt=2
+2025-07-22 23:53:45 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:53:47 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=3.176s status_code=400 attempt=3
+2025-07-22 23:53:47 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:53:51 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=7.214s status_code=400 attempt=4
+2025-07-22 23:53:51 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:27 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/result duration=0.109s status_code=400 attempt=1
+2025-07-22 23:54:27 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/result: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:28 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/result duration=1.150s status_code=400 attempt=2
+2025-07-22 23:54:28 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/result: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:30 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/result duration=3.188s status_code=400 attempt=3
+2025-07-22 23:54:30 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/result: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:34 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/result duration=7.226s status_code=400 attempt=4
+2025-07-22 23:54:34 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/result: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:54 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593 duration=0.110s status_code=200 attempt=1
+2025-07-22 23:54:54 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:54:55 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593 duration=1.146s status_code=200 attempt=2
+2025-07-22 23:54:55 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:54:57 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593 duration=3.185s status_code=200 attempt=3
+2025-07-22 23:54:57 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:55:01 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593 duration=7.223s status_code=200 attempt=4
+2025-07-22 23:55:01 - kling_api.client - [33mWARNING[0m - Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:55:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=0.109s status_code=400 attempt=1
+2025-07-22 23:55:22 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:55:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=1.146s status_code=400 attempt=2
+2025-07-22 23:55:23 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:55:25 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=3.182s status_code=400 attempt=3
+2025-07-22 23:55:25 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:55:29 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776663214486208593/status duration=7.224s status_code=400 attempt=4
+2025-07-22 23:55:29 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776663214486208593/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:03:12 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.576s status_code=200 attempt=1
+2025-07-23 00:03:31 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=0.105s status_code=503 attempt=1
+2025-07-23 00:03:31 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:03:32 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=1.144s status_code=503 attempt=2
+2025-07-23 00:03:32 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:03:34 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=3.179s status_code=503 attempt=3
+2025-07-23 00:03:34 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:03:38 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text-to-video duration=7.214s status_code=503 attempt=4
+2025-07-23 00:03:38 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text-to-video: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+2025-07-23 00:03:58 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776666289568878622/status duration=0.118s status_code=400 attempt=1
+2025-07-23 00:03:58 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776666289568878622/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:03:59 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776666289568878622/status duration=1.161s status_code=400 attempt=2
+2025-07-23 00:03:59 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776666289568878622/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:04:01 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776666289568878622/status duration=3.202s status_code=400 attempt=3
+2025-07-23 00:04:01 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776666289568878622/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:04:05 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776666289568878622/status duration=7.242s status_code=400 attempt=4
+2025-07-23 00:04:05 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776666289568878622/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:04:26 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=0.109s status_code=503 attempt=1
+2025-07-23 00:04:26 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:27 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=1.146s status_code=503 attempt=2
+2025-07-23 00:04:27 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:29 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=3.184s status_code=503 attempt=3
+2025-07-23 00:04:29 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:33 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/try-on/virtual duration=7.220s status_code=503 attempt=4
+2025-07-23 00:04:33 - kling_api.client - [31mERROR[0m - Request to /kling/v1/try-on/virtual: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+2025-07-23 00:04:52 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=0.108s status_code=503 attempt=1
+2025-07-23 00:04:52 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:53 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=1.148s status_code=503 attempt=2
+2025-07-23 00:04:53 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:55 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=3.185s status_code=503 attempt=3
+2025-07-23 00:04:55 - kling_api.client - [33mWARNING[0m - Server error 503, retrying...
+2025-07-23 00:04:59 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image-to-video duration=7.225s status_code=503 attempt=4
+2025-07-23 00:04:59 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/image-to-video: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+2025-07-23 00:20:58 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=3.111s status_code=400 attempt=1
+2025-07-23 00:20:58 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text2video: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"6e32122a-e7be-47fc-9f1b-50575aaba32e"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"6e32122a-e7be-47fc-9f1b-50575aaba32e"}}
+2025-07-23 00:21:02 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=7.512s status_code=400 attempt=2
+2025-07-23 00:21:02 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text2video: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"a77d8ec7-b838-4159-aca7-7d4073b1a3f2"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"a77d8ec7-b838-4159-aca7-7d4073b1a3f2"}}
+2025-07-23 00:21:07 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=12.597s status_code=400 attempt=3
+2025-07-23 00:21:07 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text2video: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"5bc18753-fd50-4f51-bd3d-fd7ac267bea4"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"5bc18753-fd50-4f51-bd3d-fd7ac267bea4"}}
+2025-07-23 00:21:14 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=19.163s status_code=400 attempt=4
+2025-07-23 00:21:14 - kling_api.client - [31mERROR[0m - Request to /kling/v1/videos/text2video: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+2025-07-23 00:23:19 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=0.450s status_code=200 attempt=1
+2025-07-23 00:23:35 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/image2video duration=0.487s status_code=200 attempt=1
+2025-07-23 00:23:49 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/kolors-virtual-try-on duration=0.345s status_code=200 attempt=1
+2025-07-23 00:24:10 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776671477176991805/status duration=0.106s status_code=400 attempt=1
+2025-07-23 00:24:10 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776671477176991805/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:24:11 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776671477176991805/status duration=1.145s status_code=400 attempt=2
+2025-07-23 00:24:11 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776671477176991805/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:24:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776671477176991805/status duration=3.186s status_code=400 attempt=3
+2025-07-23 00:24:13 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776671477176991805/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:24:17 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/tasks/776671477176991805/status duration=7.225s status_code=400 attempt=4
+2025-07-23 00:24:17 - kling_api.client - [31mERROR[0m - Request to /kling/v1/tasks/776671477176991805/status: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 01:55:42 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.320s status_code=200 attempt=1
+2025-07-23 01:56:09 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776694602832805961 duration=0.103s status_code=200 attempt=1
+2025-07-23 01:56:09 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776694602832805961 duration=0.034s status_code=200 attempt=1
+2025-07-23 01:56:09 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776694602832805961 duration=0.036s status_code=200 attempt=1
+2025-07-23 01:56:09 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/videos/image2video/776694602832805961 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:01:12 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.394s status_code=200 attempt=1
+2025-07-23 02:01:13 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/videos/text2video duration=0.428s status_code=200 attempt=1
+2025-07-23 02:01:15 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776695987158646795 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:01:15 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776695987158646795 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:01:15 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/videos/text2video/776695988768604194 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:01:15 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/videos/text2video/776695988768604194 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:01:15 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776695987158646795 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:02:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776695987158646795 duration=0.101s status_code=200 attempt=1
+2025-07-23 02:02:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/videos/text2video/776695988768604194 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:02:26 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.399s status_code=200 attempt=1
+2025-07-23 02:03:05 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776696295238680664 duration=0.116s status_code=200 attempt=1
+2025-07-23 02:03:05 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776695988768604194 duration=0.036s status_code=200 attempt=1
+2025-07-23 02:35:06 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.539s status_code=200 attempt=1
+2025-07-23 02:35:17 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776704517651562527 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:36:41 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.401s status_code=200 attempt=1
+2025-07-23 02:36:51 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776704917682651185 duration=0.040s status_code=200 attempt=1
+2025-07-23 02:37:35 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.287s status_code=200 attempt=1
+2025-07-23 02:37:45 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:37:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:38:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:38:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:38:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:38:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:38:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:38:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:39:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:39:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:39:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:40:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:40:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.037s status_code=200 attempt=1
+2025-07-23 02:41:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:41:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:41:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:41:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:41:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:41:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:41:57 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:42:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:42:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:42:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:42:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:43:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:43:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:43:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:43:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:43:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:43:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:44:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:44:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:45:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1

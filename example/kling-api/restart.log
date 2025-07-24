@@ -1,0 +1,187 @@
+[0;34m[2025-07-22 23:45:08][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-22 23:45:08][0m Stopping existing services...
+[0;34m[2025-07-22 23:45:09][0m FastAPI port 5511 is available
+[0;34m[2025-07-22 23:45:09][0m MCP port 5510 is available
+[1;33m[2025-07-22 23:45:09] WARNING:[0m Virtual environment .venv_py311 not found, using system Python
+[0;34m[2025-07-22 23:45:09][0m Python version: Python 3.9.6
+[0;31m[2025-07-22 23:45:09] ERROR:[0m Required dependencies not found. Please run: pip install -r requirements.txt
+[0;34m[2025-07-22 23:46:20][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-22 23:46:20][0m Stopping existing services...
+[0;34m[2025-07-22 23:46:21][0m FastAPI port 5511 is available
+[0;34m[2025-07-22 23:46:21][0m MCP port 5510 is available
+[0;34m[2025-07-22 23:46:21][0m Found Python virtual environment: .venv_py311
+[0;32m[2025-07-22 23:46:21] SUCCESS:[0m Activated virtual environment
+[0;34m[2025-07-22 23:46:21][0m Python version: Python 3.11.12
+[0;32m[2025-07-22 23:46:21] SUCCESS:[0m Python environment check passed
+[0;34m[2025-07-22 23:46:21][0m Starting services...
+[0;34m[2025-07-22 23:46:21][0m Starting FastAPI service...
+[0;34m[2025-07-22 23:46:21][0m FastAPI service started with PID: 92336
+[0;34m[2025-07-22 23:46:26][0m FastAPI port 5511 is occupied by PID: 92336
+92342
+[0;32m[2025-07-22 23:46:26] SUCCESS:[0m FastAPI service is running on port 5511
+[0;34m[2025-07-22 23:46:26][0m Starting MCP service...
+[0;34m[2025-07-22 23:46:26][0m MCP service started with PID: 92375
+[0;34m[2025-07-22 23:46:32][0m MCP port 5510 is occupied by PID: 92375
+[0;32m[2025-07-22 23:46:32] SUCCESS:[0m MCP service is running on port 5510
+[0;32m[2025-07-22 23:46:32] SUCCESS:[0m All services started successfully
+[0;34m[2025-07-22 23:46:34][0m Checking service health...
+[1;33m[2025-07-22 23:46:34] WARNING:[0m FastAPI health check failed
+[0;34m[2025-07-22 23:46:34][0m MCP port 5510 is occupied by PID: 92375
+[0;32m[2025-07-22 23:46:34] SUCCESS:[0m MCP service is responsive
+[0;34m[2025-07-22 23:46:34][0m === Service Information ===
+[0;34m[2025-07-22 23:46:34][0m FastAPI Service: http://localhost:5511
+[0;34m[2025-07-22 23:46:34][0m API Documentation: http://localhost:5511/docs
+[0;34m[2025-07-22 23:46:34][0m MCP Service: http://localhost:5510/mcp/v1
+[0;34m[2025-07-22 23:46:34][0m Log files: fastapi_service.log, mcp_service.log
+[0;34m[2025-07-22 23:46:34][0m === Kling API Service Restart Completed ===
+[0;32m[2025-07-22 23:46:34] SUCCESS:[0m 🎉 Kling API services are ready!
+[0;34m[2025-07-22 23:50:26][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-22 23:50:26][0m Stopping existing services...
+[0;34m[2025-07-22 23:50:26][0m FastAPI port 5511 is occupied by PID: 92336
+92921
+[0;34m[2025-07-22 23:50:26][0m Stopping FastAPI processes on port 5511: 92336
+92921
+[0;34m[2025-07-22 23:50:29][0m FastAPI port 5511 is available
+[0;34m[2025-07-22 23:50:29][0m FastAPI port 5511 is available
+[0;32m[2025-07-22 23:50:29] SUCCESS:[0m FastAPI stopped successfully
+[0;34m[2025-07-22 23:50:29][0m MCP port 5510 is occupied by PID: 92375
+[0;34m[2025-07-22 23:50:29][0m Stopping MCP processes on port 5510: 92375
+[0;34m[2025-07-22 23:50:33][0m MCP port 5510 is available
+[0;34m[2025-07-22 23:50:33][0m MCP port 5510 is available
+[0;32m[2025-07-22 23:50:33] SUCCESS:[0m MCP stopped successfully
+[0;34m[2025-07-22 23:50:33][0m Found Python virtual environment: .venv_py311
+[0;32m[2025-07-22 23:50:33] SUCCESS:[0m Activated virtual environment
+[0;34m[2025-07-22 23:50:33][0m Python version: Python 3.11.12
+[0;32m[2025-07-22 23:50:33] SUCCESS:[0m Python environment check passed
+[0;34m[2025-07-22 23:50:33][0m Starting services...
+[0;34m[2025-07-22 23:50:33][0m Starting FastAPI service...
+[0;34m[2025-07-22 23:50:33][0m FastAPI service started with PID: 93060
+[0;34m[2025-07-22 23:50:38][0m FastAPI port 5511 is occupied by PID: 93060
+93066
+[0;32m[2025-07-22 23:50:38] SUCCESS:[0m FastAPI service is running on port 5511
+[0;34m[2025-07-22 23:50:38][0m Starting MCP service...
+[0;34m[2025-07-22 23:50:38][0m MCP service started with PID: 93100
+[0;34m[2025-07-22 23:50:43][0m MCP port 5510 is occupied by PID: 93100
+[0;32m[2025-07-22 23:50:43] SUCCESS:[0m MCP service is running on port 5510
+[0;32m[2025-07-22 23:50:43] SUCCESS:[0m All services started successfully
+[0;34m[2025-07-22 23:50:45][0m Checking service health...
+[1;33m[2025-07-22 23:50:45] WARNING:[0m FastAPI health check failed
+[0;34m[2025-07-22 23:50:45][0m MCP port 5510 is occupied by PID: 93100
+[0;32m[2025-07-22 23:50:45] SUCCESS:[0m MCP service is responsive
+[0;34m[2025-07-22 23:50:45][0m === Service Information ===
+[0;34m[2025-07-22 23:50:45][0m FastAPI Service: http://localhost:5511
+[0;34m[2025-07-22 23:50:45][0m API Documentation: http://localhost:5511/docs
+[0;34m[2025-07-22 23:50:45][0m MCP Service: http://localhost:5510/mcp/v1
+[0;34m[2025-07-22 23:50:45][0m Log files: fastapi_service.log, mcp_service.log
+[0;34m[2025-07-22 23:50:45][0m === Kling API Service Restart Completed ===
+[0;32m[2025-07-22 23:50:45] SUCCESS:[0m 🎉 Kling API services are ready!
+[0;34m[2025-07-23 00:02:12][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-23 00:02:12][0m Stopping existing services...
+[0;34m[2025-07-23 00:02:12][0m FastAPI port 5511 is occupied by PID: 93060
+93066
+[0;34m[2025-07-23 00:02:12][0m Stopping FastAPI processes on port 5511: 93060
+93066
+[0;34m[2025-07-23 00:02:15][0m FastAPI port 5511 is available
+[0;34m[2025-07-23 00:02:15][0m FastAPI port 5511 is available
+[0;32m[2025-07-23 00:02:15] SUCCESS:[0m FastAPI stopped successfully
+[0;34m[2025-07-23 00:02:15][0m MCP port 5510 is occupied by PID: 93100
+[0;34m[2025-07-23 00:02:15][0m Stopping MCP processes on port 5510: 93100
+[0;34m[2025-07-23 00:02:19][0m MCP port 5510 is available
+[0;34m[2025-07-23 00:02:19][0m MCP port 5510 is available
+[0;32m[2025-07-23 00:02:19] SUCCESS:[0m MCP stopped successfully
+[0;34m[2025-07-23 00:02:19][0m Found Python virtual environment: .venv_py311
+[0;32m[2025-07-23 00:02:19] SUCCESS:[0m Activated virtual environment
+[0;34m[2025-07-23 00:02:19][0m Python version: Python 3.11.12
+[0;32m[2025-07-23 00:02:19] SUCCESS:[0m Python environment check passed
+[0;34m[2025-07-23 00:02:19][0m Starting services...
+[0;34m[2025-07-23 00:02:19][0m Starting FastAPI service...
+[0;34m[2025-07-23 00:02:19][0m FastAPI service started with PID: 94780
+[0;34m[2025-07-23 00:02:24][0m FastAPI port 5511 is occupied by PID: 94780
+94786
+[0;32m[2025-07-23 00:02:24] SUCCESS:[0m FastAPI service is running on port 5511
+[0;34m[2025-07-23 00:02:24][0m Starting MCP service...
+[0;34m[2025-07-23 00:02:24][0m MCP service started with PID: 94820
+[0;34m[2025-07-23 00:02:29][0m MCP port 5510 is occupied by PID: 94820
+[0;32m[2025-07-23 00:02:29] SUCCESS:[0m MCP service is running on port 5510
+[0;32m[2025-07-23 00:02:29] SUCCESS:[0m All services started successfully
+[0;34m[2025-07-23 00:02:31][0m Checking service health...
+[1;33m[2025-07-23 00:02:31] WARNING:[0m FastAPI health check failed
+[0;34m[2025-07-23 00:02:31][0m MCP port 5510 is occupied by PID: 94820
+[0;32m[2025-07-23 00:02:31] SUCCESS:[0m MCP service is responsive
+[0;34m[2025-07-23 00:02:31][0m === Service Information ===
+[0;34m[2025-07-23 00:02:31][0m FastAPI Service: http://localhost:5511
+[0;34m[2025-07-23 00:02:31][0m API Documentation: http://localhost:5511/docs
+[0;34m[2025-07-23 00:02:31][0m MCP Service: http://localhost:5510/mcp/v1
+[0;34m[2025-07-23 00:02:31][0m Log files: fastapi_service.log, mcp_service.log
+[0;34m[2025-07-23 00:02:31][0m === Kling API Service Restart Completed ===
+[0;32m[2025-07-23 00:02:31] SUCCESS:[0m 🎉 Kling API services are ready!
+[0;34m[2025-07-23 02:11:06][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-23 02:11:06][0m Stopping existing services...
+[0;34m[2025-07-23 02:11:06][0m FastAPI port 5511 is occupied by PID: 9282
+94780
+[0;34m[2025-07-23 02:11:06][0m Stopping FastAPI processes on port 5511: 9282
+94780
+[0;34m[2025-07-23 02:11:09][0m FastAPI port 5511 is available
+[0;34m[2025-07-23 02:11:09][0m FastAPI port 5511 is available
+[0;32m[2025-07-23 02:11:09] SUCCESS:[0m FastAPI stopped successfully
+[0;34m[2025-07-23 02:11:09][0m MCP port 5510 is occupied by PID: 94820
+[0;34m[2025-07-23 02:11:09][0m Stopping MCP processes on port 5510: 94820
+[0;34m[2025-07-23 02:11:13][0m MCP port 5510 is available
+[0;34m[2025-07-23 02:11:13][0m MCP port 5510 is available
+[0;32m[2025-07-23 02:11:13] SUCCESS:[0m MCP stopped successfully
+[0;34m[2025-07-23 02:11:13][0m Found Python virtual environment: .venv_py311
+[0;32m[2025-07-23 02:11:13] SUCCESS:[0m Activated virtual environment
+[0;34m[2025-07-23 02:11:13][0m Python version: Python 3.11.12
+[0;32m[2025-07-23 02:11:13] SUCCESS:[0m Python environment check passed
+[0;34m[2025-07-23 02:11:13][0m Starting services...
+[0;34m[2025-07-23 02:11:13][0m Starting FastAPI service...
+[0;34m[2025-07-23 02:11:13][0m FastAPI service started with PID: 11678
+[0;34m[2025-07-23 02:11:18][0m FastAPI port 5511 is occupied by PID: 11678
+11684
+[0;32m[2025-07-23 02:11:18] SUCCESS:[0m FastAPI service is running on port 5511
+[0;34m[2025-07-23 02:11:18][0m Starting MCP service...
+[0;34m[2025-07-23 02:11:18][0m MCP service started with PID: 11705
+[0;34m[2025-07-23 02:11:23][0m MCP port 5510 is occupied by PID: 11705
+[0;32m[2025-07-23 02:11:23] SUCCESS:[0m MCP service is running on port 5510
+[0;32m[2025-07-23 02:11:23] SUCCESS:[0m All services started successfully
+[0;34m[2025-07-23 02:11:25][0m Checking service health...
+[1;33m[2025-07-23 02:11:25] WARNING:[0m FastAPI health check failed
+[0;34m[2025-07-23 02:11:25][0m MCP port 5510 is occupied by PID: 11705
+[0;32m[2025-07-23 02:11:25] SUCCESS:[0m MCP service is responsive
+[0;34m[2025-07-23 02:11:25][0m === Service Information ===
+[0;34m[2025-07-23 02:11:25][0m FastAPI Service: http://localhost:5511
+[0;34m[2025-07-23 02:11:25][0m API Documentation: http://localhost:5511/docs
+[0;34m[2025-07-23 02:11:25][0m MCP Service: http://localhost:5510/mcp/v1
+[0;34m[2025-07-23 02:11:25][0m Log files: fastapi_service.log, mcp_service.log
+[0;34m[2025-07-23 02:11:25][0m === Kling API Service Restart Completed ===
+[0;32m[2025-07-23 02:11:25] SUCCESS:[0m 🎉 Kling API services are ready!
+[0;34m[2025-07-23 02:34:19][0m === Kling API Service Restart Started ===
+[0;34m[2025-07-23 02:34:19][0m Stopping existing services...
+[0;34m[2025-07-23 02:34:19][0m FastAPI port 5511 is available
+[0;34m[2025-07-23 02:34:19][0m MCP port 5510 is available
+[0;34m[2025-07-23 02:34:19][0m Found Python virtual environment: .venv_py311
+[0;32m[2025-07-23 02:34:19] SUCCESS:[0m Activated virtual environment
+[0;34m[2025-07-23 02:34:19][0m Python version: Python 3.11.12
+[0;32m[2025-07-23 02:34:20] SUCCESS:[0m Python environment check passed
+[0;34m[2025-07-23 02:34:20][0m Starting services...
+[0;34m[2025-07-23 02:34:20][0m Starting FastAPI service...
+[0;34m[2025-07-23 02:34:20][0m FastAPI service started with PID: 14809
+[0;34m[2025-07-23 02:34:25][0m FastAPI port 5511 is occupied by PID: 14809
+14815
+[0;32m[2025-07-23 02:34:25] SUCCESS:[0m FastAPI service is running on port 5511
+[0;34m[2025-07-23 02:34:25][0m Starting MCP service...
+[0;34m[2025-07-23 02:34:25][0m MCP service started with PID: 14831
+[0;34m[2025-07-23 02:34:30][0m MCP port 5510 is occupied by PID: 14831
+[0;32m[2025-07-23 02:34:30] SUCCESS:[0m MCP service is running on port 5510
+[0;32m[2025-07-23 02:34:30] SUCCESS:[0m All services started successfully
+[0;34m[2025-07-23 02:34:32][0m Checking service health...
+[1;33m[2025-07-23 02:34:32] WARNING:[0m FastAPI health check failed
+[0;34m[2025-07-23 02:34:32][0m MCP port 5510 is occupied by PID: 14831
+[0;32m[2025-07-23 02:34:32] SUCCESS:[0m MCP service is responsive
+[0;34m[2025-07-23 02:34:32][0m === Service Information ===
+[0;34m[2025-07-23 02:34:32][0m FastAPI Service: http://localhost:5511
+[0;34m[2025-07-23 02:34:32][0m API Documentation: http://localhost:5511/docs
+[0;34m[2025-07-23 02:34:32][0m MCP Service: http://localhost:5510/mcp/v1
+[0;34m[2025-07-23 02:34:32][0m Log files: fastapi_service.log, mcp_service.log
+[0;34m[2025-07-23 02:34:32][0m === Kling API Service Restart Completed ===
+[0;32m[2025-07-23 02:34:32] SUCCESS:[0m 🎉 Kling API services are ready!

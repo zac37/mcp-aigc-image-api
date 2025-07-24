@@ -1,0 +1,92 @@
+# Python 相关
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+.venv_*/
+venv/
+env/
+ENV/
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 日志文件
+*.log
+logs/
+*.pid
+
+# 临时文件和缓存
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# Docker 相关
+# Dockerfile 和 docker-compose.yml 需要保留用于构建
+
+# 测试和开发工具
+test_*.py
+test_*.sh
+*_test.py
+*_test.sh
+comprehensive_test.sh
+test_api_with_curl.sh
+test_task_query_fix.py
+
+# 脚本文件（这些在容器外使用）
+restart.sh
+stop.sh
+status.sh
+
+# 文档
+README.md
+docs/
+*.md
+
+# Git 相关
+.git/
+.gitignore
+
+# 其他不需要的文件
+*.txt.bak
+*.tmp
+*.temp 

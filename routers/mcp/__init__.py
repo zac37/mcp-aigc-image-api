@@ -1,0 +1,1 @@
+# MCP router modules for Images API service

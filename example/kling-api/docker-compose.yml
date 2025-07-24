@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  kling-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kling-api-service
+    ports:
+      - "5511:5511"  # FastAPI服务端口
+      - "5510:5510"  # MCP服务端口
+    environment:
+      # 服务器配置
+      - HOST=0.0.0.0
+      - PORT=5511
+      - DEBUG=false
+      - LOG_LEVEL=info
+      
+      # MCP服务配置
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=5510
+      - MCP_TRANSPORT=streamable-http
+      
+      # Kling API配置
+      - KLING_API_BASE_URL=https://api.chatfire.cn
+      - KLING_REQUEST_TIMEOUT=30
+      - KLING_MAX_RETRIES=3
+      
+      # 性能配置
+      - MAX_POOL_CONNECTIONS=100
+      - MAX_CONCURRENT_REQUESTS=100
+      - WORKERS=4
+      
+    volumes:
+      # 挂载日志目录到宿主机
+      - ./docker-logs:/app/logs
+      # 如果需要持久化配置，可以挂载配置文件
+      # - ./config:/app/config
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5511/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    
+    networks:
+      - kling-network
+    
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+networks:
+  kling-network:
+    driver: bridge
+    
+# 可选：如果需要数据持久化
+volumes:
+  kling-logs:
+    driver: local 

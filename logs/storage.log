@@ -1,0 +1,90 @@
+2025-07-24 16:12:00 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:12:00 - images_api.storage - [31mERROR[0m - Failed to ensure bucket exists: images: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 66, in _ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 697, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 441, in _execute
+    return self._url_open(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 424, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:12:00 - images_api.storage - [31mERROR[0m - Failed to initialize MinIO client: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 66, in _ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 697, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 441, in _execute
+    return self._url_open(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 424, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 57, in _initialize_client
+    self._ensure_bucket_exists()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 73, in _ensure_bucket_exists
+    raise MinIOError(f"Bucket creation failed: {str(e)}")
+core.minio_client.MinIOError: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:14:18 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:14:18 - images_api.storage - [31mERROR[0m - Failed to ensure bucket exists: images: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 66, in _ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 697, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 441, in _execute
+    return self._url_open(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 424, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:14:18 - images_api.storage - [31mERROR[0m - Failed to initialize MinIO client: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 66, in _ensure_bucket_exists
+    if not self.client.bucket_exists(self.bucket_name):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 697, in bucket_exists
+    self._execute("HEAD", bucket_name)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 441, in _execute
+    return self._url_open(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/minio/api.py", line 424, in _url_open
+    raise response_error
+minio.error.S3Error: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 57, in _initialize_client
+    self._ensure_bucket_exists()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 73, in _ensure_bucket_exists
+    raise MinIOError(f"Bucket creation failed: {str(e)}")
+core.minio_client.MinIOError: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:33:15 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:33:15 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 16:33:15 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/9f273c2b.png (877 bytes)
+2025-07-24 16:38:13 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 16:38:42 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:38:42 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 16:38:42 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/6576bb51.png (877 bytes)
+2025-07-24 16:41:38 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 16:42:18 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:42:18 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 16:43:08 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/c1a491ed.png (877 bytes)
+2025-07-24 16:46:45 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 16:50:35 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 16:50:35 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 16:50:35 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/e4118d74.png (877 bytes)
+2025-07-24 18:27:31 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 18:35:19 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 18:35:19 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 18:35:40 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 18:35:49 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 18:35:49 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 19:08:15 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/639575d5.png (1827940 bytes)
+2025-07-24 19:11:24 - images_api.storage - [32mINFO[0m - Cleaning up MinIO client...
+2025-07-24 19:37:30 - images_api.storage - [32mINFO[0m - MinIO client initialized successfully: localhost:9000
+2025-07-24 19:37:30 - images_api.storage - [32mINFO[0m - Bucket already exists: images
+2025-07-24 19:37:31 - images_api.storage - [32mINFO[0m - File uploaded successfully: uploads/20250724/a8fe102e.png (1827940 bytes)

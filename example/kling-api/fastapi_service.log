@@ -1,0 +1,35 @@
+INFO:     Will watch for changes in these directories: ['/Users/zac/workspace/mcp_aigc_api/kling-api']
+INFO:     Uvicorn running on http://0.0.0.0:5511 (Press CTRL+C to quit)
+INFO:     Started reloader process [14809] using StatReload
+INFO:     Started server process [14815]
+INFO:     Waiting for application startup.
+2025-07-23 02:34:20 - kling_api.main - [32mINFO[0m - Starting Kling API service...
+2025-07-23 02:34:20 - kling_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5511
+2025-07-23 02:34:20 - kling_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5510
+INFO:     Application startup complete.
+2025-07-23 02:34:55 - kling_api.api - [32mINFO[0m - [b876eb32-44cf-4d60-889a-f4b4802e7fa3] Creating text-to-image task
+2025-07-23 02:34:55 - kling_api.api - [31mERROR[0m - Failed to create text-to-image task: cfg_scale must be between 0.0 and 1.0
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 72, in create_text_to_image_task
+    raise ValueError("cfg_scale must be between 0.0 and 1.0")
+ValueError: cfg_scale must be between 0.0 and 1.0
+2025-07-23 02:34:55 - kling_api.api - [33mWARNING[0m - [b876eb32-44cf-4d60-889a-f4b4802e7fa3] Invalid request parameters: cfg_scale must be between 0.0 and 1.0
+2025-07-23 02:35:05 - kling_api.api - [32mINFO[0m - [6dbe36c9-d17c-451d-a0fc-160f295c3400] Creating text-to-image task
+2025-07-23 02:35:05 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一只可爱的小猫咪...
+2025-07-23 02:35:06 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.539s status_code=200 attempt=1
+2025-07-23 02:35:06 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:35:17 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776704517651562527 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:35:17 - kling_api.api - [32mINFO[0m - Successfully found task 776704517651562527 as text_to_image
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - [81f6ed1b-e60e-4eee-9dee-854e285e03df] Creating text-to-image task
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一匹威严的荒野狼王，露出愤怒的表情，锋利的獠牙，凶猛的黄色眼睛闪闪发光，厚重的灰色毛发在风中飞扬，站在荒凉的山岩上，背景是暴风雨的天空，月光照射，超现实主义风格，高清细节，8K分辨率...
+2025-07-23 02:36:41 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.401s status_code=200 attempt=1
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:36:51 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776704917682651185 duration=0.040s status_code=200 attempt=1
+2025-07-23 02:36:51 - kling_api.api - [32mINFO[0m - Successfully found task 776704917682651185 as text_to_image
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-07-23 02:45:01 - kling_api.main - [32mINFO[0m - Shutting down Kling API service...
+2025-07-23 02:45:01 - kling_api.main - [32mINFO[0m - Cleanup completed
+INFO:     Application shutdown complete.
+INFO:     Finished server process [14815]
+INFO:     Stopping reloader process [14809]

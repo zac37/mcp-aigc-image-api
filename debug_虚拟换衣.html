@@ -1,0 +1,88 @@
+# 虚拟换衣（virtual-try-on）
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /v1/images/virtual-try-on:
+    post:
+      summary: 虚拟换衣（virtual-try-on）
+      deprecated: false
+      description: ''
+      tags:
+        - Images
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                human_image:
+                  description: 人
+                  type: string
+                cloth_image:
+                  description: 衣服
+                  type: string
+                seed:
+                  type: integer
+              required:
+                - model
+                - human_image
+                - cloth_image
+                - seed
+            example: |-
+              {
+                "model": "kolors-virtual-try-on",
+                "human_image": "https://oss.ffire.cc/files/try-on.png", // 人
+                "cloth_image": "https://oss.ffire.cc/files/x.png", // 衣服
+                "seed": 0
+              }
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                required:
+                  - data
+              example:
+                data:
+                  - url: >-
+                      https://s5k.cn/api/v1/studio/Kwai-Kolors/Kolors-Virtual-Try-On/gradio/file=/tmp/gradio/342643ec4869a4fc8ee7d724b5ad134376a1a365/image.webp
+          headers: {}
+          x-apifox-name: 成功
+      security:
+        - bearer: []
+      x-apifox-folder: Images
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/3916055/apis/api-226983436-run
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers:
+  - url: https://api.chatfire.cn
+    description: 本地环境
+security:
+  - bearer: []
+
+```

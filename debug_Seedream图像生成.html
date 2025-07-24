@@ -1,0 +1,157 @@
+# 即梦3.0（Seedream）
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /v1/images/generations:
+    post:
+      summary: 即梦3.0（Seedream）
+      deprecated: false
+      description: >
+        - 文生图=prompt
+
+        - 支持图生图=url+prompt：https://oss.ffire.cc/files/kling_watermark.png
+        让这个女人带上眼镜 衣服换个颜色
+
+
+        尺寸说明：
+
+        推荐 1.3K ~1.5K 分辨率，画质更细腻，综合指标平衡得较好；1K 图和2K 图表现相对较弱
+
+        1.3k建议比例及对应宽高（width*height）
+
+        1:1：1328*1328
+
+        4:3:  1472*1104
+
+        3:2： 1584*1056
+
+        16:9: 1664*936
+
+        21:9:  2016*864
+
+        1.5K建议比例及对应宽高（width*height）
+
+        1:1：1536*1536
+
+        4:3:  1472*1104
+
+        3:2： 1584*1056
+
+        16:9: 1664*936
+
+        21:9:  2016*864
+      tags:
+        - Images
+      parameters:
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: Bearer {{YOUR_API_KEY}}
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                prompt:
+                  description: 文生图=prompt；支持图生图=url+prompt
+                  type: string
+                'n':
+                  type: integer
+                response_format:
+                  description: 枚举值 url b64_json oss_url 其中url有效时间为24小时 oss_url有效时间为7天
+                  type: string
+                size:
+                  type: string
+              required:
+                - model
+                - prompt
+                - 'n'
+                - response_format
+                - size
+              x-apifox-orders:
+                - model
+                - prompt
+                - 'n'
+                - response_format
+                - size
+            example: |-
+              {
+                "model": "seedream-3.0", // 
+                "prompt": "3D魔童哪吒 c4d 搬砖 很开心， 很快乐， 精神抖擞， 背景是数不清的敖丙虚化 视觉冲击力强 大师构图 色彩鲜艳丰富 吸引人 背景用黄金色艺术字写着“搬砖挣钱” 冷暖色对比", // 文生图=prompt；支持图生图=url+prompt
+                "n": 1,
+                "response_format": "url", // 枚举值 url b64_json oss_url 其中url有效时间为24小时 oss_url有效时间为7天
+                "size": "1328x1328"
+              }
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                      x-apifox-orders:
+                        - url
+                required:
+                  - created
+                  - data
+                x-apifox-orders:
+                  - created
+                  - data
+              example:
+                created: 1730768940
+                data:
+                  - b64_json: null
+                    revised_prompt: null
+                    url: >-
+                      https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/9b27193d-2f14-4f46-8936-2551917b3cd7_00001_.png
+                images:
+                  - url: >-
+                      https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/9b27193d-2f14-4f46-8936-2551917b3cd7_00001_.png
+                timings:
+                  inference: 14.445
+                seed: 1688073736
+                shared_id: '0'
+                model: ''
+          headers: {}
+          x-apifox-name: 成功
+      security:
+        - bearer: []
+      x-apifox-folder: Images
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/3916055/apis/api-285414862-run
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers:
+  - url: https://api.chatfire.cn
+    description: 本地环境
+security:
+  - bearer: []
+
+```

@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  images-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: images-api-service
+    ports:
+      - "5512:5512"
+      - "5513:5513"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - images-network
+    restart: unless-stopped
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=info
+      - MINIO_ENDPOINT=images-api-minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin123
+      - MINIO_SECURE=false
+      - MINIO_BUCKET_NAME=images
+      - SERVER_BASE_URL=http://8.219.206.213:5512
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5512/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - minio
+
+  minio:
+    image: minio/minio:latest
+    container_name: images-api-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - images-network
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+volumes:
+  minio_data:
+    driver: local
+
+networks:
+  images-network:
+    name: images-api_images-network
+    driver: bridge

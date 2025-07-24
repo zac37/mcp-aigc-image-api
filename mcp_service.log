@@ -1,0 +1,25 @@
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_hailuo_image', 'create_doubao_image', 'upload_image_file']
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-24 18:36:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test123
+2025-07-24 19:19:49 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test

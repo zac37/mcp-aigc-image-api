@@ -1,0 +1,915 @@
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - Starting Images API Simple MCP Service...
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - Starting Simple MCP Server on 0.0.0.0:5513
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - ✅ Simple MCP Server started successfully
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 15:24:06 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 15:24:27 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 1
+2025-07-23 15:24:34 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:24:35 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:25:28 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: init-1
+2025-07-23 15:25:28 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: tools-1
+2025-07-23 15:25:28 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: call-1
+2025-07-23 15:25:28 - images_api.mcp - [31mERROR[0m - Error executing tool create_gpt_image: Tool function not implemented: create_gpt_image
+2025-07-23 15:25:28 - images_api.mcp - [32mINFO[0m - MCP request: resources/list with id: resources-1
+2025-07-23 15:25:28 - images_api.mcp - [32mINFO[0m - MCP request: prompts/list with id: prompts-1
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - Starting Images API Simple MCP Service...
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - Starting Simple MCP Server on 0.0.0.0:5513
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 15:26:21 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 15:26:32 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: init-1
+2025-07-23 15:26:32 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: tools-1
+2025-07-23 15:26:32 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: call-1
+2025-07-23 15:26:32 - images_api.mcp - [31mERROR[0m - Error executing tool create_gpt_image: Tool function not implemented: create_gpt_image
+2025-07-23 15:26:32 - images_api.mcp - [32mINFO[0m - MCP request: resources/list with id: resources-1
+2025-07-23 15:26:32 - images_api.mcp - [32mINFO[0m - MCP request: prompts/list with id: prompts-1
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - Starting Images API Simple MCP Service...
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - Starting Simple MCP Server on 0.0.0.0:5513
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 15:28:20 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 15:28:37 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test-1
+2025-07-23 15:28:37 - images_api.mcp - [31mERROR[0m - Error executing tool create_gpt_image: Tool function not implemented: create_gpt_image
+2025-07-23 15:28:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test-1
+2025-07-23 15:28:43 - images_api.mcp - [31mERROR[0m - Error executing tool create_gpt_image: Tool function not implemented: create_gpt_image
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 15:29:18 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 15:29:35 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test-1
+2025-07-23 15:29:53 - images_api.mcp - [32mINFO[0m - MCP request: resources/list with id: resources-1
+2025-07-23 15:29:54 - images_api.mcp - [32mINFO[0m - MCP request: prompts/list with id: prompts-1
+2025-07-23 15:30:02 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test-2
+2025-07-23 15:30:10 - images_api.mcp - [31mERROR[0m - Failed to create FLUX image: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 164, in _make_request
+    raise ImagesAPIError(
+core.images_client.ImagesAPIError: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 212, in create_flux_image_tool
+    result = await service.create_flux_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 295, in create_flux_image
+    result = await self.client.flux_create(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 299, in flux_create
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 flux.1-dev 均无可用渠道，请更换分组尝试 (request id: 20250723153010661271244LMnHqHT2)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:04 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:34:05 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:34:06 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:34:06 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:06 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:34:06 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:34:07 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:34:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:34:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:34:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:34:11 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:34:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:34:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 19
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 19
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:34:14 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 20
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 20
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 19
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 21
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 19
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 22
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 20
+2025-07-23 15:34:15 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 21
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 23
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 20
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 21
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 22
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 21
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 22
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 23
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 22
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 24
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 23
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 24
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 24
+2025-07-23 15:34:16 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 23
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 25
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 25
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 24
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 25
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 26
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 25
+2025-07-23 15:34:17 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 26
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 26
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 26
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 27
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 27
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 28
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 28
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 27
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 27
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 28
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 28
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 29
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 29
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 29
+2025-07-23 15:34:18 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 29
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 30
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 30
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 31
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 30
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 30
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 31
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 32
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 31
+2025-07-23 15:34:19 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 32
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 31
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 32
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 32
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 33
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 33
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 33
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 34
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 34
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 35
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 34
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 33
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 34
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 35
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 35
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 35
+2025-07-23 15:34:20 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 36
+2025-07-23 15:34:21 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 36
+2025-07-23 15:34:21 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 36
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 15:59:06 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:39 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:40 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:41 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:42 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:43 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:59:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 3
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 4
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:59:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 5
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 6
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:59:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 7
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 8
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 13
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:59:47 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 9
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 10
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 11
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 14
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 12
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 15
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 16
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 17
+2025-07-23 15:59:48 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 18
+2025-07-23 16:00:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 13
+2025-07-23 16:01:33 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 14
+2025-07-23 16:02:25 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 15
+2025-07-23 16:02:27 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 16
+2025-07-23 16:02:37 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 17
+2025-07-23 16:02:46 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 18
+2025-07-23 16:02:54 - images_api.mcp - [31mERROR[0m - Failed to create Doubao image: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 164, in _make_request
+    raise ImagesAPIError(
+core.images_client.ImagesAPIError: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 325, in create_doubao_image_tool
+    result = await service.create_doubao_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 741, in create_doubao_image
+    result = await self.client.doubao_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 579, in doubao_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 doubao-seedream-3-0-t2i-250415 均无可用渠道，请更换分组尝试 (request id: 20250723160254838470806l4wDiSax)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+2025-07-23 16:03:03 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 19
+2025-07-23 16:03:03 - images_api.mcp - [31mERROR[0m - Failed to create SeedEdit image: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='HTTP 404', status_code=404, error_code='404')', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 164, in _make_request
+    raise ImagesAPIError(
+core.images_client.ImagesAPIError: ImagesAPIError(message='HTTP 404', status_code=404, error_code='404')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 171, in create_seededit_image_tool
+    result = await service.create_seededit_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 234, in create_seededit_image
+    result = await self.client.seededit_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 274, in seededit_generate
+    return await self._make_request("POST", "/seededit/generate", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='HTTP 404', status_code=404, error_code='404')', status_code=None, error_code='None')
+2025-07-23 16:03:04 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 20
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:05:59 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:06:09 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 21
+2025-07-23 16:06:32 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 22
+2025-07-23 16:07:02 - images_api.mcp - [31mERROR[0m - Failed to create Recraft image: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 532, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 119, in _make_request
+    async with session.request(method, url, **request_kwargs) as response:
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1480, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 768, in _request
+    resp = await handler(req)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 746, in _connect_and_send_request
+    await resp.start(conn)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 547, in start
+    self._continue = None
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 95, in create_recraft_image_tool
+    result = await service.create_recraft_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 119, in create_recraft_image
+    result = await self.client.recraft_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 231, in recraft_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+2025-07-23 16:07:08 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 23
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:11:56 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:12:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 24
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:17:16 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:17:27 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 25
+2025-07-23 16:17:58 - images_api.mcp - [31mERROR[0m - Failed to create SeedEdit image: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 532, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 119, in _make_request
+    async with session.request(method, url, **request_kwargs) as response:
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1480, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 768, in _request
+    resp = await handler(req)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 746, in _connect_and_send_request
+    await resp.start(conn)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 547, in start
+    self._continue = None
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 183, in create_seededit_image_tool
+    result = await service.create_seededit_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 241, in create_seededit_image
+    result = await self.client.seededit_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 291, in seededit_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+2025-07-23 16:19:10 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 26
+2025-07-23 16:19:30 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 27
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:21:30 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:21:44 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 28
+2025-07-23 16:22:15 - images_api.mcp - [31mERROR[0m - Failed to create SeedEdit image: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 532, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 119, in _make_request
+    async with session.request(method, url, **request_kwargs) as response:
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1480, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 768, in _request
+    resp = await handler(req)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 746, in _connect_and_send_request
+    await resp.start(conn)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 547, in start
+    self._continue = None
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 183, in create_seededit_image_tool
+    result = await service.create_seededit_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 241, in create_seededit_image
+    result = await self.client.seededit_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 291, in seededit_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_virtual_try_on', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:24:18 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:24:29 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 29
+2025-07-23 16:25:13 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 30
+2025-07-23 16:25:20 - images_api.mcp - [31mERROR[0m - Failed to create SeedEdit image: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 164, in _make_request
+    raise ImagesAPIError(
+core.images_client.ImagesAPIError: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 162, in _make_request
+    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 183, in create_seededit_image_tool
+    result = await service.create_seededit_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 241, in create_seededit_image
+    result = await self.client.seededit_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 287, in seededit_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='Unexpected error: ImagesAPIError(message='所有令牌分组 default 下对于模型 seededit-pro 均无可用渠道，请更换分组尝试 (request id: 202507231625213053219932FUt3ADH)', status_code=503, error_code='503')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')', status_code=None, error_code='None')
+2025-07-23 16:25:27 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: 31
+2025-07-23 16:25:58 - images_api.mcp - [31mERROR[0m - Failed to create SeedEdit image: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 532, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 119, in _make_request
+    async with session.request(method, url, **request_kwargs) as response:
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1480, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 768, in _request
+    resp = await handler(req)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 746, in _connect_and_send_request
+    await resp.start(conn)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 547, in start
+    self._continue = None
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/mcp/images_tools.py", line 183, in create_seededit_image_tool
+    result = await service.create_seededit_image(
+  File "/Users/zac/workspace/mcp_aigc_image_api/services/images_service.py", line 241, in create_seededit_image
+    result = await self.client.seededit_generate(
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 287, in seededit_generate
+    return await self._make_request("POST", "/v1/images/generations", data)
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/images_client.py", line 182, in _make_request
+    raise ImagesAPIError(f"Unexpected error: {str(e)}")
+core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ', status_code=None, error_code='None')
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 8
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:29:52 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 8 tools
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_hailuo_image', 'create_doubao_image']
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 8
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 8
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-23 16:30:54 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-23 16:31:44 - images_api.mcp - [32mINFO[0m - MCP request: initialize with id: 0
+2025-07-23 16:31:44 - images_api.mcp - [32mINFO[0m - MCP request: notifications/initialized with id: None
+2025-07-23 16:31:53 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 1
+2025-07-23 16:38:45 - images_api.mcp - [32mINFO[0m - MCP request: tools/list with id: 2
+2025-07-24 18:34:55 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test123
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting Images API MCP Service...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Python version: 3.9.6 (default, Mar 12 2025, 20:22:46) 
+[Clang 17.0.0 (clang-1700.0.13.3)]
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Service will run on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - SimpleMCPServer initialized with 9 tools
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 📝 工具函数映射设置完成: ['create_gpt_image', 'create_recraft_image', 'create_seedream_image', 'create_seededit_image', 'create_flux_image', 'create_stable_diffusion_image', 'create_hailuo_image', 'create_doubao_image', 'upload_image_file']
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP服务初始化完成
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    📊 工具数量: 9
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    🛠️ 工具函数: 9
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    📋 资源数量: 1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m -    💡 提示数量: 1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 开始注册Images API MCP工具模块...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ Images API MCP工具模块注册完成
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting Images API MCP service...
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Transport: streamable-http (simplified)
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Python version: 3.9+ compatible
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - Starting MCP Server on 0.0.0.0:5513
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ✅ MCP Server started successfully
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 📡 MCP Protocol: http://0.0.0.0:5513/mcp/v1
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 🏥 Health Check: http://0.0.0.0:5513/mcp/v1/health
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - 🛠️ Tools List: http://0.0.0.0:5513/mcp/v1/tools
+2025-07-24 18:35:47 - images_api.mcp - [32mINFO[0m - ℹ️ Service Info: http://0.0.0.0:5513/mcp/v1/info
+2025-07-24 18:36:12 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test123
+2025-07-24 19:19:49 - images_api.mcp - [32mINFO[0m - MCP request: tools/call with id: test

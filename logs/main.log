@@ -1,0 +1,806 @@
+2025-07-23 10:43:53 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 10:43:53 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 10:43:53 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 10:56:25 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 10:56:25 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 10:56:25 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 10:56:25 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 10:56:25 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 10:56:34 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 10:56:34 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 10:56:38 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 10:56:38 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 10:56:38 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:06:50 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:06:50 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:06:50 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:06:50 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:06:50 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:07:02 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:07:02 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:07:02 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:07:02 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:07:02 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:07:14 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:07:14 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:07:14 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:07:14 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:07:14 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:07:28 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:07:28 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:07:28 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:07:28 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:07:28 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:21:51 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:21:51 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:21:51 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:21:51 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:21:51 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:27:00 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:27:00 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:27:01 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:27:01 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:27:01 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:27:12 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:27:12 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:27:13 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:27:13 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:27:13 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:27:41 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:27:41 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:27:41 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:27:41 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:27:41 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:28:10 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:28:10 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:28:11 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:28:11 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:28:11 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:28:24 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:28:24 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:28:24 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:28:24 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:28:24 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:28:39 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:28:39 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:28:39 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:28:39 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:28:39 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:28:52 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:28:52 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:28:53 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:28:53 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:28:53 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:29:06 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:29:06 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:29:06 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:29:06 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:29:06 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:29:21 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:29:21 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:29:21 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:29:21 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:29:21 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 11:29:38 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 11:29:38 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 11:29:38 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 11:29:38 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 11:29:38 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:04:21 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:04:21 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:04:21 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:04:21 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:04:21 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:04:34 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:04:34 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:04:34 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:04:34 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:04:34 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:04:50 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:04:50 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:04:51 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:04:51 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:04:51 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:05:07 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:05:07 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:05:07 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:05:07 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:05:07 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:05:21 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:05:21 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:05:21 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:05:21 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:05:21 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:05:36 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:05:36 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:05:37 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:05:37 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:05:37 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:05:51 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:05:51 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:05:51 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:05:51 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:05:51 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 12:07:33 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 12:07:33 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 12:07:34 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 12:07:34 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 12:07:34 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 13:27:59 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 13:27:59 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 13:28:00 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 13:28:00 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 13:28:00 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 14:28:39 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 14:28:39 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 14:28:39 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 14:28:39 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 14:28:39 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 14:29:20 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 14:29:20 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 14:29:20 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 14:29:20 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 14:29:20 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 14:29:30 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 14:29:30 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 14:29:30 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 14:29:30 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 14:29:30 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 14:30:00 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 14:30:00 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 14:30:00 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 14:30:00 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 14:30:00 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 14:30:43 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 14:30:43 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 14:30:43 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 14:30:43 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 14:30:43 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:07:13 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:07:13 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:07:13 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:07:13 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:07:13 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:07:51 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:07:51 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:17:13 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:17:13 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:17:13 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:19:54 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:19:54 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:19:55 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:19:55 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:19:55 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:20:12 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:20:12 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:20:12 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:20:12 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:20:12 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:22:07 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:22:07 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:22:08 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:22:08 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:22:08 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:23:33 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:23:33 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:23:33 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:23:33 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:23:33 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:24:01 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:24:01 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:24:06 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:24:06 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:24:06 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:25:18 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:25:18 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:25:19 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:25:19 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:25:19 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:25:53 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:25:53 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:25:54 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:25:54 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:25:54 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:26:07 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:26:07 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:26:07 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:26:07 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:26:07 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:26:15 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:26:15 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:26:21 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:26:21 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:26:21 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:28:07 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:28:07 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:28:08 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:28:08 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:28:08 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:28:14 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:28:14 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:28:20 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:28:20 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:28:20 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:29:04 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:29:04 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:29:04 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:29:04 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:29:04 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:29:12 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:29:12 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:29:18 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:29:18 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:29:18 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:37:06 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:37:06 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:37:07 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:37:07 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:37:07 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:58:31 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:58:31 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:58:31 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:58:31 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:58:31 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 15:59:00 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 15:59:00 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 15:59:06 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 15:59:06 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 15:59:06 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:05:17 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:05:17 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:05:18 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:05:18 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:05:18 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:05:45 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:05:45 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:05:45 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:05:45 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:05:45 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:05:53 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:05:53 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:05:59 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:05:59 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:05:59 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:08:24 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:08:24 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:08:25 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:08:25 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:08:25 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:08:40 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:08:40 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:08:41 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:08:41 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:08:41 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:11:11 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:11:11 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:11:12 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:11:12 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:11:12 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:11:28 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:11:28 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:11:28 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:11:28 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:11:28 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:11:42 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:11:42 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:11:42 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:11:42 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:11:42 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:11:50 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:11:50 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:11:57 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:11:57 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:11:57 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:17:02 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:17:02 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:17:02 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:17:02 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:17:02 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:17:10 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:17:10 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:17:16 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:17:16 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:17:16 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:21:24 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:21:24 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:21:31 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:21:31 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:21:31 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:24:04 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:24:04 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:24:04 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:24:04 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:24:04 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:24:12 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:24:12 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:24:19 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:24:19 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:24:19 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:27:07 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:27:07 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:27:08 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:27:08 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:27:08 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:27:27 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:27:27 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:27:27 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:27:27 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:27:27 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:27:46 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:27:46 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:27:47 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:27:47 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:27:47 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:28:02 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:28:02 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:28:03 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:28:03 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:28:03 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:28:17 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:28:17 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:28:18 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:28:18 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:28:18 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:28:34 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:28:34 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:28:34 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:28:34 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:28:34 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:29:02 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:29:02 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:29:02 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:29:02 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:29:02 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:29:19 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:29:19 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:29:20 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:29:20 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:29:20 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:29:38 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:29:38 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:29:39 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:29:39 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:29:39 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:29:46 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:29:46 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:29:52 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:29:52 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:29:52 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:30:34 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:30:34 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:30:35 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:30:35 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:30:35 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-23 16:30:48 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-23 16:30:48 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-23 16:30:54 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-23 16:30:54 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-23 16:30:54 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:28:51 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:28:51 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:28:52 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:28:52 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:28:52 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:29:04 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:29:04 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:29:05 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:29:05 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:29:05 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:30:24 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:30:24 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:30:25 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:30:25 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:30:25 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:31:25 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:31:25 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:31:25 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:31:25 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:31:25 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:31:58 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:31:58 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:31:58 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:31:58 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:31:58 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:32:13 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:32:13 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:32:13 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:32:13 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:32:13 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:32:49 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:32:49 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:32:50 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:32:50 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:32:50 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:33:09 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:33:09 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:33:10 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:33:10 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:33:10 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:33:47 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:33:47 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:33:48 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:33:48 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:33:48 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:34:01 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:34:01 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:34:01 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:34:01 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:34:01 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 15:34:16 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 15:34:16 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 15:34:17 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 15:34:17 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 15:34:17 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:12:00 - images_api.main - [31mERROR[0m - Unhandled exception in GET /api/health: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+  |     recv_stream.close()
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+    |     recv_stream.close()
+    |   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py", line 135, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 178, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/main.py", line 104, in log_requests
+    |     response = await call_next(request)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 156, in call_next
+    |     raise app_exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 141, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 714, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 291, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **solved_result.values)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/routers/api.py", line 91, in get_storage
+    |     return get_minio_client()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 355, in get_minio_client
+    |     _minio_client = MinIOClient()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 42, in __init__
+    |     self._initialize_client()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 61, in _initialize_client
+    |     raise MinIOError(f"MinIO initialization failed: {str(e)}")
+    | core.minio_client.MinIOError: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+    recv_stream.close()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py", line 135, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 178, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/zac/workspace/mcp_aigc_image_api/main.py", line 104, in log_requests
+    response = await call_next(request)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 156, in call_next
+    raise app_exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 141, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/api.py", line 91, in get_storage
+    return get_minio_client()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 355, in get_minio_client
+    _minio_client = MinIOClient()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 42, in __init__
+    self._initialize_client()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 61, in _initialize_client
+    raise MinIOError(f"MinIO initialization failed: {str(e)}")
+core.minio_client.MinIOError: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521BBE43A6CDB, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:14:18 - images_api.main - [31mERROR[0m - Unhandled exception in POST /api/files/upload: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+  |     recv_stream.close()
+  |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+    |     recv_stream.close()
+    |   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py", line 135, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 178, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/main.py", line 104, in log_requests
+    |     response = await call_next(request)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 156, in call_next
+    |     raise app_exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 141, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 714, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 734, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 76, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 73, in app
+    |     response = await f(request)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 291, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **solved_result.values)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/routers/api.py", line 91, in get_storage
+    |     return get_minio_client()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 355, in get_minio_client
+    |     _minio_client = MinIOClient()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 42, in __init__
+    |     self._initialize_client()
+    |   File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 61, in _initialize_client
+    |     raise MinIOError(f"MinIO initialization failed: {str(e)}")
+    | core.minio_client.MinIOError: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 181, in __call__
+    recv_stream.close()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py", line 135, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 178, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/zac/workspace/mcp_aigc_image_api/main.py", line 104, in log_requests
+    response = await call_next(request)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 156, in call_next
+    raise app_exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/base.py", line 141, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 640, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+  File "/Users/zac/Library/Python/3.9/lib/python/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/zac/workspace/mcp_aigc_image_api/routers/api.py", line 91, in get_storage
+    return get_minio_client()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 355, in get_minio_client
+    _minio_client = MinIOClient()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 42, in __init__
+    self._initialize_client()
+  File "/Users/zac/workspace/mcp_aigc_image_api/core/minio_client.py", line 61, in _initialize_client
+    raise MinIOError(f"MinIO initialization failed: {str(e)}")
+core.minio_client.MinIOError: MinIO initialization failed: Bucket creation failed: S3 operation failed; code: AccessDenied, message: Access denied, resource: /images, request_id: 185521DBFF2E6AE4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: images
+2025-07-24 16:32:38 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:32:38 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:32:39 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:32:39 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:32:39 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:38:13 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:38:13 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:38:14 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:38:14 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:38:14 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:41:38 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:41:38 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:41:38 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:41:38 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:41:38 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:41:55 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:41:55 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:41:55 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:41:55 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:41:55 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:46:45 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:46:45 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:46:46 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:46:46 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:46:46 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:47:04 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:47:04 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:47:04 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:47:04 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:47:04 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:48:19 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:48:19 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:48:19 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:48:19 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:48:19 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 16:49:52 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 16:49:52 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 16:49:52 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 16:49:52 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 16:49:52 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:27:31 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 18:27:31 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 18:27:32 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 18:27:32 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 18:27:32 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:28:27 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 18:28:27 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 18:28:28 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 18:28:28 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 18:28:28 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:28:55 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 18:28:55 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 18:28:56 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 18:28:56 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 18:28:56 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:33:53 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 18:33:53 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 18:33:54 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 18:33:54 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 18:33:54 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 18:35:40 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 18:35:40 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 18:35:47 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 18:35:47 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 18:35:47 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:11:24 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:11:24 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:11:25 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:11:25 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:11:25 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:12:09 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:12:09 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:12:10 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:12:10 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:12:10 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:12:37 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:12:37 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:12:37 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:12:37 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:12:37 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:12:49 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:12:49 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:12:49 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:12:49 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:12:49 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:13:01 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:13:01 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:13:01 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:13:01 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:13:01 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:24:29 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:24:29 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:24:30 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:24:30 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:24:30 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:27:53 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:27:53 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:27:53 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:27:53 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:27:53 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513
+2025-07-24 19:30:21 - images_api.main - [32mINFO[0m - Shutting down Images API service...
+2025-07-24 19:30:21 - images_api.main - [32mINFO[0m - Cleanup completed
+2025-07-24 19:30:22 - images_api.main - [32mINFO[0m - Starting Images API service...
+2025-07-24 19:30:22 - images_api.main - [32mINFO[0m - Service will run on 0.0.0.0:5512
+2025-07-24 19:30:22 - images_api.main - [32mINFO[0m - MCP service will run on 0.0.0.0:5513

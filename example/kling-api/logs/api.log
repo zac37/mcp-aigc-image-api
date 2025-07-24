@@ -1,0 +1,750 @@
+2025-07-22 23:49:39 - kling_api.api - [32mINFO[0m - [49e0665d-2b14-491f-bc4a-04ac919f832e] Creating text-to-image task
+2025-07-22 23:49:39 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一只可爱的小猫在花园里玩耍...
+2025-07-22 23:49:46 - kling_api.api - [31mERROR[0m - Failed to create text-to-image task: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 134, in _make_request
+    return await response.json()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/.venv_py311/lib/python3.11/site-packages/aiohttp/client_reqrep.py", line 1165, in json
+    raise ContentTypeError(
+aiohttp.client_exceptions.ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 73, in create_text_to_image_task
+    result = await client.create_text_to_image(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 216, in create_text_to_image
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 163, in _make_request
+    raise KlingAPIError(f"Network error: {str(e)}")
+core.kling_client.KlingAPIError: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:49:46 - kling_api.api - [31mERROR[0m - [49e0665d-2b14-491f-bc4a-04ac919f832e] Kling API error: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 134, in _make_request
+    return await response.json()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/.venv_py311/lib/python3.11/site-packages/aiohttp/client_reqrep.py", line 1165, in json
+    raise ContentTypeError(
+aiohttp.client_exceptions.ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 127, in create_text_to_image
+    result = await service.create_text_to_image_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 73, in create_text_to_image_task
+    result = await client.create_text_to_image(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 216, in create_text_to_image
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 163, in _make_request
+    raise KlingAPIError(f"Network error: {str(e)}")
+core.kling_client.KlingAPIError: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/YOUR_BASE_URL/kling/v1/images/generations')
+2025-07-22 23:50:58 - kling_api.api - [32mINFO[0m - [117f5799-d6ba-4e69-b9b9-9a93b5b02774] Creating text-to-image task
+2025-07-22 23:50:58 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一只可爱的小猫在花园里玩耍...
+2025-07-22 23:51:00 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-22 23:51:38 - kling_api.api - [32mINFO[0m - [91b6fc1e-9df9-4665-8d31-bca386dfda63] Creating text-to-video task
+2025-07-22 23:51:38 - kling_api.api - [32mINFO[0m - Creating text-to-video task with prompt: 海边日落，海浪轻拍沙滩...
+2025-07-22 23:51:45 - kling_api.api - [31mERROR[0m - Failed to create text-to-video task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 260, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+2025-07-22 23:51:45 - kling_api.api - [31mERROR[0m - [91b6fc1e-9df9-4665-8d31-bca386dfda63] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 170, in create_text_to_video
+    result = await service.create_text_to_video_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 260, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250722235145709415663oizBl5DA)
+2025-07-22 23:52:20 - kling_api.api - [32mINFO[0m - [f87ddd48-0109-4ad7-abc7-51b078a9c64a] Creating image-to-video task
+2025-07-22 23:52:20 - kling_api.api - [32mINFO[0m - Creating image-to-video task with image: https://example.com/image.jpg
+2025-07-22 23:52:27 - kling_api.api - [31mERROR[0m - Failed to create image-to-video task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 196, in create_image_to_video_task
+    result = await client.create_image_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 305, in create_image_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+2025-07-22 23:52:27 - kling_api.api - [31mERROR[0m - [f87ddd48-0109-4ad7-abc7-51b078a9c64a] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 213, in create_image_to_video
+    result = await service.create_image_to_video_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 196, in create_image_to_video_task
+    result = await client.create_image_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 305, in create_image_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 202507222352272654212702SDNLwLU)
+2025-07-22 23:53:01 - kling_api.api - [32mINFO[0m - [1d7e2ac7-2196-4263-91b4-a31217ba8a30] Creating virtual try-on task
+2025-07-22 23:53:01 - kling_api.api - [32mINFO[0m - Creating virtual try-on task: tops
+2025-07-22 23:53:08 - kling_api.api - [31mERROR[0m - Failed to create virtual try-on task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 250, in create_virtual_try_on_task
+    result = await client.create_virtual_try_on(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 340, in create_virtual_try_on
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+2025-07-22 23:53:08 - kling_api.api - [31mERROR[0m - [1d7e2ac7-2196-4263-91b4-a31217ba8a30] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 256, in create_virtual_try_on
+    result = await service.create_virtual_try_on_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 250, in create_virtual_try_on_task
+    result = await client.create_virtual_try_on(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 340, in create_virtual_try_on
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250722235308945081929NLDhsa61)
+2025-07-22 23:53:51 - kling_api.api - [31mERROR[0m - Failed to get task status for 776663214486208593: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:53:51 - kling_api.api - [31mERROR[0m - [fbd3ee8e-8635-40ef-b79d-060283a275a2] Kling API error: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 297, in get_task_status
+    result = await service.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:34 - kling_api.api - [31mERROR[0m - Failed to get task result for 776663214486208593: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 320, in get_task_result
+    result = await client.get_task_result(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 387, in get_task_result
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:54:34 - kling_api.api - [31mERROR[0m - [d85643b1-8a37-44cf-a6b5-8a3e64062a45] Kling API error: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 329, in get_task_result
+    result = await service.get_task_result(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 320, in get_task_result
+    result = await client.get_task_result(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 387, in get_task_result
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:55:01 - kling_api.api - [31mERROR[0m - Failed to get task info for 776663214486208593: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 134, in _make_request
+    return await response.json()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/.venv_py311/lib/python3.11/site-packages/aiohttp/client_reqrep.py", line 1165, in json
+    raise ContentTypeError(
+aiohttp.client_exceptions.ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 352, in get_single_task
+    result = await client.get_single_task(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 410, in get_single_task
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 163, in _make_request
+    raise KlingAPIError(f"Network error: {str(e)}")
+core.kling_client.KlingAPIError: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:55:01 - kling_api.api - [31mERROR[0m - [862fbc79-1daf-497d-a707-2c02a0dcc766] Kling API error: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 134, in _make_request
+    return await response.json()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/.venv_py311/lib/python3.11/site-packages/aiohttp/client_reqrep.py", line 1165, in json
+    raise ContentTypeError(
+aiohttp.client_exceptions.ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 361, in get_single_task
+    result = await service.get_single_task(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 352, in get_single_task
+    result = await client.get_single_task(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 410, in get_single_task
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 163, in _make_request
+    raise KlingAPIError(f"Network error: {str(e)}")
+core.kling_client.KlingAPIError: Network error: 0, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url=URL('https://api.chatfire.cn/kling/v1/tasks/776663214486208593')
+2025-07-22 23:55:22 - kling_api.api - [32mINFO[0m - [20263b0f-c8c7-473d-9862-6e4b7b8ea43a] Waiting for task completion: 776663214486208593
+2025-07-22 23:55:29 - kling_api.api - [31mERROR[0m - Failed to get task status for 776663214486208593: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-22 23:55:29 - kling_api.api - [31mERROR[0m - [20263b0f-c8c7-473d-9862-6e4b7b8ea43a] Kling API error: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 401, in wait_for_task_completion
+    result = await service.wait_for_task_completion(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 388, in wait_for_task_completion
+    status_result = await self.get_task_status(api_key, task_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:03:11 - kling_api.api - [32mINFO[0m - [e1460efa-ddf6-4663-ab82-5bb4064cef55] Creating text-to-image task
+2025-07-23 00:03:11 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一只优雅的白色天鹅在湖面上游泳...
+2025-07-23 00:03:12 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 00:03:31 - kling_api.api - [32mINFO[0m - [f9f5ddf7-786e-465f-9ef8-ad06a9917047] Creating text-to-video task
+2025-07-23 00:03:31 - kling_api.api - [32mINFO[0m - Creating text-to-video task with prompt: 山间小溪缓缓流淌，阳光透过树叶洒在水面上...
+2025-07-23 00:03:38 - kling_api.api - [31mERROR[0m - Failed to create text-to-video task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 260, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+2025-07-23 00:03:38 - kling_api.api - [31mERROR[0m - [f9f5ddf7-786e-465f-9ef8-ad06a9917047] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 170, in create_text_to_video
+    result = await service.create_text_to_video_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 260, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 20250723000338516805135QYH5XJzx)
+2025-07-23 00:04:05 - kling_api.api - [31mERROR[0m - Failed to get task status for 776666289568878622: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:04:05 - kling_api.api - [31mERROR[0m - [20ee0a22-23b5-4bd0-9875-3dc031dc7c31] Kling API error: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 297, in get_task_status
+    result = await service.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 364, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:04:25 - kling_api.api - [32mINFO[0m - [da859f93-bae2-4574-9675-a1b73b46f016] Creating virtual try-on task
+2025-07-23 00:04:25 - kling_api.api - [32mINFO[0m - Creating virtual try-on task: tops
+2025-07-23 00:04:33 - kling_api.api - [31mERROR[0m - Failed to create virtual try-on task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 250, in create_virtual_try_on_task
+    result = await client.create_virtual_try_on(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 340, in create_virtual_try_on
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+2025-07-23 00:04:33 - kling_api.api - [31mERROR[0m - [da859f93-bae2-4574-9675-a1b73b46f016] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 256, in create_virtual_try_on
+    result = await service.create_virtual_try_on_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 250, in create_virtual_try_on_task
+    result = await client.create_virtual_try_on(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 340, in create_virtual_try_on
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_try-on 均无可用渠道，请更换分组尝试 (request id: 20250723000433329546998jXd73nlg)
+2025-07-23 00:04:52 - kling_api.api - [32mINFO[0m - [ad765083-e4cb-4a63-bc94-f888263d0e0e] Creating image-to-video task
+2025-07-23 00:04:52 - kling_api.api - [32mINFO[0m - Creating image-to-video task with image: https://example.com/image.jpg
+2025-07-23 00:04:59 - kling_api.api - [31mERROR[0m - Failed to create image-to-video task: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 196, in create_image_to_video_task
+    result = await client.create_image_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 305, in create_image_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+2025-07-23 00:04:59 - kling_api.api - [31mERROR[0m - [ad765083-e4cb-4a63-bc94-f888263d0e0e] Kling API error: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 213, in create_image_to_video
+    result = await service.create_image_to_video_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 196, in create_image_to_video_task
+    result = await client.create_image_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 305, in create_image_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: 所有令牌分组 default 下对于模型 kling_videos 均无可用渠道，请更换分组尝试 (request id: 2025072300050067021586L2MQwee2)
+2025-07-23 00:20:55 - kling_api.api - [32mINFO[0m - [56a69799-8617-4a2b-83e8-6a25ca3b81ed] Creating text-to-video task
+2025-07-23 00:20:55 - kling_api.api - [32mINFO[0m - Creating text-to-video task with prompt: 蝴蝶在花丛中飞舞...
+2025-07-23 00:21:14 - kling_api.api - [31mERROR[0m - Failed to create text-to-video task: Unexpected error: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 262, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+2025-07-23 00:21:14 - kling_api.api - [31mERROR[0m - [56a69799-8617-4a2b-83e8-6a25ca3b81ed] Kling API error: Unexpected error: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 170, in create_text_to_video
+    result = await service.create_text_to_video_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 135, in create_text_to_video_task
+    result = await client.create_text_to_video(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 262, in create_text_to_video
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"message":"cfgScale: must be less than or equal to 1","data":{"code":1201,"message":"cfgScale: must be less than or equal to 1","request_id":"9b39d3ef-2cdb-4c29-a03f-c0348efea7c6"}}
+2025-07-23 00:22:33 - kling_api.api - [32mINFO[0m - [22b8f189-326d-4641-a80e-45cd1d8e3ca5] Creating text-to-video task
+2025-07-23 00:22:33 - kling_api.api - [31mERROR[0m - Failed to create text-to-video task: cfg_scale must be between 1.0 and 20.0
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 131, in create_text_to_video_task
+    raise ValueError("cfg_scale must be between 1.0 and 20.0")
+ValueError: cfg_scale must be between 1.0 and 20.0
+2025-07-23 00:22:33 - kling_api.api - [33mWARNING[0m - [22b8f189-326d-4641-a80e-45cd1d8e3ca5] Invalid request parameters: cfg_scale must be between 1.0 and 20.0
+2025-07-23 00:23:19 - kling_api.api - [32mINFO[0m - [c5af515d-354c-46ef-abcf-9a30d15f6f49] Creating text-to-video task
+2025-07-23 00:23:19 - kling_api.api - [32mINFO[0m - Creating text-to-video task with prompt: 蝴蝶在花丛中飞舞...
+2025-07-23 00:23:19 - kling_api.api - [32mINFO[0m - Text-to-video task created successfully: N/A
+2025-07-23 00:23:35 - kling_api.api - [32mINFO[0m - [03b21f37-c7de-4d17-9a11-3dfaf40d6dc7] Creating image-to-video task
+2025-07-23 00:23:35 - kling_api.api - [32mINFO[0m - Creating image-to-video task with image: https://example.com/image.jpg
+2025-07-23 00:23:35 - kling_api.api - [32mINFO[0m - Image-to-video task created successfully: N/A
+2025-07-23 00:23:48 - kling_api.api - [32mINFO[0m - [d7dec0c4-267d-4805-b924-80122fa53b1b] Creating virtual try-on task
+2025-07-23 00:23:48 - kling_api.api - [32mINFO[0m - Creating virtual try-on task: tops
+2025-07-23 00:23:49 - kling_api.api - [32mINFO[0m - Virtual try-on task created successfully: N/A
+2025-07-23 00:24:17 - kling_api.api - [31mERROR[0m - Failed to get task status for 776671477176991805: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 370, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 00:24:17 - kling_api.api - [31mERROR[0m - [96b9a982-2ace-45c2-b293-d2a6c04a0613] Kling API error: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 152, in _make_request
+    raise KlingAPIError(
+core.kling_client.KlingAPIError: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 297, in get_task_status
+    result = await service.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 288, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 370, in get_task_status
+    return await self._make_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 170, in _make_request
+    raise KlingAPIError(f"Unexpected error: {str(e)}")
+core.kling_client.KlingAPIError: Unexpected error: Kling API error: {"code":400,"message":"kling_task_not_exist","request_id":"","data":{"task_info":{"parent_video":{}},"task_result":{}}}
+2025-07-23 01:55:42 - kling_api.api - [32mINFO[0m - [2498dac3-ce72-48d3-aa46-204f3ab85fea] Creating text-to-image task
+2025-07-23 01:55:42 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: A beautiful sunset over the ocean with waves crashing on the shore...
+2025-07-23 01:55:42 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 01:56:09 - kling_api.api - [32mINFO[0m - Successfully found task 776694602832805961 as text_to_image
+2025-07-23 01:56:09 - kling_api.api - [32mINFO[0m - Successfully found task 776694602832805961 as text_to_image
+2025-07-23 01:56:09 - kling_api.api - [31mERROR[0m - Failed to get task status for 776694602832805961: Unsupported task type: invalid_type
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 339, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id, task_type=task_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 408, in get_task_status
+    return await self.get_task_info(api_key, task_id, task_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 387, in get_task_info
+    raise ValueError(f"Unsupported task type: {task_type}")
+ValueError: Unsupported task type: invalid_type
+2025-07-23 01:56:09 - kling_api.api - [31mERROR[0m - [d6a99171-349e-4d49-8b02-381a7790c573] Unexpected error: Unsupported task type: invalid_type
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/routers/api.py", line 299, in get_task_status
+    result = await service.get_task_status(api_key=api_key, task_id=task_id, task_type=task_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 339, in get_task_status
+    result = await client.get_task_status(api_key=api_key, task_id=task_id, task_type=task_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 408, in get_task_status
+    return await self.get_task_info(api_key, task_id, task_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/core/kling_client.py", line 387, in get_task_info
+    raise ValueError(f"Unsupported task type: {task_type}")
+ValueError: Unsupported task type: invalid_type
+2025-07-23 02:01:12 - kling_api.api - [32mINFO[0m - [46c8421e-6588-4070-8ee6-a2d9784bbcce] Creating text-to-image task
+2025-07-23 02:01:12 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: A majestic dragon flying over a mystical forest at sunset, fantasy art style...
+2025-07-23 02:01:12 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:01:12 - kling_api.api - [32mINFO[0m - [e7935657-ce46-440d-b34a-d6db4d9c487d] Creating text-to-video task
+2025-07-23 02:01:12 - kling_api.api - [32mINFO[0m - Creating text-to-video task with prompt: A time-lapse of clouds moving across a blue sky with birds flying...
+2025-07-23 02:01:13 - kling_api.api - [32mINFO[0m - Text-to-video task created successfully: N/A
+2025-07-23 02:01:15 - kling_api.api - [32mINFO[0m - Successfully found task 776695987158646795 as text_to_image
+2025-07-23 02:02:25 - kling_api.api - [32mINFO[0m - [4be21328-3afe-4144-b287-b091dd0fe8de] Creating text-to-image task
+2025-07-23 02:02:25 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: A beautiful landscape with mountains and lake, peaceful nature scene...
+2025-07-23 02:02:26 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:03:05 - kling_api.api - [32mINFO[0m - Successfully found task 776696295238680664 as text_to_image
+2025-07-23 02:03:05 - kling_api.api - [32mINFO[0m - Successfully found task 776695988768604194 as text_to_image
+2025-07-23 02:34:55 - kling_api.api - [32mINFO[0m - [b876eb32-44cf-4d60-889a-f4b4802e7fa3] Creating text-to-image task
+2025-07-23 02:34:55 - kling_api.api - [31mERROR[0m - Failed to create text-to-image task: cfg_scale must be between 0.0 and 1.0
+Traceback (most recent call last):
+  File "/Users/zac/workspace/mcp_aigc_api/kling-api/services/kling_service.py", line 72, in create_text_to_image_task
+    raise ValueError("cfg_scale must be between 0.0 and 1.0")
+ValueError: cfg_scale must be between 0.0 and 1.0
+2025-07-23 02:34:55 - kling_api.api - [33mWARNING[0m - [b876eb32-44cf-4d60-889a-f4b4802e7fa3] Invalid request parameters: cfg_scale must be between 0.0 and 1.0
+2025-07-23 02:35:05 - kling_api.api - [32mINFO[0m - [6dbe36c9-d17c-451d-a0fc-160f295c3400] Creating text-to-image task
+2025-07-23 02:35:05 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一只可爱的小猫咪...
+2025-07-23 02:35:06 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:35:17 - kling_api.api - [32mINFO[0m - Successfully found task 776704517651562527 as text_to_image
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - [81f6ed1b-e60e-4eee-9dee-854e285e03df] Creating text-to-image task
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一匹威严的荒野狼王，露出愤怒的表情，锋利的獠牙，凶猛的黄色眼睛闪闪发光，厚重的灰色毛发在风中飞扬，站在荒凉的山岩上，背景是暴风雨的天空，月光照射，超现实主义风格，高清细节，8K分辨率...
+2025-07-23 02:36:41 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:36:51 - kling_api.api - [32mINFO[0m - Successfully found task 776704917682651185 as text_to_image
+2025-07-23 02:37:34 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一匹威严的荒野狼王，愤怒咆哮，露出锋利的獠牙，双眼充满怒火，毛发炸立，站在崎岖的山岩上，背景是荒凉的旷野和阴云密布的天空，月光照射，超高清，电影级画质，戏剧性光影效果...
+2025-07-23 02:37:35 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+2025-07-23 02:37:45 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:37:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:37:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:57 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:45:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:45:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 

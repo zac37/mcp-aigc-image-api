@@ -1,0 +1,171 @@
+2025-07-23 02:34:25 - kling_api.mcp - [32mINFO[0m - Starting Kling API MCP server...
+2025-07-23 02:34:25 - kling_api.mcp - [32mINFO[0m - Transport: streamable-http
+2025-07-23 02:34:25 - kling_api.mcp - [32mINFO[0m - Host: 0.0.0.0
+2025-07-23 02:34:25 - kling_api.mcp - [32mINFO[0m - Port: 5510
+2025-07-23 02:34:25 - kling_api.mcp - [32mINFO[0m - Endpoint: http://0.0.0.0:5510/mcp/v1
+[07/23/25 02:34:25] INFO     Starting MCP server 'Kling API' with  server.py:823
+                             transport 'streamable-http' on                     
+                             http://0.0.0.0:5510/mcp                            
+INFO:     Started server process [14831]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5510 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54554 - "POST /mcp/v1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54555 - "POST /mcp/v1 HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:54556 - "GET /mcp/v1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54557 - "POST /mcp/v1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54929 - "GET /mcp/v1/tools HTTP/1.1" 406 Not Acceptable
+INFO:     127.0.0.1:54982 - "GET /mcp/v1/tools HTTP/1.1" 406 Not Acceptable
+INFO:     127.0.0.1:56393 - "POST /mcp/v1 HTTP/1.1" 200 OK
+2025-07-23 02:37:34 - kling_api.api - [32mINFO[0m - Creating text-to-image task with prompt: 一匹威严的荒野狼王，愤怒咆哮，露出锋利的獠牙，双眼充满怒火，毛发炸立，站在崎岖的山岩上，背景是荒凉的旷野和阴云密布的天空，月光照射，超高清，电影级画质，戏剧性光影效果...
+2025-07-23 02:37:35 - kling_api.client - [32mINFO[0m - PERF POST /kling/v1/images/generations duration=0.287s status_code=200 attempt=1
+2025-07-23 02:37:35 - kling_api.api - [32mINFO[0m - Text-to-image task created successfully: N/A
+INFO:     127.0.0.1:56531 - "POST /mcp/v1 HTTP/1.1" 200 OK
+2025-07-23 02:37:45 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:37:45 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+INFO:     127.0.0.1:56598 - "POST /mcp/v1 HTTP/1.1" 200 OK
+2025-07-23 02:37:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:37:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:37:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:38:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:38:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:38:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:38:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:38:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:38:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:38:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:38:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:39:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:39:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:39:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:39:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:39:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:39:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:40:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:40:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:40:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.037s status_code=200 attempt=1
+2025-07-23 02:40:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:40:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:02 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:41:02 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:02 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:12 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:41:12 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:12 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:22 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:41:22 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:22 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:32 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.031s status_code=200 attempt=1
+2025-07-23 02:41:32 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:32 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:42 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:41:42 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:42 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:41:52 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:41:52 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:41:52 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+INFO:     127.0.0.1:59200 - "POST /mcp/v1 HTTP/1.1" 200 OK
+2025-07-23 02:41:57 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:41:57 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:42:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+INFO:     127.0.0.1:59264 - "POST /mcp/v1 HTTP/1.1" 200 OK
+2025-07-23 02:42:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:42:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:42:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:42:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:42:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:42:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:42:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:43:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:43:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.034s status_code=200 attempt=1
+2025-07-23 02:43:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:43:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:43:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:43:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.033s status_code=200 attempt=1
+2025-07-23 02:43:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:43:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.029s status_code=200 attempt=1
+2025-07-23 02:44:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:13 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:13 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:13 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:23 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:23 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:23 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:33 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:33 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:33 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:43 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:44:43 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:43 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:44:53 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.032s status_code=200 attempt=1
+2025-07-23 02:44:53 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:44:53 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+2025-07-23 02:45:03 - kling_api.client - [32mINFO[0m - PERF GET /kling/v1/images/generations/776705141994033232 duration=0.030s status_code=200 attempt=1
+2025-07-23 02:45:03 - kling_api.api - [32mINFO[0m - Successfully found task 776705141994033232 as text_to_image
+2025-07-23 02:45:03 - kling_api.api - [33mWARNING[0m - Task 776705141994033232 has unknown status: 
+INFO:     Shutting down
+ERROR:    ASGI callable returned without completing response.
+ERROR:    ASGI callable returned without completing response.
+ERROR:    Cancel 0 running task(s), timeout graceful shutdown exceeded
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [14831]
