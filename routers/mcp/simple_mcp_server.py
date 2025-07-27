@@ -83,36 +83,38 @@ class SimpleMCPServer:
         # GPT图像生成工具
         tools['create_gpt_image'] = MCPTool(
             name='create_gpt_image',
-            description='创建GPT图像生成任务 - 使用DALL-E模型根据文本描述生成图像',
+            description='创建GPT图像生成任务 - 使用gpt-image-1模型根据文本描述生成图像',
             parameters={
                 'type': 'object',
                 'properties': {
                     'prompt': {'type': 'string', 'description': '图像描述提示词，详细描述想要生成的图像内容'},
-                    'model': {'type': 'string', 'default': 'dall-e-3', 'description': '模型名称，支持: dall-e-3, dall-e-2'},
+                    'model': {'type': 'string', 'default': 'gpt-image-1', 'description': '模型名称，默认 gpt-image-1'},
                     'n': {'type': 'integer', 'default': 1, 'description': '生成图像数量'},
-                    'size': {'type': 'string', 'default': '1024x1024', 'description': '图像尺寸'},
-                    'quality': {'type': 'string', 'default': 'standard', 'description': '图像质量'},
-                    'style': {'type': 'string', 'default': 'vivid', 'description': '图像风格'}
+                    'response_format': {'type': 'string', 'default': 'url', 'description': '返回格式 (url, b64_json, oss_url)，默认 url'},
+                    'size': {'type': 'string', 'default': 'auto', 'description': '图像尺寸 (1024x1024, 1536x1024, 1024x1536, auto)，默认 auto'},
+                    'background': {'type': 'string', 'default': 'auto', 'description': '背景类型 (transparent, opaque, auto)，默认 auto'},
+                    'quality': {'type': 'string', 'default': 'auto', 'description': '图像质量 (high, medium, low, auto)，默认 auto'},
+                    'moderation': {'type': 'string', 'default': 'auto', 'description': '内容审核级别 (low, auto)，默认 auto'}
                 },
                 'required': ['prompt']
             }
         )
         
-        # GPT图像编辑工具
+        # GPT图像编辑工具（虚拟接口）
         tools['create_gpt_image_edit'] = MCPTool(
             name='create_gpt_image_edit',
-            description='创建GPT图像编辑任务 - 在给定原始图像和提示的情况下创建编辑或扩展图像',
+            description='GPT图像编辑工具（虚拟接口）- 由于MCP协议不支持文件上传，此工具提供REST API调用指南',
             parameters={
                 'type': 'object',
                 'properties': {
-                    'image_url': {'type': 'string', 'description': '要编辑的图像URL地址，必须是有效的PNG文件，小于4MB，方形'},
-                    'prompt': {'type': 'string', 'description': '所需图像的文本描述，最大长度为1000个字符'},
-                    'mask_url': {'type': 'string', 'description': '可选的遮罩图像URL，透明区域指示要编辑的位置'},
-                    'n': {'type': 'string', 'default': '1', 'description': '要生成的图像数，必须介于1和10之间'},
-                    'size': {'type': 'string', 'default': '1024x1024', 'description': '生成图像的大小，必须是256x256、512x512或1024x1024之一'},
-                    'response_format': {'type': 'string', 'default': 'url', 'description': '生成的图像返回格式，必须是url或b64_json'}
+                    'image_description': {'type': 'string', 'default': '请描述您要编辑的图片', 'description': '要编辑的图片描述（仅用于说明）'},
+                    'prompt': {'type': 'string', 'default': '请描述您想要的编辑效果', 'description': '编辑效果描述'},
+                    'model': {'type': 'string', 'default': 'gpt-image-1', 'description': '模型名称，默认gpt-image-1'},
+                    'n': {'type': 'integer', 'default': 1, 'description': '生成图片数量，1-10之间'},
+                    'size': {'type': 'string', 'default': '1024x1024', 'description': '图片尺寸，256x256/512x512/1024x1024'},
+                    'response_format': {'type': 'string', 'default': 'url', 'description': '返回格式，url或b64_json'}
                 },
-                'required': ['image_url', 'prompt']
+                'required': []
             }
         )
         
@@ -226,6 +228,35 @@ class SimpleMCPServer:
                     'watermark': {'type': 'boolean', 'default': True, 'description': '是否添加水印'}
                 },
                 'required': ['prompt']
+            }
+        )
+        
+        # Veo3视频生成工具
+        tools['create_veo3_video'] = MCPTool(
+            name='create_veo3_video',
+            description='创建Veo3视频生成任务 - Google Veo3模型的视频生成功能',
+            parameters={
+                'type': 'object',
+                'properties': {
+                    'prompt': {'type': 'string', 'description': '视频描述提示词，详细描述想要生成的视频内容'},
+                    'model': {'type': 'string', 'default': 'veo3', 'description': '模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)'},
+                    'images': {'type': 'array', 'items': {'type': 'string'}, 'description': '图像URL列表（图生视频需要，文生视频会忽略）'},
+                    'enhance_prompt': {'type': 'boolean', 'default': True, 'description': '是否增强提示词'}
+                },
+                'required': ['prompt']
+            }
+        )
+        
+        # Veo3任务状态查询工具
+        tools['get_veo3_task'] = MCPTool(
+            name='get_veo3_task',
+            description='获取Veo3视频生成任务状态 - 查询任务进度和获取视频结果',
+            parameters={
+                'type': 'object',
+                'properties': {
+                    'task_id': {'type': 'string', 'description': '任务ID，从创建任务时返回的响应中获取'}
+                },
+                'required': ['task_id']
             }
         )
         

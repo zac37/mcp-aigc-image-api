@@ -23,22 +23,26 @@ logger = get_mcp_logger()
 
 async def create_gpt_image_tool(
     prompt: str,
-    model: str = "dall-e-3",
+    model: str = "gpt-image-1",
     n: int = 1,
-    size: str = "1024x1024",
-    quality: str = "standard",
-    style: str = "vivid"
+    response_format: str = "url",
+    size: str = "auto",
+    background: str = "auto",
+    quality: str = "auto",
+    moderation: str = "auto"
 ) -> str:
     """
     创建GPT图像生成任务
     
     Args:
         prompt: 图像描述提示词，详细描述想要生成的图像内容
-        model: 模型名称，支持: dall-e-3, dall-e-2，默认 dall-e-3
-        n: 生成图像数量，dall-e-3最多1张，dall-e-2最多10张，默认 1
-        size: 图像尺寸，支持多种规格，默认 1024x1024
-        quality: 图像质量，支持: standard, hd，默认 standard
-        style: 图像风格，支持: vivid, natural，默认 vivid
+        model: 模型名称，默认 gpt-image-1
+        n: 生成图像数量，默认 1
+        response_format: 返回格式 (url, b64_json, oss_url)，默认 url
+        size: 图像尺寸 (1024x1024, 1536x1024, 1024x1536, auto)，默认 auto
+        background: 背景类型 (transparent, opaque, auto)，默认 auto
+        quality: 图像质量 (high, medium, low, auto)，默认 auto
+        moderation: 内容审核级别 (low, auto)，默认 auto
     
     Returns:
         JSON格式的图像生成结果，包含图像URL和相关信息
@@ -50,80 +54,135 @@ async def create_gpt_image_tool(
             prompt=prompt,
             model=model,
             n=n,
+            response_format=response_format,
             size=size,
+            background=background,
             quality=quality,
-            style=style
+            moderation=moderation
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
         
     except Exception as e:
         log_exception(logger, e, "Failed to create GPT image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in GPT image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
 
 async def create_gpt_image_edit_tool(
-    image_url: str,
-    prompt: str,
-    mask_url: Optional[str] = None,
-    n: str = "1",
+    image_description: str = "请描述您要编辑的图片",
+    prompt: str = "请描述您想要的编辑效果",
+    model: str = "gpt-image-1",
+    n: int = 1,
     size: str = "1024x1024",
     response_format: str = "url"
 ) -> str:
     """
-    创建GPT图像编辑任务
+    GPT图像编辑工具（虚拟接口）
     
-    在给定原始图像和提示的情况下创建编辑或扩展图像
+    由于MCP协议不支持文件上传，此工具提供REST API调用指南
     
     Args:
-        image_url: 要编辑的图像URL地址，必须是有效的PNG文件，小于4MB，方形
-        prompt: 所需图像的文本描述，最大长度为1000个字符
-        mask_url: 可选的遮罩图像URL，透明区域指示要编辑的位置
-        n: 要生成的图像数，必须介于1和10之间
-        size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
-        response_format: 生成的图像返回格式，必须是url或b64_json
+        image_description: 要编辑的图片描述（仅用于说明）
+        prompt: 编辑效果描述
+        model: 模型名称，默认gpt-image-1
+        n: 生成图片数量，1-10之间
+        size: 图片尺寸，256x256/512x512/1024x1024
+        response_format: 返回格式，url或b64_json
     
     Returns:
-        JSON格式的图像编辑结果，包含编辑后的图像URL和相关信息
+        REST API调用指南和curl示例
     """
-    try:
-        service = get_images_service()
-        
-        result = await service.create_gpt_image_edit(
-            image=image_url,
-            prompt=prompt,
-            mask=mask_url,
-            n=n,
-            size=size,
-            response_format=response_format
-        )
-        
-        return json.dumps(result, ensure_ascii=False, indent=2)
-        
-    except ImagesAPIError as e:
-        logger.error(f"GPT image edit API error: {e}")
-        error_result = {
-            "error": True,
-            "message": e.message,
-            "status_code": e.status_code,
-            "error_code": e.error_code
+    
+    # 构建API调用说明
+    api_guide = {
+        "message": "MCP协议不支持文件上传，请使用以下REST API进行GPT图像编辑",
+        "api_info": {
+            "endpoint": "POST /api/gpt/edits",
+            "base_url": "http://localhost:5512",
+            "full_url": "http://localhost:5512/api/gpt/edits",
+            "content_type": "multipart/form-data",
+            "description": "GPT图像编辑接口 - 在给定原始图像和提示的情况下创建编辑或扩展图像"
+        },
+        "required_parameters": {
+            "image": {
+                "type": "file (binary)",
+                "description": "要编辑的图像文件，必须是有效的PNG文件，小于4MB，方形"
+            },
+            "prompt": {
+                "type": "string",
+                "description": "所需图像的文本描述，最大长度1000字符",
+                "example": prompt
+            },
+            "model": {
+                "type": "string", 
+                "description": "模型名称",
+                "example": model,
+                "required": True
+            }
+        },
+        "optional_parameters": {
+            "mask": {
+                "type": "file (binary)",
+                "description": "遮罩图像，透明区域指示编辑位置"
+            },
+            "n": {
+                "type": "string",
+                "description": "生成图像数量，1-10之间",
+                "example": str(n)
+            },
+            "size": {
+                "type": "string",
+                "description": "图像尺寸",
+                "options": ["256x256", "512x512", "1024x1024"],
+                "example": size
+            },
+            "response_format": {
+                "type": "string",
+                "description": "返回格式",
+                "options": ["url", "b64_json"],
+                "example": response_format
+            },
+            "user": {
+                "type": "string",
+                "description": "用户标识符"
+            }
+        },
+        "curl_example": f'''curl -X POST "http://localhost:5512/api/gpt/edits" \\
+  -F "image=@/path/to/your/image.png" \\
+  -F "prompt={prompt}" \\
+  -F "model={model}" \\
+  -F "n={n}" \\
+  -F "size={size}" \\
+  -F "response_format={response_format}"''',
+        "response_example": {
+            "success": True,
+            "data": {
+                "created": 1589478378,
+                "data": [
+                    {
+                        "url": "https://example.com/edited-image.png"
+                    }
+                ]
+            },
+            "request_id": "uuid-string"
+        },
+        "notes": [
+            "图像文件必须是PNG格式，小于4MB，并且是方形的",
+            "如果未提供遮罩，图像必须具有透明度作为遮罩",
+            "model参数是必需的，目前支持gpt-image-1",
+            "可以通过API文档查看更多详情: http://localhost:5512/docs"
+        ],
+        "alternative_tools": {
+            "seededit": "如需基于URL的图像编辑，可使用create_seededit_image工具",
+            "command": "create_seededit_image(image_url='your_image_url', prompt='edit_description')"
         }
-        return json.dumps(error_result, ensure_ascii=False, indent=2)
-        
-    except Exception as e:
-        log_exception(logger, e, "Failed to create GPT image edit")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in GPT image edit: {type(e).__name__}"
-        error_result = {
-            "error": True,
-            "message": error_message,
-            "type": type(e).__name__
-        }
-        return json.dumps(error_result, ensure_ascii=False, indent=2)
+    }
+    
+    return json.dumps(api_guide, ensure_ascii=False, indent=2)
 
 async def create_recraft_image_tool(
     prompt: str,
@@ -162,10 +221,9 @@ async def create_recraft_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Recraft image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in Recraft image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -205,10 +263,9 @@ async def create_seedream_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Seedream image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in Seedream image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -222,21 +279,28 @@ async def create_seededit_image_tool(
     size: str = "1024x1024"
 ) -> str:
     """
-    创建即梦垫图生成任务 - 基于现有图像进行智能编辑
+    创建即梦垫图生成任务 - 基于即梦3.0 (Seedream) API实现图生图功能
     
     Args:
         image_url: 原始图像URL地址，必须是有效的HTTP/HTTPS链接
         prompt: 编辑提示词，描述想要的修改内容
-        strength: 编辑强度，范围0.0-1.0，默认 0.8（仅作为可选参数，API可能不支持）
-        seed: 随机种子，用于复现结果（可选）
-        model: 模型类型，支持 "seededit" 或 "seededit-pro"，默认 "seededit"
-        size: 输出图像尺寸，格式如 "1024x1024"，默认 "1024x1024"
+        strength: 编辑强度，范围0.0-1.0，默认 0.8（参数兼容性保留，实际不传递给API）
+        seed: 随机种子，用于复现结果（参数兼容性保留，实际不传递给API）
+        model: 模型类型参数（兼容性保留，实际使用seedream-3.0模型）
+        size: 输出图像尺寸，推荐使用即梦3.0文档建议的尺寸：
+               - 1:1 -> 1328x1328 或 1536x1536
+               - 4:3 -> 1472x1104
+               - 3:2 -> 1584x1056  
+               - 16:9 -> 1664x936
+               - 21:9 -> 2016x864
     
     Returns:
         JSON格式的图像生成结果
         
     Note:
-        根据API文档，该接口会将image_url和prompt组合成最终的prompt格式
+        - 实际使用即梦3.0 (seedream-3.0) 模型进行图生图
+        - prompt格式：将image_url和prompt组合为"URL + 空格 + 编辑指令"
+        - 推荐使用1.3K~1.5K分辨率获得更好的画质
     """
     try:
         service = get_images_service()
@@ -254,10 +318,9 @@ async def create_seededit_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create SeedEdit image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in SeedEdit image editing: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -297,10 +360,9 @@ async def create_flux_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create FLUX image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in FLUX image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -328,10 +390,9 @@ async def create_stable_diffusion_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create StableDiffusion image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in StableDiffusion image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -357,10 +418,9 @@ async def create_hailuo_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Hailuo image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in Hailuo image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -386,10 +446,80 @@ async def create_doubao_image_tool(
         
     except Exception as e:
         log_exception(logger, e, "Failed to create Doubao image")
-        error_message = str(e) if str(e).strip() else f"Unexpected error in Doubao image generation: {type(e).__name__}"
         error_result = {
             "error": True,
-            "message": error_message,
+            "message": str(e),
+            "type": type(e).__name__
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+async def create_veo3_video_tool(
+    prompt: str,
+    model: str = "veo3",
+    images: Optional[List[str]] = None,
+    enhance_prompt: bool = True
+) -> str:
+    """
+    创建Veo3视频生成任务
+    
+    Args:
+        prompt: 视频描述提示词，详细描述想要生成的视频内容
+        model: 模型名称，支持以下选项：
+               - veo3: 文生视频 快速版
+               - veo3-frames: 图生视频 快速版  
+               - veo3-pro: 文生视频 高质量版本
+               - veo3-pro-frames: 图生视频 高质量版本
+        images: 图像URL列表（图生视频需要，文生视频会忽略）
+        enhance_prompt: 是否增强提示词，默认为True
+    
+    Returns:
+        JSON格式的视频生成结果，包含任务ID和状态信息
+    """
+    try:
+        service = get_images_service()
+        
+        result = await service.create_veo3_video(
+            prompt=prompt,
+            model=model,
+            images=images,
+            enhance_prompt=enhance_prompt
+        )
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to create Veo3 video")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+async def get_veo3_task_tool(
+    task_id: str
+) -> str:
+    """
+    获取Veo3视频生成任务状态
+    
+    Args:
+        task_id: 任务ID，从创建任务时返回的响应中获取
+    
+    Returns:
+        JSON格式的任务状态信息，包含状态、视频URL等
+    """
+    try:
+        service = get_images_service()
+        
+        result = await service.get_veo3_task(task_id=task_id)
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to get Veo3 task status")
+        error_result = {
+            "error": True,
+            "message": str(e),
             "type": type(e).__name__
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
@@ -399,7 +529,7 @@ async def create_doubao_image_tool(
 # =============================================================================
 
 # 为每个工具函数添加描述信息
-create_gpt_image_tool.__doc__ = """创建GPT图像生成任务 - 使用DALL-E模型根据文本描述生成图像"""
+create_gpt_image_tool.__doc__ = """创建GPT图像生成任务 - 使用gpt-image-1模型根据文本描述生成图像"""
 create_recraft_image_tool.__doc__ = """创建Recraft图像生成任务 - 专业的图像创作工具"""
 create_seedream_image_tool.__doc__ = """创建即梦3.0图像生成任务 - 先进的图像生成技术"""
 create_seededit_image_tool.__doc__ = """创建即梦垫图生成任务 - 基于现有图像的智能编辑"""
@@ -407,6 +537,8 @@ create_flux_image_tool.__doc__ = """创建FLUX图像生成任务 - 高质量的�
 create_stable_diffusion_image_tool.__doc__ = """创建StableDiffusion图像生成任务 - 经典的开源图像生成模型"""
 create_hailuo_image_tool.__doc__ = """创建海螺图片生成任务 - 海螺AI的图像生成"""
 create_doubao_image_tool.__doc__ = """创建Doubao图片生成任务 - 字节跳动的图像生成"""
+create_veo3_video_tool.__doc__ = """创建Veo3视频生成任务 - Google Veo3模型的视频生成功能"""
+get_veo3_task_tool.__doc__ = """获取Veo3视频生成任务状态 - 查询任务进度和获取视频结果"""
 
 # =============================================================================
 # 文件上传工具函数

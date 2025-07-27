@@ -76,6 +76,7 @@ class ImagesAPIClient:
         endpoint: str,
         data: Optional[Dict[str, Any]] = None,
         headers: Optional[Dict[str, str]] = None,
+        params: Optional[Dict[str, Any]] = None,
         retry_count: int = 0
     ) -> Dict[str, Any]:
         """
@@ -110,7 +111,9 @@ class ImagesAPIClient:
             }
             
             if method.upper() == "GET":
-                if data:
+                if params:
+                    request_kwargs["params"] = params
+                elif data:
                     request_kwargs["params"] = data
             else:
                 if data:
@@ -161,7 +164,7 @@ class ImagesAPIClient:
                     retry_delay = 2 ** retry_count  # 指数退避
                     logger.warning(f"Request failed with status {response.status}, retrying in {retry_delay}s (attempt {retry_count + 1}/{self.max_retries})")
                     await asyncio.sleep(retry_delay)
-                    return await self._make_request(method, endpoint, data, headers, retry_count + 1)
+                    return await self._make_request(method, endpoint, data, headers, params, retry_count + 1)
                 
                 raise ImagesAPIError(
                     error_message,
@@ -181,7 +184,8 @@ class ImagesAPIClient:
         
         except Exception as e:
             log_exception(logger, e, f"Unexpected error in {method} {endpoint}")
-            raise ImagesAPIError(f"Unexpected error: {str(e)}")
+            error_message = str(e) if str(e).strip() else f"Network timeout or connection error in {method} {endpoint}"
+            raise ImagesAPIError(f"Unexpected error: {error_message}")
     
     # =============================================================================
     # GPT图像生成API
@@ -190,62 +194,81 @@ class ImagesAPIClient:
     async def gpt_generations(
         self,
         prompt: str,
-        model: str = "dall-e-3",
+        model: str = "gpt-image-1",
         n: int = 1,
-        size: str = "1024x1024",
-        quality: str = "standard",
-        style: str = "vivid"
+        response_format: str = "url",
+        size: str = "auto",
+        background: str = "auto",
+        quality: str = "auto",
+        moderation: str = "auto"
     ) -> Dict[str, Any]:
         """GPT图像生成"""
         data = {
             "prompt": prompt,
             "model": model,
             "n": n,
+            "response_format": response_format,
             "size": size,
+            "background": background,
             "quality": quality,
-            "style": style
+            "moderation": moderation
         }
         return await self._make_request("POST", "/v1/images/generations", data)
     
     async def gpt_edits(
         self,
-        image: Union[str, bytes],
+        image,  # UploadFile
         prompt: str,
-        mask: Optional[Union[str, bytes]] = None,
-        n: str = "1",
+        model: str = "gpt-image-1",
+        mask = None,  # Optional[UploadFile]
+        n: Union[int, str] = 1,  # 支持int或str类型
         size: str = "1024x1024",
-        response_format: str = "url"
+        response_format: str = "url",
+        user: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         GPT图像编辑
         
-        在给定原始图像和提示的情况下创建编辑或扩展图像
+        在给定原始图像和提示的情况下创建编辑或扩展图像。
         
         Args:
-            image: 要编辑的图像，必须是有效的PNG文件，小于4MB，方形
+            image: 要编辑的图像文件（UploadFile）
             prompt: 所需图像的文本描述，最大长度为1000个字符
-            mask: 可选的遮罩图像，透明区域指示要编辑的位置
-            n: 要生成的图像数，必须介于1和10之间
+            model: 用于图像生成的模型（gpt-image-1）
+            mask: 附加图像，指示应编辑的位置（可选）
+            n: 要生成的图像数，必须介于1和10之间（支持int或str）
             size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
             response_format: 生成的图像返回格式，必须是url或b64_json
+            user: 用户标识符，可选
         
         Returns:
             API响应数据
         """
-        return await self._make_multipart_request(
-            "POST", 
-            "/v1/images/edits",
-            files={
-                "image": image,
-                "mask": mask
-            },
-            data={
-                "prompt": prompt,
-                "n": n,
-                "size": size,
-                "response_format": response_format
-            }
-        )
+        # 准备表单数据
+        data = {
+            "prompt": prompt,
+            "model": model,
+            "n": str(n),  # 确保转换为字符串
+            "size": size,
+            "response_format": response_format
+        }
+        
+        if user:
+            data["user"] = user
+        
+        # 准备文件数据
+        files = {}
+        
+        # 添加主图像文件
+        image_content = await image.read()
+        files["image"] = image_content
+        
+        # 添加mask文件（如果提供）
+        if mask:
+            mask_content = await mask.read()
+            files["mask"] = mask_content
+            
+        return await self._make_multipart_request("POST", "/v1/images/edits", files, data)
     
     async def _make_multipart_request(
         self,
@@ -281,27 +304,20 @@ class ImagesAPIClient:
                     if isinstance(file_data, str):
                         # 如果是URL，先下载文件
                         if file_data.startswith(('http://', 'https://')):
-                            # 检查是否是无效的测试URL
-                            if 'example.com' in file_data or file_data.endswith('test.png'):
-                                raise ImagesAPIError(f"Invalid test URL provided: {file_data}. Please provide a valid image URL.")
-                            
-                            try:
-                                async with session.get(file_data) as resp:
-                                    if resp.status == 200:
-                                        file_content = await resp.read()
-                                        filename = file_data.split('/')[-1].split('?')[0]
-                                        if not filename.endswith(('.png', '.jpg', '.jpeg')):
-                                            filename += '.png'
-                                        form_data.add_field(
-                                            field_name,
-                                            file_content,
-                                            filename=filename,
-                                            content_type='image/png'
-                                        )
-                                    else:
-                                        raise ImagesAPIError(f"Failed to download image from URL: {file_data} (HTTP {resp.status})")
-                            except aiohttp.ClientError as download_error:
-                                raise ImagesAPIError(f"Network error downloading image from {file_data}: {str(download_error)}")
+                            async with session.get(file_data) as resp:
+                                if resp.status == 200:
+                                    file_content = await resp.read()
+                                    filename = file_data.split('/')[-1].split('?')[0]
+                                    if not filename.endswith(('.png', '.jpg', '.jpeg')):
+                                        filename += '.png'
+                                    form_data.add_field(
+                                        field_name,
+                                        file_content,
+                                        filename=filename,
+                                        content_type='image/png'
+                                    )
+                                else:
+                                    raise ImagesAPIError(f"Failed to download image from URL: {file_data}")
                         else:
                             # 如果是文件路径
                             if os.path.exists(file_data):
@@ -395,7 +411,8 @@ class ImagesAPIClient:
         
         except Exception as e:
             log_exception(logger, e, f"Unexpected error in multipart {method} {endpoint}")
-            raise ImagesAPIError(f"Unexpected error: {str(e)}")
+            error_message = str(e) if str(e).strip() else f"Network timeout or connection error in {method} {endpoint}"
+            raise ImagesAPIError(f"Unexpected error: {error_message}")
     
     # =============================================================================
     # Recraft图像生成API
@@ -461,19 +478,22 @@ class ImagesAPIClient:
         model: str = "seededit",
         size: str = "1024x1024"
     ) -> Dict[str, Any]:
-        """即梦垫图生成"""
-        # 根据API文档，prompt需要包含图片URL和编辑指令
+        """即梦垫图生成 - 基于即梦3.0 (Seedream) API实现图生图功能"""
+        # 根据即梦3.0 API文档，prompt需要包含图片URL和编辑指令
         # 格式：图片URL + 空格 + 编辑指令
         combined_prompt = f"{image_url} {prompt}"
         
-        # 严格按照API文档构建请求数据，只传递必需的3个参数
+        # 根据即梦3.0 API文档构建请求数据，传递所有必需参数
         data = {
-            "model": model,           # 必需参数：seededit 或 seededit-pro
-            "prompt": combined_prompt, # 必需参数：图片URL + 编辑指令
-            "size": size             # 必需参数：图像尺寸
+            "model": "seedream-3.0",      # 必需参数：使用即梦3.0模型
+            "prompt": combined_prompt,    # 必需参数：图片URL + 编辑指令
+            "n": 1,                       # 必需参数：生成图像数量
+            "response_format": "url",     # 必需参数：返回格式
+            "size": size                  # 必需参数：图像尺寸
         }
         
-        # 注意: strength和seed参数不在API文档中，会导致调用失败，已移除
+        # 注意: strength和seed参数不在即梦3.0 API文档中，已移除
+        # model参数在工具层保留用于兼容性，但API层统一使用seedream-3.0
         
         # 使用正确的API端点
         return await self._make_request("POST", "/v1/images/generations", data)
@@ -524,7 +544,7 @@ class ImagesAPIClient:
     async def recraftv3_create(
         self,
         prompt: str,
-        style: str = "realistic",
+        style: str = "realistic_image",
         size: str = "1024x1024",
         image_format: str = "png"
     ) -> Dict[str, Any]:
@@ -649,49 +669,6 @@ class ImagesAPIClient:
         }
         return await self._make_request("POST", "/images/create", data)
     
-    # =============================================================================
-    # 图像变体创建API
-    # =============================================================================
-    
-    async def images_variations(
-        self,
-        image_url: str,
-        n: int = 1,
-        size: str = "1024x1024"
-    ) -> Dict[str, Any]:
-        """创建图像变体"""
-        data = {
-            "image": image_url,
-            "n": n,
-            "size": size
-        }
-        return await self._make_request("POST", "/images/variations", data)
-    
-    # =============================================================================
-    # Kolors图像生成API
-    # =============================================================================
-    
-    async def kolors_generate(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        mode: str = "text2img",
-        strength: float = 0.8,
-        seed: Optional[int] = None
-    ) -> Dict[str, Any]:
-        """Kolors图像生成"""
-        data = {
-            "prompt": prompt,
-            "model": "kolors",
-            "mode": mode,
-            "strength": strength
-        }
-        if image_url:
-            data["image"] = image_url
-        if seed is not None:
-            data["seed"] = seed
-        
-        return await self._make_request("POST", "/v1/images/generations", data)
     
     # =============================================================================
     # flux-kontext图像生成API
@@ -763,6 +740,55 @@ class ImagesAPIClient:
         }
         
         return await self._make_request("POST", "/v1/images/generations", data)
+    
+    # =============================================================================
+    # Veo3视频生成API
+    # =============================================================================
+    
+    async def veo3_generate(
+        self,
+        prompt: str,
+        model: str = "veo3",
+        images: Optional[List[str]] = None,
+        enhance_prompt: bool = True
+    ) -> Dict[str, Any]:
+        """Veo3视频生成
+        
+        Args:
+            prompt: 视频描述提示词
+            model: 模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)
+            images: 图像URL列表（图生视频需要，文生视频会忽略）
+            enhance_prompt: 是否增强提示词
+            
+        Returns:
+            包含任务ID和状态的响应
+        """
+        data = {
+            "model": model,
+            "prompt": prompt,
+            "enhance_prompt": enhance_prompt
+        }
+        
+        # 图生视频模式需要提供图像
+        if images and (model.endswith("-frames")):
+            data["images"] = images
+        
+        return await self._make_request("POST", "/veo/v1/videos/generations", data)
+    
+    async def veo3_get_task(
+        self,
+        task_id: str
+    ) -> Dict[str, Any]:
+        """获取Veo3视频生成任务状态
+        
+        Args:
+            task_id: 任务ID
+            
+        Returns:
+            包含任务状态、视频URL等信息的响应
+        """
+        params = {"id": task_id}
+        return await self._make_request("GET", "/veo/v1/videos/generations", params=params)
     
     async def close(self):
         """关闭客户端连接"""

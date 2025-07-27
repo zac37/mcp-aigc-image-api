@@ -31,22 +31,26 @@ class ImagesService:
     async def create_gpt_image(
         self,
         prompt: str,
-        model: str = "dall-e-3",
+        model: str = "gpt-image-1",
         n: int = 1,
-        size: str = "1024x1024",
-        quality: str = "standard",
-        style: str = "vivid"
+        response_format: str = "url",
+        size: str = "auto",
+        background: str = "auto",
+        quality: str = "auto",
+        moderation: str = "auto"
     ) -> Dict[str, Any]:
         """
         创建GPT图像生成任务
         
         Args:
             prompt: 图像描述提示词
-            model: 模型名称 (dall-e-3, dall-e-2)
+            model: 模型名称 (gpt-image-1)
             n: 生成图像数量
-            size: 图像尺寸
-            quality: 图像质量 (standard, hd)
-            style: 图像风格 (vivid, natural)
+            response_format: 返回格式 (url, b64_json, oss_url)
+            size: 图像尺寸 (1024x1024, 1536x1024, 1024x1536, auto)
+            background: 背景类型 (transparent, opaque, auto)
+            quality: 图像质量 (high, medium, low, auto)
+            moderation: 内容审核级别 (low, auto)
         
         Returns:
             生成任务结果
@@ -58,19 +62,33 @@ class ImagesService:
             if not prompt or not prompt.strip():
                 raise ValueError("Prompt cannot be empty")
             
-            if model not in ["dall-e-3", "dall-e-2"]:
+            if model not in ["gpt-image-1"]:
                 raise ValueError(f"Unsupported model: {model}")
             
-            if size not in ["256x256", "512x512", "1024x1024", "1024x1792", "1792x1024"]:
+            if size not in ["1024x1024", "1536x1024", "1024x1536", "auto"]:
                 raise ValueError(f"Unsupported size: {size}")
+            
+            if response_format not in ["url", "b64_json", "oss_url"]:
+                raise ValueError(f"Unsupported response_format: {response_format}")
+            
+            if background not in ["transparent", "opaque", "auto"]:
+                raise ValueError(f"Unsupported background: {background}")
+            
+            if quality not in ["high", "medium", "low", "auto"]:
+                raise ValueError(f"Unsupported quality: {quality}")
+            
+            if moderation not in ["low", "auto"]:
+                raise ValueError(f"Unsupported moderation: {moderation}")
             
             result = await self.client.gpt_generations(
                 prompt=prompt.strip(),
                 model=model,
                 n=n,
+                response_format=response_format,
                 size=size,
+                background=background,
                 quality=quality,
-                style=style
+                moderation=moderation
             )
             
             logger.info(f"GPT image generation task created successfully")
@@ -88,25 +106,29 @@ class ImagesService:
     
     async def create_gpt_image_edit(
         self,
-        image: Union[str, bytes],
+        image,  # UploadFile
         prompt: str,
-        mask: Optional[Union[str, bytes]] = None,
-        n: str = "1",
+        model: str = "gpt-image-1",
+        mask = None,  # Optional[UploadFile]
+        n: str = "1",  # 改为字符串类型
         size: str = "1024x1024",
-        response_format: str = "url"
+        response_format: str = "url",
+        user: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         创建GPT图像编辑任务
         
-        在给定原始图像和提示的情况下创建编辑或扩展图像
+        在给定原始图像和提示的情况下创建编辑或扩展图像。
         
         Args:
-            image: 要编辑的图像，必须是有效的PNG文件，小于4MB，方形
+            image: 要编辑的图像文件（UploadFile）
             prompt: 所需图像的文本描述，最大长度为1000个字符
-            mask: 可选的遮罩图像，透明区域指示要编辑的位置
-            n: 要生成的图像数，必须介于1和10之间
+            model: 用于图像生成的模型（gpt-image-1）
+            mask: 附加图像，指示应编辑的位置（可选）
+            n: 要生成的图像数，必须介于1和10之间（字符串格式）
             size: 生成图像的大小，必须是256x256、512x512或1024x1024之一
             response_format: 生成的图像返回格式，必须是url或b64_json
+            user: 用户标识符（可选）
         
         Returns:
             编辑任务结果
@@ -122,31 +144,39 @@ class ImagesService:
                 raise ValueError("Prompt cannot exceed 1000 characters")
             
             if not image:
-                raise ValueError("Image is required")
+                raise ValueError("Image file is required")
                 
             # 验证n参数
             try:
                 n_int = int(n)
                 if n_int < 1 or n_int > 10:
                     raise ValueError("Number of images must be between 1 and 10")
-            except ValueError:
-                raise ValueError("n must be a valid integer between 1 and 10")
+            except ValueError as e:
+                if "invalid literal" in str(e):
+                    raise ValueError("n must be a valid integer string between 1 and 10")
+                raise
                 
-            # 验证size参数
-            if size not in ["256x256", "512x512", "1024x1024"]:
-                raise ValueError("Size must be one of: 256x256, 512x512, 1024x1024")
+            # 验证文件类型
+            if hasattr(image, 'content_type') and image.content_type and not image.content_type.startswith("image/"):
+                raise ValueError("Image must be a valid image file")
                 
-            # 验证response_format参数
-            if response_format not in ["url", "b64_json"]:
-                raise ValueError("Response format must be 'url' or 'b64_json'")
+            # 验证文件大小（4MB）
+            if image.size and image.size > 4 * 1024 * 1024:
+                raise ValueError("Image file must be smaller than 4MB")
+                
+            # 验证model参数
+            if model not in ["gpt-image-1"]:
+                raise ValueError(f"Unsupported model: {model}")
             
             result = await self.client.gpt_edits(
                 image=image,
                 prompt=prompt.strip(),
+                model=model,
                 mask=mask,
-                n=n,
+                n=n_int,
                 size=size,
-                response_format=response_format
+                response_format=response_format,
+                user=user
             )
             
             logger.info(f"GPT image edit task created successfully")
@@ -169,7 +199,7 @@ class ImagesService:
     async def create_recraft_image(
         self,
         prompt: str,
-        style: str = "realistic",
+        style: str = "realistic_image",
         size: str = "1024x1024",
         image_format: str = "png"
     ) -> Dict[str, Any]:
@@ -405,7 +435,7 @@ class ImagesService:
     async def create_recraftv3_image(
         self,
         prompt: str,
-        style: str = "realistic",
+        style: str = "realistic_image",
         size: str = "1024x1024",
         image_format: str = "png"
     ) -> Dict[str, Any]:
@@ -620,86 +650,6 @@ class ImagesService:
             log_exception(logger, e, "Unexpected error in generic image generation")
             raise ImagesAPIError(f"Service error: {str(e)}")
     
-    async def create_image_variations(
-        self,
-        image_url: str,
-        n: int = 1,
-        size: str = "1024x1024"
-    ) -> Dict[str, Any]:
-        """创建图像变体任务"""
-        try:
-            logger.info(f"Creating image variations task for: {image_url[:50]}...")
-            
-            if not image_url or not image_url.strip():
-                raise ValueError("Image URL cannot be empty")
-            
-            if n < 1 or n > 10:
-                raise ValueError("Number of variations must be between 1 and 10")
-            
-            result = await self.client.images_variations(
-                image_url=image_url.strip(),
-                n=n,
-                size=size
-            )
-            
-            logger.info(f"Image variations task created successfully")
-            return result
-            
-        except ValueError as e:
-            logger.warning(f"Invalid parameters for image variations: {e}")
-            raise
-        except ImagesAPIError as e:
-            log_exception(logger, e, "Failed to create image variations task")
-            raise
-        except Exception as e:
-            log_exception(logger, e, "Unexpected error in image variations")
-            raise ImagesAPIError(f"Service error: {str(e)}")
-    
-    async def create_kolors_image(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        mode: str = "text2img",
-        strength: float = 0.8,
-        seed: Optional[int] = None
-    ) -> Dict[str, Any]:
-        """创建Kolors图像生成任务"""
-        try:
-            logger.info(f"Creating Kolors image generation task: {prompt[:50]}...")
-            
-            if not prompt or not prompt.strip():
-                raise ValueError("Prompt cannot be empty")
-            
-            if mode not in ["text2img", "img2img"]:
-                raise ValueError("Mode must be 'text2img' or 'img2img'")
-            
-            if mode == "img2img" and not image_url:
-                raise ValueError("Image URL is required for img2img mode")
-            
-            if strength < 0.0 or strength > 1.0:
-                raise ValueError("Strength must be between 0.0 and 1.0")
-            
-            result = await self.client.kolors_generate(
-                prompt=prompt.strip(),
-                image_url=image_url,
-                mode=mode,
-                strength=strength,
-                seed=seed
-            )
-            
-            logger.info(f"Kolors image generation task created successfully")
-            return result
-            
-        except ValueError as e:
-            logger.warning(f"Invalid parameters for Kolors image generation: {e}")
-            raise
-        except ImagesAPIError as e:
-            log_exception(logger, e, "Failed to create Kolors image generation task")
-            raise
-        except Exception as e:
-            log_exception(logger, e, "Unexpected error in Kolors image generation")
-            raise ImagesAPIError(f"Service error: {str(e)}")
-    
     async def create_flux_kontext_image(
         self,
         prompt: str,
@@ -803,6 +753,77 @@ class ImagesService:
             raise
         except Exception as e:
             log_exception(logger, e, "Unexpected error in Doubao image generation")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
+    async def create_veo3_video(
+        self,
+        prompt: str,
+        model: str = "veo3",
+        images: Optional[List[str]] = None,
+        enhance_prompt: bool = True
+    ) -> Dict[str, Any]:
+        """创建Veo3视频生成任务"""
+        try:
+            logger.info(f"Creating Veo3 video generation task: {prompt[:50]}...")
+            
+            if not prompt or not prompt.strip():
+                raise ValueError("Prompt cannot be empty")
+            
+            # 验证模型名称
+            valid_models = ["veo3", "veo3-frames", "veo3-pro", "veo3-pro-frames"]
+            if model not in valid_models:
+                raise ValueError(f"Unsupported model: {model}. Valid models: {valid_models}")
+            
+            # 验证图生视频模式参数
+            if model.endswith("-frames"):
+                if not images or len(images) == 0:
+                    raise ValueError(f"Model {model} requires images parameter for image-to-video generation")
+                logger.info(f"Using {len(images)} input images for image-to-video generation")
+            
+            result = await self.client.veo3_generate(
+                prompt=prompt.strip(),
+                model=model,
+                images=images,
+                enhance_prompt=enhance_prompt
+            )
+            
+            logger.info(f"Veo3 video generation task created successfully with ID: {result.get('id', 'unknown')}")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for Veo3 video generation: {e}")
+            raise
+        except ImagesAPIError as e:
+            log_exception(logger, e, "Failed to create Veo3 video generation task")
+            raise
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in Veo3 video generation")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
+    async def get_veo3_task(
+        self,
+        task_id: str
+    ) -> Dict[str, Any]:
+        """获取Veo3视频生成任务状态"""
+        try:
+            logger.info(f"Getting Veo3 task status: {task_id}")
+            
+            if not task_id or not task_id.strip():
+                raise ValueError("Task ID cannot be empty")
+            
+            result = await self.client.veo3_get_task(task_id=task_id.strip())
+            
+            logger.info(f"Veo3 task status retrieved: {result.get('status', 'unknown')}")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for Veo3 task query: {e}")
+            raise
+        except ImagesAPIError as e:
+            log_exception(logger, e, "Failed to get Veo3 task status")
+            raise
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in Veo3 task query")
             raise ImagesAPIError(f"Service error: {str(e)}")
 
 # =============================================================================

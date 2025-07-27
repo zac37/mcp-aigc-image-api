@@ -808,7 +808,8 @@ async def health_check(storage: MinIOClient = Depends(get_storage)):
             "virtual-try-on",
             "flux-kontext",
             "hailuo",
-            "doubao"
+            "doubao",
+            "veo3 (video generation)"
         ],
         "file_storage": {
             "enabled": True,
@@ -1106,6 +1107,80 @@ async def create_doubao_image(
             guidance_scale=request.guidance_scale,
             watermark=request.watermark
         )
+        
+        return ImagesAPIResponse(
+            success=True,
+            data=result,
+            request_id=request_id
+        )
+        
+    except ValueError as e:
+        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+        
+    except ImagesAPIError as e:
+        log_exception(logger, e, f"[{request_id}] Images API error")
+        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
+        
+    except Exception as e:
+        log_exception(logger, e, f"[{request_id}] Unexpected error")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+class Veo3VideoRequest(ImagesBaseRequest):
+    """Veo3视频生成请求"""
+    prompt: str = Field(..., description="视频描述提示词")
+    model: str = Field(default="veo3", description="模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)")
+    images: Optional[List[str]] = Field(default=None, description="图像URL列表（图生视频需要，文生视频会忽略）")
+    enhance_prompt: bool = Field(default=True, description="是否增强提示词")
+
+@router.post("/veo3/generate", response_model=ImagesAPIResponse)
+async def create_veo3_video(
+    request: Veo3VideoRequest,
+    service: ImagesService = Depends(get_service)
+):
+    """Veo3视频生成接口"""
+    request_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[{request_id}] Creating Veo3 video generation task")
+        
+        result = await service.create_veo3_video(
+            prompt=request.prompt,
+            model=request.model,
+            images=request.images,
+            enhance_prompt=request.enhance_prompt
+        )
+        
+        return ImagesAPIResponse(
+            success=True,
+            data=result,
+            request_id=request_id
+        )
+        
+    except ValueError as e:
+        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+        
+    except ImagesAPIError as e:
+        log_exception(logger, e, f"[{request_id}] Images API error")
+        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
+        
+    except Exception as e:
+        log_exception(logger, e, f"[{request_id}] Unexpected error")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@router.get("/veo3/task", response_model=ImagesAPIResponse)
+async def get_veo3_task(
+    id: str = Query(..., description="任务ID"),
+    service: ImagesService = Depends(get_service)
+):
+    """获取Veo3视频生成任务状态"""
+    request_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[{request_id}] Getting Veo3 task status: {id}")
+        
+        result = await service.get_veo3_task(task_id=id)
         
         return ImagesAPIResponse(
             success=True,
