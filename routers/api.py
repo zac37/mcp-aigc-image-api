@@ -19,9 +19,76 @@ from core.images_client import ImagesAPIError
 from core.minio_client import get_minio_client, MinIOClient, MinIOError
 from core.logger import get_api_logger, log_exception
 from core.config import settings
+from core.simple_task_queue import simple_task_queue, VideoTask
 
 logger = get_api_logger()
 router = APIRouter()
+
+# =============================================================================
+# 异步存储辅助函数
+# =============================================================================
+
+def submit_image_storage_async(
+    request_id: str,
+    prompt: str,
+    model: str,
+    result_data: Any,
+    generation_params: Optional[Dict[str, Any]] = None
+):
+    """
+    异步提交图片存储任务（KISS原则：简单直接）
+    
+    Args:
+        request_id: API请求ID
+        prompt: 生成提示词
+        model: 使用的模型
+        result_data: API返回的结果数据
+        generation_params: 生成参数
+    """
+    try:
+        # 提取图片URLs
+        image_urls = []
+        
+        # 处理不同的返回格式
+        if isinstance(result_data, dict):
+            # 格式1: {"data": [{"url": "..."}, ...]}
+            if 'data' in result_data and isinstance(result_data['data'], list):
+                for item in result_data['data']:
+                    if isinstance(item, dict) and 'url' in item:
+                        image_urls.append(item['url'])
+            # 格式2: 直接是图片列表
+            elif isinstance(result_data, list):
+                for item in result_data:
+                    if isinstance(item, dict) and 'url' in item:
+                        image_urls.append(item['url'])
+        elif isinstance(result_data, list):
+            # 格式3: 直接是图片列表
+            for item in result_data:
+                if isinstance(item, dict) and 'url' in item:
+                    image_urls.append(item['url'])
+        
+        if image_urls:
+            # 动态导入避免循环依赖
+            from celery_tasks import submit_image_storage_task
+            
+            celery_task_id = submit_image_storage_task(
+                request_id=request_id,
+                prompt=prompt,
+                model=model,
+                image_urls=image_urls,
+                generation_params=generation_params
+            )
+            
+            logger.info(f"[{request_id}] 异步图片存储任务已提交: {celery_task_id}")
+            return celery_task_id
+        else:
+            logger.warning(f"[{request_id}] 未找到可存储的图片URL")
+            return None
+            
+    except Exception as e:
+        # 存储失败不应该影响API主要响应
+        logger.error(f"[{request_id}] 异步图片存储提交失败: {e}")
+        return None
 
 # =============================================================================
 # 请求/响应模型
@@ -34,10 +101,10 @@ class ImagesBaseRequest(BaseModel):
 class GPTImageRequest(ImagesBaseRequest):
     """GPT图像生成请求"""
     prompt: str = Field(..., description="图像描述提示词，详细描述想要生成的图像内容")
-    model: str = Field(default="dall-e-3", description="模型名称，支持: dall-e-3, dall-e-2")
+    model: str = Field(default="gpt-image-1", description="模型名称，固定为: gpt-image-1")
     n: int = Field(default=1, description="生成图像数量，dall-e-3最多1张，dall-e-2最多10张")
     size: str = Field(default="1024x1024", description="图像尺寸，支持多种规格")
-    quality: str = Field(default="standard", description="图像质量，支持: standard, hd")
+    quality: Optional[str] = Field(default=None, description="图像质量，gpt-image-1模型不支持此参数")
     style: str = Field(default="vivid", description="图像风格，支持: vivid, natural")
 
 class RecraftImageRequest(ImagesBaseRequest):
@@ -78,6 +145,13 @@ class ImagesAPIResponse(BaseModel):
     request_id: Optional[str] = None
     timestamp: str = Field(default_factory=lambda: datetime.now().isoformat())
 
+class Veo3VideoRequest(BaseModel):
+    """Veo3视频生成请求"""
+    prompt: str = Field(..., description="视频描述提示词")
+    model: str = Field(default="veo3", description="模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)")
+    images: Optional[List[str]] = Field(default=None, description="图像URL列表（图生视频需要，文生视频会忽略）")
+    enhance_prompt: bool = Field(default=True, description="是否增强提示词")
+
 # =============================================================================
 # 依赖注入
 # =============================================================================
@@ -89,6 +163,7 @@ def get_service() -> ImagesService:
 def get_storage() -> MinIOClient:
     """获取 MinIO 存储客户端实例"""
     return get_minio_client()
+
 
 # =============================================================================
 # API 路由
@@ -109,13 +184,68 @@ async def create_gpt_image(
     try:
         logger.info(f"[{request_id}] Creating GPT image generation task")
         
-        result = await service.create_gpt_image(
+        # 构建请求参数，排除None值
+        kwargs = {
+            "prompt": request.prompt,
+            "model": request.model,
+            "n": request.n,
+            "size": request.size
+        }
+        if request.quality is not None:
+            kwargs["quality"] = request.quality
+        
+        result = await service.create_gpt_image(**kwargs)
+        
+        # 自动上传生成的图片到素材库
+        if result and result.get('data'):
+            try:
+                # result['data'] is directly the images list for GPT API
+                images = result['data'] if isinstance(result['data'], list) else [result['data']]
+                for i, image_data in enumerate(images):
+                    if image_data.get('url'):
+                        material_info = await material_mgr.upload_sync_material(
+                            material_url=image_data['url'],
+                            material_type="image",
+                            model=request.model,
+                            user_id=request_id,  # 使用request_id作为临时用户ID
+                            prompt=request.prompt,
+                            generation_params={
+                                "n": request.n,
+                                "size": request.size,
+                                "quality": request.quality
+                            },
+                            api_response=result,
+                            tags=["gpt", "dall-e", "generated"],
+                            description=f"GPT {request.model}生成的图片: {request.prompt[:100]}..."
+                        )
+                        
+                        if material_info:
+                            # 添加素材库信息到响应中
+                            image_data['material_info'] = {
+                                "material_id": material_info.material_id,
+                                "minio_path": material_info.minio_path,
+                                "thumbnail_path": material_info.thumbnail_path,
+                                "uploaded_at": material_info.created_at
+                            }
+                            logger.info(f"[{request_id}] Image {i+1} uploaded to material library: {material_info.material_id}")
+                        else:
+                            logger.warning(f"[{request_id}] Failed to upload image {i+1} to material library")
+                            
+            except Exception as e:
+                logger.warning(f"[{request_id}] Failed to upload materials to library: {e}")
+                # 不影响主要响应，只记录警告
+        
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
             prompt=request.prompt,
             model=request.model,
-            n=request.n,
-            size=request.size,
-            quality=request.quality,
-            style=request.style
+            result_data=result,
+            generation_params={
+                "n": request.n,
+                "size": request.size,
+                "quality": request.quality
+            }
         )
         
         return ImagesAPIResponse(
@@ -213,6 +343,56 @@ async def create_recraft_image(
             image_format=request.image_format
         )
         
+        # 自动上传生成的图片到素材库
+        if result and result.get('data'):
+            try:
+                # result['data'] is directly the images list for Recraft API too
+                images = result['data'] if isinstance(result['data'], list) else [result['data']]
+                for i, image_data in enumerate(images):
+                    if image_data.get('url'):
+                        material_info = await material_mgr.upload_sync_material(
+                            material_url=image_data['url'],
+                            material_type="image",
+                            model="recraft",
+                            user_id=request_id,
+                            prompt=request.prompt,
+                            generation_params={
+                                "style": request.style,
+                                "size": request.size,
+                                "image_format": request.image_format
+                            },
+                            api_response=result,
+                            tags=["recraft", "professional", "generated"],
+                            description=f"Recraft生成的专业图片: {request.prompt[:100]}..."
+                        )
+                        
+                        if material_info:
+                            image_data['material_info'] = {
+                                "material_id": material_info.material_id,
+                                "minio_path": material_info.minio_path,
+                                "thumbnail_path": material_info.thumbnail_path,
+                                "uploaded_at": material_info.created_at
+                            }
+                            logger.info(f"[{request_id}] Image {i+1} uploaded to material library: {material_info.material_id}")
+                        else:
+                            logger.warning(f"[{request_id}] Failed to upload image {i+1} to material library")
+                            
+            except Exception as e:
+                logger.warning(f"[{request_id}] Failed to upload materials to library: {e}")
+        
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="recraft",
+            result_data=result,
+            generation_params={
+                "style": request.style,
+                "size": request.size,
+                "image_format": request.image_format
+            }
+        )
+        
         return ImagesAPIResponse(
             success=True,
             data=result,
@@ -252,6 +432,20 @@ async def create_seedream_image(
             negative_prompt=request.negative_prompt,
             cfg_scale=request.cfg_scale,
             seed=request.seed
+        )
+        
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="seedream",
+            result_data=result,
+            generation_params={
+                "aspect_ratio": request.aspect_ratio,
+                "negative_prompt": request.negative_prompt,
+                "cfg_scale": request.cfg_scale,
+                "seed": request.seed
+            }
         )
         
         return ImagesAPIResponse(
@@ -294,6 +488,19 @@ async def create_seededit_image(
             seed=request.seed
         )
         
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="seededit",
+            result_data=result,
+            generation_params={
+                "image_url": request.image_url,
+                "strength": request.strength,
+                "seed": request.seed
+            }
+        )
+        
         return ImagesAPIResponse(
             success=True,
             data=result,
@@ -333,6 +540,20 @@ async def create_flux_image(
             steps=request.steps,
             guidance=request.guidance,
             seed=request.seed
+        )
+        
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="flux",
+            result_data=result,
+            generation_params={
+                "aspect_ratio": request.aspect_ratio,
+                "steps": request.steps,
+                "guidance": request.guidance,
+                "seed": request.seed
+            }
         )
         
         return ImagesAPIResponse(
@@ -792,7 +1013,7 @@ async def health_check(storage: MinIOClient = Depends(get_storage)):
         "timestamp": datetime.now().isoformat(),
         "storage": storage_status,
         "supported_models": [
-            "gpt (dall-e-2, dall-e-3)",
+            "gpt (gpt-image-1)",
             "recraft",
             "recraftv3",
             "seedream",
@@ -804,12 +1025,11 @@ async def health_check(storage: MinIOClient = Depends(get_storage)):
             "stable-diffusion",
             "generic-images",
             "image-variations",
-            "kolors",
             "virtual-try-on",
             "flux-kontext",
             "hailuo",
             "doubao",
-            "veo3 (video generation)"
+            "veo3 (official vertex ai video generation)"
         ],
         "file_storage": {
             "enabled": True,
@@ -952,50 +1172,6 @@ async def create_image_variations(
         log_exception(logger, e, f"[{request_id}] Unexpected error")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-class KolorsImageRequest(ImagesBaseRequest):
-    """Kolors图像生成请求"""
-    prompt: str = Field(..., description="图像描述提示词")
-    image_url: Optional[str] = Field(None, description="输入图像URL（img2img模式）")
-    mode: str = Field(default="text2img", description="生成模式")
-    strength: float = Field(default=0.8, description="生成强度")
-    seed: Optional[int] = Field(None, description="随机种子")
-
-@router.post("/kolors/generate", response_model=ImagesAPIResponse)
-async def create_kolors_image(
-    request: KolorsImageRequest,
-    service: ImagesService = Depends(get_service)
-):
-    """Kolors图像生成接口"""
-    request_id = str(uuid.uuid4())
-    
-    try:
-        logger.info(f"[{request_id}] Creating Kolors image generation task")
-        
-        result = await service.create_kolors_image(
-            prompt=request.prompt,
-            image_url=request.image_url,
-            mode=request.mode,
-            strength=request.strength,
-            seed=request.seed
-        )
-        
-        return ImagesAPIResponse(
-            success=True,
-            data=result,
-            request_id=request_id
-        )
-        
-    except ValueError as e:
-        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
-        raise HTTPException(status_code=400, detail=str(e))
-        
-    except ImagesAPIError as e:
-        log_exception(logger, e, f"[{request_id}] Images API error")
-        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
-        
-    except Exception as e:
-        log_exception(logger, e, f"[{request_id}] Unexpected error")
-        raise HTTPException(status_code=500, detail="Internal server error")
 
 class FluxKontextImageRequest(ImagesBaseRequest):
     """flux-kontext图像生成请求"""
@@ -1020,6 +1196,19 @@ async def create_flux_kontext_image(
             context_image=request.context_image,
             strength=request.strength,
             seed=request.seed
+        )
+        
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="flux-kontext",
+            result_data=result,
+            generation_params={
+                "context_image": request.context_image,
+                "strength": request.strength,
+                "seed": request.seed
+            }
         )
         
         return ImagesAPIResponse(
@@ -1065,6 +1254,19 @@ async def create_hailuo_image(
             seed=request.seed
         )
         
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=request.prompt,
+            model="hailuo",
+            result_data=result,
+            generation_params={
+                "size": request.size,
+                "quality": request.quality,
+                "seed": request.seed
+            }
+        )
+        
         return ImagesAPIResponse(
             success=True,
             data=result,
@@ -1108,47 +1310,17 @@ async def create_doubao_image(
             watermark=request.watermark
         )
         
-        return ImagesAPIResponse(
-            success=True,
-            data=result,
-            request_id=request_id
-        )
-        
-    except ValueError as e:
-        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
-        raise HTTPException(status_code=400, detail=str(e))
-        
-    except ImagesAPIError as e:
-        log_exception(logger, e, f"[{request_id}] Images API error")
-        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
-        
-    except Exception as e:
-        log_exception(logger, e, f"[{request_id}] Unexpected error")
-        raise HTTPException(status_code=500, detail="Internal server error")
-
-class Veo3VideoRequest(ImagesBaseRequest):
-    """Veo3视频生成请求"""
-    prompt: str = Field(..., description="视频描述提示词")
-    model: str = Field(default="veo3", description="模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)")
-    images: Optional[List[str]] = Field(default=None, description="图像URL列表（图生视频需要，文生视频会忽略）")
-    enhance_prompt: bool = Field(default=True, description="是否增强提示词")
-
-@router.post("/veo3/generate", response_model=ImagesAPIResponse)
-async def create_veo3_video(
-    request: Veo3VideoRequest,
-    service: ImagesService = Depends(get_service)
-):
-    """Veo3视频生成接口"""
-    request_id = str(uuid.uuid4())
-    
-    try:
-        logger.info(f"[{request_id}] Creating Veo3 video generation task")
-        
-        result = await service.create_veo3_video(
+        # 异步提交图片存储任务（KISS原则：在返回响应前异步提交）
+        submit_image_storage_async(
+            request_id=request_id,
             prompt=request.prompt,
-            model=request.model,
-            images=request.images,
-            enhance_prompt=request.enhance_prompt
+            model="doubao",
+            result_data=result,
+            generation_params={
+                "size": request.size,
+                "guidance_scale": request.guidance_scale,
+                "watermark": request.watermark
+            }
         )
         
         return ImagesAPIResponse(
@@ -1169,18 +1341,95 @@ async def create_veo3_video(
         log_exception(logger, e, f"[{request_id}] Unexpected error")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-@router.get("/veo3/task", response_model=ImagesAPIResponse)
-async def get_veo3_task(
-    id: str = Query(..., description="任务ID"),
+
+
+
+
+# =============================================================================
+# Google 官方 Veo3 视频生成接口
+# =============================================================================
+
+
+
+# =============================================================================
+# Google官方Veo3 API接口
+# =============================================================================
+
+class Veo3OfficialRequest(BaseModel):
+    """Google官方Veo3视频生成请求"""
+    prompt: str = Field(..., description="视频生成提示词，详细描述想要生成的视频内容")
+    duration: int = Field(default=5, description="视频时长(秒)，范围1-30")
+    aspect_ratio: str = Field(default="16:9", description="宽高比，支持: 16:9, 9:16, 1:1, 4:3, 3:4")
+    seed: Optional[int] = Field(None, description="随机种子，用于复现结果")
+    guidance_scale: Optional[float] = Field(None, description="引导缩放值，控制生成与提示词的匹配程度")
+    negative_prompt: Optional[str] = Field(None, description="负面提示词，描述不想要的内容")
+
+@router.post("/veo3/official/generate", response_model=ImagesAPIResponse)
+async def create_veo3_official_video(
+    request: Veo3OfficialRequest,
     service: ImagesService = Depends(get_service)
 ):
-    """获取Veo3视频生成任务状态"""
+    """
+    Google官方Veo3视频生成接口
+    
+    使用Google官方Vertex AI Veo3 API异步生成视频
+    """
     request_id = str(uuid.uuid4())
     
     try:
-        logger.info(f"[{request_id}] Getting Veo3 task status: {id}")
+        logger.info(f"[{request_id}] 创建Google官方Veo3视频生成任务: {request.prompt[:50]}...")
         
-        result = await service.get_veo3_task(task_id=id)
+        # 构建额外参数
+        kwargs = {}
+        if request.seed is not None:
+            kwargs['seed'] = request.seed
+        if request.guidance_scale is not None:
+            kwargs['guidanceScale'] = request.guidance_scale
+        if request.negative_prompt:
+            kwargs['negativePrompt'] = request.negative_prompt
+        
+        result = await service.create_veo3_official_video(
+            prompt=request.prompt,
+            duration=request.duration,
+            aspect_ratio=request.aspect_ratio,
+            wait_for_completion=False,  # 强制异步模式
+            max_wait=60,  # 设置默认值
+            **kwargs
+        )
+        
+        logger.info(f"[{request_id}] Google官方Veo3视频生成任务创建成功")
+        
+        # 如果任务创建成功，添加到队列供Celery处理
+        if result.get('operation_id'):
+            try:
+                # 创建视频任务对象
+                video_task = VideoTask(
+                    task_id=request_id,
+                    external_task_id=result['operation_id'],
+                    prompt=request.prompt,
+                    model="veo3-official",
+                    status="pending",
+                    metadata={
+                        "duration": request.duration,
+                        "aspect_ratio": request.aspect_ratio,
+                        "seed": request.seed,
+                        "guidance_scale": request.guidance_scale,
+                        "negative_prompt": request.negative_prompt
+                    }
+                )
+                
+                # 添加到任务队列
+                if simple_task_queue.add_task(video_task):
+                    logger.info(f"[{request_id}] 任务已添加到队列，等待Celery处理")
+                    
+                    # 在响应中添加队列信息
+                    result['queue_status'] = 'queued'
+                    result['internal_task_id'] = request_id
+                else:
+                    logger.warning(f"[{request_id}] 任务添加到队列失败，但不影响主流程")
+                    
+            except Exception as queue_error:
+                logger.warning(f"[{request_id}] 队列操作失败: {queue_error}，但不影响主流程")
         
         return ImagesAPIResponse(
             success=True,
@@ -1189,13 +1438,53 @@ async def get_veo3_task(
         )
         
     except ValueError as e:
-        logger.warning(f"[{request_id}] Invalid request parameters: {e}")
+        logger.warning(f"[{request_id}] 请求参数错误: {e}")
         raise HTTPException(status_code=400, detail=str(e))
         
     except ImagesAPIError as e:
-        log_exception(logger, e, f"[{request_id}] Images API error")
+        log_exception(logger, e, f"[{request_id}] Google官方Veo3 API错误")
         raise HTTPException(status_code=e.status_code or 500, detail=e.message)
         
     except Exception as e:
-        log_exception(logger, e, f"[{request_id}] Unexpected error")
-        raise HTTPException(status_code=500, detail="Internal server error")
+        log_exception(logger, e, f"[{request_id}] Google官方Veo3生成失败")
+        raise HTTPException(status_code=500, detail=f"生成失败: {str(e)}")
+
+@router.get("/veo3/official/status/{operation_id:path}", response_model=ImagesAPIResponse)
+async def get_veo3_official_status(
+    operation_id: str,
+    service: ImagesService = Depends(get_service)
+):
+    """
+    查询Google官方Veo3任务状态
+    
+    查询Google Vertex AI Veo3长时间运行操作的状态
+    """
+    request_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[{request_id}] 查询Google官方Veo3任务状态: {operation_id}")
+        
+        result = await service.check_veo3_official_status(operation_id)
+        
+        logger.info(f"[{request_id}] Google官方Veo3任务状态查询成功: {result.get('status', 'unknown')}")
+        
+        return ImagesAPIResponse(
+            success=True,
+            data=result,
+            request_id=request_id
+        )
+        
+    except ValueError as e:
+        logger.warning(f"[{request_id}] 操作ID格式错误: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+        
+    except ImagesAPIError as e:
+        log_exception(logger, e, f"[{request_id}] Google官方Veo3状态查询API错误")
+        if e.status_code == 404:
+            raise HTTPException(status_code=404, detail="任务不存在")
+        raise HTTPException(status_code=e.status_code or 500, detail=e.message)
+        
+    except Exception as e:
+        log_exception(logger, e, f"[{request_id}] Google官方Veo3任务状态查询失败")
+        raise HTTPException(status_code=500, detail=f"查询失败: {str(e)}")
+

@@ -26,12 +26,43 @@ class ImagesConfig(BaseModel):
         default="sk-idDBqyoDVqCXInnO9uaGLUfwsxY7RhzHSn166z5jOBCBvFmY",
         description="Images API密钥，服务器端统一配置"
     )
+    # Google Gemini API配置
+    gemini_api_key: str = Field(
+        default=os.getenv("GEMINI_API_KEY", "AIzaSyDXn7uxY35vwHs3Ds9Z3dmJ9W2i4QBoLrc"),
+        description="Google Gemini API密钥"
+    )
+    # Google Vertex AI配置
+    vertex_project_id: str = Field(
+        default=os.getenv("VERTEX_PROJECT_ID", ""),
+        description="Google Cloud项目ID"
+    )
+    vertex_location: str = Field(
+        default=os.getenv("VERTEX_LOCATION", "us-central1"),
+        description="Vertex AI位置"
+    )
+    # Google Veo3配置
+    veo3_project_id: str = Field(
+        default=os.getenv("VEO3_PROJECT_ID", "qhhl-veo"),
+        description="Google Veo3项目ID"
+    )
+    veo3_location: str = Field(
+        default=os.getenv("VEO3_LOCATION", "us-central1"),
+        description="Veo3服务位置"
+    )
+    google_credentials_path: str = Field(
+        default=os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "/Users/zac/workspace/google_oauth/qhhl-veo-26fd3f12ace3.json"),
+        description="Google Cloud凭据文件路径"
+    )
+    veo3_storage_bucket: str = Field(
+        default=os.getenv("VEO3_STORAGE_BUCKET", "veo-output-pub"),
+        description="Veo3视频输出存储桶名称(需要是公开访问的)"
+    )
     api_base_url: str = Field(
-        default=os.getenv("IMAGES_API_BASE_URL", "https://api.chatfire.cn"),
+        default=os.getenv("IMAGES_API_BASE_URL", "https://api.chatfire.cc"),
         description="Images API基础URL"
     )
     request_timeout: int = Field(
-        default=int(os.getenv("IMAGES_REQUEST_TIMEOUT", "30")),
+        default=int(os.getenv("IMAGES_REQUEST_TIMEOUT", "120")),
         description="API请求超时时间(秒)"
     )
     max_retries: int = Field(
@@ -50,10 +81,10 @@ class ImagesConfig(BaseModel):
             "hunyuan": "prompt,aspect_ratio,seed",
             "kling": "prompt,aspect_ratio,negative_prompt,cfg_scale,seed",
             "stable_diffusion": "prompt,negative_prompt,width,height,steps,guidance_scale,seed",
-            "kolors": "prompt,image_url,mode,strength,seed",
             "flux_kontext": "prompt,context_image,strength,seed",
             "hailuo": "prompt,size,quality,seed",
-            "doubao": "prompt,size,quality,num_images,seed"
+            "doubao": "prompt,size,quality,num_images,seed",
+            "veo3": "prompt,duration,aspect_ratio,seed"
         },
         description="各功能默认参数字段列表"
     )
