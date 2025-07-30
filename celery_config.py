@@ -14,8 +14,8 @@ app = Celery('video_tasks')
 # 配置Redis作为broker和backend
 app.conf.update(
     # Redis配置
-    broker_url=f'redis://{getattr(settings, "REDIS_HOST", "localhost")}:{getattr(settings, "REDIS_PORT", 6379)}/1',
-    result_backend=f'redis://{getattr(settings, "REDIS_HOST", "localhost")}:{getattr(settings, "REDIS_PORT", 6379)}/2',
+    broker_url=f'redis://{settings.redis.host}:{settings.redis.port}/1',
+    result_backend=f'redis://{settings.redis.host}:{settings.redis.port}/2',
     
     # 任务配置
     task_serializer='json',

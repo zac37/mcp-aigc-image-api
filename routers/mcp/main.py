@@ -24,7 +24,12 @@ from .images_tools import (
     create_stable_diffusion_image_tool,
     create_hailuo_image_tool,
     create_doubao_image_tool,
-    upload_image_file_tool
+    upload_image_file_tool,
+    create_gemini_veo3_video_tool,
+    get_gemini_veo3_task_tool,
+    create_veo3_official_video_tool,
+    check_veo3_official_status_tool,
+    wait_veo3_official_completion_tool
 )
 
 # 配置日志
@@ -66,7 +71,12 @@ class ImagesMCPServer(SimpleMCPServer):
             'create_stable_diffusion_image': create_stable_diffusion_image_tool,
             'create_hailuo_image': create_hailuo_image_tool,
             'create_doubao_image': create_doubao_image_tool,
-            'upload_image_file': upload_image_file_tool
+            'upload_image_file': upload_image_file_tool,
+            'create_gemini_veo3_video': create_gemini_veo3_video_tool,
+            'get_gemini_veo3_task': get_gemini_veo3_task_tool,
+            'create_veo3_official_video': create_veo3_official_video_tool,
+            'check_veo3_official_status': check_veo3_official_status_tool,
+            'wait_veo3_official_completion': wait_veo3_official_completion_tool
         }
         
         logger.info(f"📝 工具函数映射设置完成: {list(self._tool_functions.keys())}")

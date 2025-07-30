@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Any, Union
 import json
 
 from services.images_service import get_images_service
-from core.images_client import ImagesAPIError
+from core.images_client import ImagesAPIError, get_veo3_client
 from core.logger import get_mcp_logger, log_exception
 from core.config import settings
 
@@ -620,3 +620,226 @@ fetch('{base_url}/api/files/upload', {{
 
 # 为上传工具添加描述信息
 upload_image_file_tool.__doc__ = """上传图片文件工具 - 提供图片上传API的使用指导"""
+
+# =============================================================================
+# Google 官方 Veo3 视频生成工具函数
+# =============================================================================
+
+async def create_gemini_veo3_video_tool(
+    prompt: str,
+    duration: str = "8s",
+    aspect_ratio: str = "16:9",
+    seed: Optional[int] = None,
+    temperature: float = 0.9,
+    top_p: float = 0.8,
+    top_k: int = 40,
+    max_output_tokens: int = 8192
+) -> str:
+    """
+    创建Google官方Veo3视频生成任务
+    
+    Args:
+        prompt: 视频描述提示词，详细描述想要生成的视频内容
+        duration: 视频时长，支持1s-8s，默认8s
+        aspect_ratio: 宽高比，支持16:9, 9:16, 1:1，默认16:9
+        seed: 随机种子，用于可重复的生成结果
+        temperature: 生成温度，控制创意程度，默认0.9
+        top_p: Top-p采样参数，默认0.8
+        top_k: Top-k采样参数，默认40
+        max_output_tokens: 最大输出token数，默认8192
+    
+    Returns:
+        JSON格式的视频生成结果，包含视频URL、任务ID等信息
+    """
+    try:
+        veo3_client = get_veo3_client()
+        
+        result = await veo3_client.create_video(
+            prompt=prompt,
+            duration=duration,
+            aspect_ratio=aspect_ratio,
+            seed=seed,
+            temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
+            max_output_tokens=max_output_tokens
+        )
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to create Google Veo3 video")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__,
+            "service": "Google Gemini Veo3"
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+async def get_gemini_veo3_task_tool(
+    task_id: str
+) -> str:
+    """
+    获取Google Veo3视频生成任务状态
+    
+    Args:
+        task_id: Google Gemini API返回的任务ID
+    
+    Returns:
+        JSON格式的任务状态信息，包含完成状态、视频URL等
+    """
+    try:
+        veo3_client = get_veo3_client()
+        
+        result = await veo3_client.get_task_status(task_id)
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to get Google Veo3 task status")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__,
+            "service": "Google Gemini Veo3"
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+# 为Google Veo3工具添加描述信息
+create_gemini_veo3_video_tool.__doc__ = """创建Google官方Veo3视频生成任务 - 使用Google Gemini API的Veo3模型生成高质量视频"""
+get_gemini_veo3_task_tool.__doc__ = """获取Google Veo3视频任务状态 - 查询Google Gemini API中的任务进度和结果"""
+
+# =============================================================================
+# Google Vertex AI 官方Veo3视频生成工具函数
+# =============================================================================
+
+async def create_veo3_official_video_tool(
+    prompt: str,
+    duration: int = 5,
+    aspect_ratio: str = "16:9",
+    wait_for_completion: bool = False,
+    max_wait: int = 600,
+    seed: Optional[int] = None,
+    guidance_scale: Optional[float] = None,
+    negative_prompt: Optional[str] = None
+) -> str:
+    """
+    创建Google Vertex AI官方Veo3视频生成任务
+    
+    Args:
+        prompt: 视频描述提示词，详细描述想要生成的视频内容
+        duration: 视频时长(秒)，范围1-30，默认5秒
+        aspect_ratio: 宽高比，支持16:9, 9:16, 1:1, 4:3, 3:4，默认16:9
+        wait_for_completion: 是否等待完成，True时会等待任务完成后返回结果，默认False
+        max_wait: 最大等待时间(秒)，范围60-1800，默认600秒
+        seed: 随机种子，用于复现结果
+        guidance_scale: 引导缩放值，控制生成与提示词的匹配程度
+        negative_prompt: 负面提示词，描述不想要的内容
+    
+    Returns:
+        JSON格式的视频生成结果，包含operation_id和状态信息
+    """
+    try:
+        service = get_images_service()
+        
+        # 构建额外参数
+        kwargs = {}
+        if seed is not None:
+            kwargs['seed'] = seed
+        if guidance_scale is not None:
+            kwargs['guidanceScale'] = guidance_scale
+        if negative_prompt:
+            kwargs['negativePrompt'] = negative_prompt
+        
+        result = await service.create_veo3_official_video(
+            prompt=prompt,
+            duration=duration,
+            aspect_ratio=aspect_ratio,
+            wait_for_completion=wait_for_completion,
+            max_wait=max_wait,
+            **kwargs
+        )
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to create Vertex AI Veo3 video")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__,
+            "service": "Google Vertex AI Veo3"
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+async def check_veo3_official_status_tool(
+    operation_id: str
+) -> str:
+    """
+    检查Google Vertex AI官方Veo3任务状态
+    
+    Args:
+        operation_id: 任务操作ID，从创建任务时返回
+    
+    Returns:
+        JSON格式的任务状态信息，包含状态、数据等
+    """
+    try:
+        service = get_images_service()
+        
+        result = await service.check_veo3_official_status(operation_id)
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to check Vertex AI Veo3 status")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__,
+            "service": "Google Vertex AI Veo3"
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+async def wait_veo3_official_completion_tool(
+    operation_id: str,
+    max_wait: int = 600,
+    check_interval: int = 15
+) -> str:
+    """
+    等待Google Vertex AI官方Veo3任务完成
+    
+    Args:
+        operation_id: 任务操作ID
+        max_wait: 最大等待时间(秒)，范围60-1800，默认600秒
+        check_interval: 检查间隔(秒)，范围5-60，默认15秒
+    
+    Returns:
+        JSON格式的任务完成结果，包含成功状态、视频URL等
+    """
+    try:
+        service = get_images_service()
+        
+        result = await service.wait_veo3_official_completion(
+            operation_id=operation_id,
+            max_wait=max_wait,
+            check_interval=check_interval
+        )
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+        
+    except Exception as e:
+        log_exception(logger, e, "Failed to wait for Vertex AI Veo3 completion")
+        error_result = {
+            "error": True,
+            "message": str(e),
+            "type": type(e).__name__,
+            "service": "Google Vertex AI Veo3"
+        }
+        return json.dumps(error_result, ensure_ascii=False, indent=2)
+
+# 为Vertex AI Veo3工具添加描述信息
+create_veo3_official_video_tool.__doc__ = """创建Google Vertex AI官方Veo3视频生成任务 - 使用Google官方API直接调用Vertex AI的Veo3模型"""
+check_veo3_official_status_tool.__doc__ = """检查Google Vertex AI官方Veo3任务状态 - 查询长时间运行操作的当前状态"""
+wait_veo3_official_completion_tool.__doc__ = """等待Google Vertex AI官方Veo3任务完成 - 轮询等待任务完成并返回最终结果"""

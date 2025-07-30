@@ -184,6 +184,33 @@ class MinIOConfig(BaseModel):
         description="生成的URL过期时间(小时)"
     )
 
+class RedisConfig(BaseModel):
+    """Redis缓存和队列配置"""
+    host: str = Field(
+        default=os.getenv("REDIS_HOST", "localhost"),
+        description="Redis服务器主机"
+    )
+    port: int = Field(
+        default=int(os.getenv("REDIS_PORT", "6379")),
+        description="Redis服务器端口"
+    )
+    db: int = Field(
+        default=int(os.getenv("REDIS_DB", "0")),
+        description="Redis数据库编号"
+    )
+    password: str = Field(
+        default=os.getenv("REDIS_PASSWORD", ""),
+        description="Redis密码（如有）"
+    )
+    max_connections: int = Field(
+        default=int(os.getenv("REDIS_MAX_CONNECTIONS", "50")),
+        description="Redis连接池最大连接数"
+    )
+    timeout: int = Field(
+        default=int(os.getenv("REDIS_TIMEOUT", "30")),
+        description="Redis连接超时时间(秒)"
+    )
+
 class PerformanceConfig(BaseModel):
     """性能优化配置"""
     # HTTP连接池配置
@@ -236,6 +263,7 @@ class Settings(BaseModel):
     server: ServerConfig = Field(default_factory=ServerConfig)
     mcp: MCPConfig = Field(default_factory=MCPConfig)
     minio: MinIOConfig = Field(default_factory=MinIOConfig)
+    redis: RedisConfig = Field(default_factory=RedisConfig)
     performance: PerformanceConfig = Field(default_factory=PerformanceConfig)
 
     # 其他配置项

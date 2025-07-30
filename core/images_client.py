@@ -259,13 +259,19 @@ class ImagesAPIClient:
         # 准备文件数据
         files = {}
         
-        # 添加主图像文件
-        image_content = await image.read()
+        # 添加主图像文件 - 处理bytes或UploadFile对象
+        if isinstance(image, bytes):
+            image_content = image
+        else:
+            image_content = await image.read()
         files["image"] = image_content
         
-        # 添加mask文件（如果提供）
+        # 添加mask文件（如果提供） - 处理bytes或UploadFile对象
         if mask:
-            mask_content = await mask.read()
+            if isinstance(mask, bytes):
+                mask_content = mask
+            else:
+                mask_content = await mask.read()
             files["mask"] = mask_content
             
         return await self._make_multipart_request("POST", "/v1/images/edits", files, data)
@@ -796,8 +802,458 @@ class ImagesAPIClient:
             await self._session.close()
             logger.debug("ImagesAPIClient session closed")
 
+class GeminiVeo3Client:
+    """Google Gemini API Veo3视频生成客户端"""
+    
+    def __init__(self):
+        self.api_key = settings.images.gemini_api_key
+        self.base_url = "https://generativelanguage.googleapis.com/v1beta"
+        self.timeout = settings.images.request_timeout
+        self.max_retries = settings.images.max_retries
+        self._session: Optional[aiohttp.ClientSession] = None
+        
+        logger.info(f"GeminiVeo3Client initialized with API key: {self.api_key[:10]}...")
+
+    async def _get_session(self) -> aiohttp.ClientSession:
+        """获取或创建HTTP会话"""
+        if self._session is None or self._session.closed:
+            connector = aiohttp.TCPConnector(
+                limit=settings.performance.max_pool_connections,
+                limit_per_host=settings.performance.max_pool_connections_per_host,
+                ttl_dns_cache=settings.performance.dns_cache_ttl,
+                keepalive_timeout=settings.server.keepalive_timeout
+            )
+            
+            timeout = aiohttp.ClientTimeout(
+                total=self.timeout,
+                connect=settings.performance.connection_timeout,
+                sock_read=settings.performance.read_timeout
+            )
+            
+            self._session = aiohttp.ClientSession(
+                connector=connector,
+                timeout=timeout,
+                headers={
+                    'x-goog-api-key': self.api_key,
+                    'Content-Type': 'application/json'
+                }
+            )
+            
+        return self._session
+
+    async def create_video(
+        self,
+        prompt: str,
+        duration: Optional[str] = "8s",
+        aspect_ratio: Optional[str] = "16:9",
+        seed: Optional[int] = None,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        创建Veo3视频
+        
+        Args:
+            prompt: 视频描述文本
+            duration: 视频时长，默认8s
+            aspect_ratio: 宽高比，默认16:9
+            seed: 随机种子
+            
+        Returns:
+            包含视频信息的字典
+        """
+        start_time = time.time()
+        
+        # 构建请求数据
+        request_data = {
+            "contents": [
+                {
+                    "parts": [
+                        {
+                            "text": prompt
+                        }
+                    ]
+                }
+            ]
+        }
+        
+        # 基础的generationConfig
+        generation_config = {}
+        
+        # 只添加API支持的标准字段
+        if kwargs.get("temperature") is not None:
+            generation_config["temperature"] = kwargs.get("temperature")
+        if kwargs.get("top_p") is not None:
+            generation_config["topP"] = kwargs.get("top_p")
+        if kwargs.get("top_k") is not None:
+            generation_config["topK"] = kwargs.get("top_k")
+        if kwargs.get("max_output_tokens") is not None:
+            generation_config["maxOutputTokens"] = kwargs.get("max_output_tokens")
+        if seed is not None:
+            generation_config["seed"] = seed
+            
+        if generation_config:
+            request_data["generationConfig"] = generation_config
+
+        session = await self._get_session()
+        url = f"{self.base_url}/models/gemini-2.0-flash-exp-image-generation:generateContent"
+        
+        try:
+            logger.info(f"Creating Veo3 video with prompt: {prompt[:100]}...")
+            
+            async with session.post(url, json=request_data) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    elapsed_time = time.time() - start_time
+                    
+                    logger.info(f"Veo3 video creation successful in {elapsed_time:.2f}s")
+                    
+                    # 提取视频URL和任务信息
+                    if "candidates" in result and len(result["candidates"]) > 0:
+                        candidate = result["candidates"][0]
+                        if "content" in candidate and "parts" in candidate["content"]:
+                            for part in candidate["content"]["parts"]:
+                                if "fileData" in part:
+                                    return {
+                                        "success": True,
+                                        "video_url": part["fileData"]["fileUri"],
+                                        "mime_type": part["fileData"]["mimeType"],
+                                        "duration": duration,
+                                        "aspect_ratio": aspect_ratio,
+                                        "prompt": prompt,
+                                        "generation_time": elapsed_time
+                                    }
+                    
+                    # 检查是否是异步任务
+                    if "name" in result:
+                        return {
+                            "success": True,
+                            "task_id": result["name"],
+                            "status": "processing",
+                            "prompt": prompt,
+                            "duration": duration,
+                            "aspect_ratio": aspect_ratio,
+                            "generation_time": elapsed_time
+                        }
+                    
+                    # 返回原始结果
+                    return {
+                        "success": True,
+                        "raw_response": result,
+                        "prompt": prompt,
+                        "generation_time": elapsed_time
+                    }
+                    
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Veo3 API request failed: {response.status} - {error_text}")
+                    raise ImagesAPIError(
+                        f"Veo3 API request failed: {error_text}",
+                        status_code=response.status
+                    )
+                    
+        except aiohttp.ClientError as e:
+            logger.error(f"Veo3 API client error: {str(e)}")
+            raise ImagesAPIError(f"Veo3 API client error: {str(e)}")
+        except Exception as e:
+            logger.error(f"Veo3 API unexpected error: {str(e)}")
+            raise ImagesAPIError(f"Veo3 API unexpected error: {str(e)}")
+
+    async def get_task_status(self, task_id: str) -> Dict[str, Any]:
+        """
+        查询Veo3任务状态
+        
+        Args:
+            task_id: 任务ID
+            
+        Returns:
+            任务状态信息
+        """
+        session = await self._get_session()
+        url = f"{self.base_url}/operations/{task_id}"
+        
+        try:
+            logger.info(f"Checking Veo3 task status: {task_id}")
+            
+            async with session.get(url) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    logger.info(f"Veo3 task status retrieved: {result.get('done', False)}")
+                    
+                    # 解析任务状态
+                    status_info = {
+                        "task_id": task_id,
+                        "done": result.get("done", False),
+                        "status": "completed" if result.get("done") else "processing"
+                    }
+                    
+                    # 如果任务完成，提取结果
+                    if result.get("done") and "response" in result:
+                        response_data = result["response"]
+                        if "candidates" in response_data:
+                            candidate = response_data["candidates"][0]
+                            if "content" in candidate and "parts" in candidate["content"]:
+                                for part in candidate["content"]["parts"]:
+                                    if "fileData" in part:
+                                        status_info.update({
+                                            "video_url": part["fileData"]["fileUri"],
+                                            "mime_type": part["fileData"]["mimeType"]
+                                        })
+                    
+                    # 如果有错误信息
+                    if "error" in result:
+                        status_info.update({
+                            "status": "failed",
+                            "error": result["error"]
+                        })
+                    
+                    return status_info
+                    
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Veo3 task status request failed: {response.status} - {error_text}")
+                    raise ImagesAPIError(
+                        f"Veo3 task status request failed: {error_text}",
+                        status_code=response.status
+                    )
+                    
+        except aiohttp.ClientError as e:
+            logger.error(f"Veo3 task status client error: {str(e)}")
+            raise ImagesAPIError(f"Veo3 task status client error: {str(e)}")
+        except Exception as e:
+            logger.error(f"Veo3 task status unexpected error: {str(e)}")
+            raise ImagesAPIError(f"Veo3 task status unexpected error: {str(e)}")
+
+    async def close(self):
+        """关闭客户端连接"""
+        if self._session and not self._session.closed:
+            await self._session.close()
+            logger.debug("GeminiVeo3Client session closed")
+
+class VertexAIVeoClient:
+    """Google Vertex AI Veo视频生成客户端"""
+    
+    def __init__(self):
+        self.api_key = settings.images.gemini_api_key
+        self.project_id = settings.images.vertex_project_id
+        self.location = settings.images.vertex_location
+        self.base_url = f"https://{self.location}-aiplatform.googleapis.com/v1"
+        self.timeout = settings.images.request_timeout
+        self.max_retries = settings.images.max_retries
+        self._session: Optional[aiohttp.ClientSession] = None
+        
+        logger.info(f"VertexAIVeoClient initialized for project: {self.project_id}")
+
+    async def _get_session(self) -> aiohttp.ClientSession:
+        """获取或创建HTTP会话"""
+        if self._session is None or self._session.closed:
+            connector = aiohttp.TCPConnector(
+                limit=settings.performance.max_pool_connections,
+                limit_per_host=settings.performance.max_pool_connections_per_host,
+                ttl_dns_cache=settings.performance.dns_cache_ttl,
+                keepalive_timeout=settings.server.keepalive_timeout
+            )
+            
+            timeout = aiohttp.ClientTimeout(
+                total=self.timeout,
+                connect=settings.performance.connection_timeout,
+                sock_read=settings.performance.read_timeout
+            )
+            
+            # 尝试使用API密钥作为Bearer token（某些情况下可能有效）
+            # 正确的方式应该是使用 gcloud auth print-access-token
+            self._session = aiohttp.ClientSession(
+                connector=connector,
+                timeout=timeout,
+                headers={
+                    'Authorization': f'Bearer {self.api_key}',
+                    'Content-Type': 'application/json'
+                }
+            )
+            
+        return self._session
+
+    async def create_video(
+        self,
+        prompt: str,
+        model_id: str = "veo-3.0-generate-preview",
+        duration: Optional[int] = 5,
+        aspect_ratio: Optional[str] = "16:9",
+        resolution: Optional[str] = "720p",
+        sample_count: int = 1,
+        storage_uri: Optional[str] = None,
+        seed: Optional[int] = None,
+        negative_prompt: Optional[str] = None,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        创建Vertex AI Veo视频
+        
+        Args:
+            prompt: 视频描述文本
+            model_id: 模型ID，默认veo-3.0-generate-preview
+            duration: 视频时长(秒)，5-8秒
+            aspect_ratio: 宽高比
+            resolution: 分辨率，720p或1080p
+            sample_count: 生成视频数量，1-4
+            storage_uri: 存储URI，如果不提供则返回字节数据
+            seed: 随机种子
+            negative_prompt: 负面提示词
+            
+        Returns:
+            包含操作信息的字典
+        """
+        start_time = time.time()
+        
+        if not self.project_id:
+            raise ImagesAPIError("Vertex AI project ID not configured")
+        
+        # 构建请求数据 (使用Vertex AI predictLongRunning格式)
+        request_data = {
+            "instances": [
+                {
+                    "prompt": prompt
+                }
+            ],
+            "parameters": {}
+        }
+        
+        # 添加可选参数
+        if aspect_ratio:
+            request_data["parameters"]["aspectRatio"] = aspect_ratio
+        if negative_prompt:
+            request_data["parameters"]["negativePrompt"] = negative_prompt
+        if sample_count:
+            request_data["parameters"]["sampleCount"] = sample_count
+        if seed is not None:
+            request_data["parameters"]["seed"] = seed
+        if storage_uri:
+            request_data["parameters"]["storageUri"] = storage_uri
+        if duration:
+            # 转换为秒数
+            if isinstance(duration, str) and duration.endswith('s'):
+                duration_seconds = int(duration[:-1])
+            else:
+                duration_seconds = int(duration)
+            request_data["parameters"]["durationSeconds"] = duration_seconds
+        
+        # 添加增强提示词选项
+        request_data["parameters"]["enhancePrompt"] = kwargs.get("enhance_prompt", True)
+
+        session = await self._get_session()
+        url = f"{self.base_url}/projects/{self.project_id}/locations/{self.location}/publishers/google/models/{model_id}:predictLongRunning"
+        
+        try:
+            logger.info(f"Creating Vertex AI Veo video with prompt: {prompt[:100]}...")
+            
+            async with session.post(url, json=request_data) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    elapsed_time = time.time() - start_time
+                    
+                    logger.info(f"Vertex AI Veo video creation initiated in {elapsed_time:.2f}s")
+                    
+                    # 解析操作信息
+                    operation_name = result.get("name", "")
+                    operation_id = operation_name.split("/")[-1] if operation_name else ""
+                    
+                    return {
+                        "success": True,
+                        "operation_name": operation_name,
+                        "operation_id": operation_id,
+                        "status": "running",
+                        "prompt": prompt,
+                        "model_id": model_id,
+                        "duration": duration,
+                        "aspect_ratio": aspect_ratio,
+                        "resolution": resolution,
+                        "generation_time": elapsed_time,
+                        "raw_response": result
+                    }
+                    
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Vertex AI Veo API request failed: {response.status} - {error_text}")
+                    raise ImagesAPIError(
+                        f"Vertex AI Veo API request failed: {error_text}",
+                        status_code=response.status
+                    )
+                    
+        except aiohttp.ClientError as e:
+            logger.error(f"Vertex AI Veo API client error: {str(e)}")
+            raise ImagesAPIError(f"Vertex AI Veo API client error: {str(e)}")
+        except Exception as e:
+            logger.error(f"Vertex AI Veo API unexpected error: {str(e)}")
+            raise ImagesAPIError(f"Vertex AI Veo API unexpected error: {str(e)}")
+
+    async def get_operation_status(self, operation_name: str) -> Dict[str, Any]:
+        """
+        查询Vertex AI操作状态
+        
+        Args:
+            operation_name: 操作名称
+            
+        Returns:
+            操作状态信息
+        """
+        session = await self._get_session()
+        url = f"{self.base_url}/{operation_name}"
+        
+        try:
+            logger.info(f"Checking Vertex AI operation status: {operation_name}")
+            
+            async with session.get(url) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    logger.info(f"Vertex AI operation status retrieved: {result.get('done', False)}")
+                    
+                    # 解析操作状态
+                    status_info = {
+                        "operation_name": operation_name,
+                        "done": result.get("done", False),
+                        "status": "completed" if result.get("done") else "running"
+                    }
+                    
+                    # 如果操作完成，提取结果
+                    if result.get("done"):
+                        if "response" in result:
+                            status_info["response"] = result["response"]
+                        if "error" in result:
+                            status_info.update({
+                                "status": "failed",
+                                "error": result["error"]
+                            })
+                    
+                    # 添加元数据
+                    if "metadata" in result:
+                        status_info["metadata"] = result["metadata"]
+                    
+                    return status_info
+                    
+                else:
+                    error_text = await response.text()
+                    logger.error(f"Vertex AI operation status request failed: {response.status} - {error_text}")
+                    raise ImagesAPIError(
+                        f"Vertex AI operation status request failed: {error_text}",
+                        status_code=response.status
+                    )
+                    
+        except aiohttp.ClientError as e:
+            logger.error(f"Vertex AI operation status client error: {str(e)}")
+            raise ImagesAPIError(f"Vertex AI operation status client error: {str(e)}")
+        except Exception as e:
+            logger.error(f"Vertex AI operation status unexpected error: {str(e)}")
+            raise ImagesAPIError(f"Vertex AI operation status unexpected error: {str(e)}")
+
+    async def close(self):
+        """关闭客户端连接"""
+        if self._session and not self._session.closed:
+            await self._session.close()
+            logger.debug("VertexAIVeoClient session closed")
+
 # 全局客户端实例
 _images_client: Optional[ImagesAPIClient] = None
+_veo3_client: Optional[GeminiVeo3Client] = None
+_vertex_veo_client: Optional[VertexAIVeoClient] = None
 
 def get_images_client() -> ImagesAPIClient:
     """获取全局Images API客户端实例"""
@@ -806,9 +1262,29 @@ def get_images_client() -> ImagesAPIClient:
         _images_client = ImagesAPIClient()
     return _images_client
 
+def get_veo3_client() -> GeminiVeo3Client:
+    """获取全局Veo3客户端实例"""
+    global _veo3_client
+    if _veo3_client is None:
+        _veo3_client = GeminiVeo3Client()
+    return _veo3_client
+
+def get_vertex_veo_client() -> VertexAIVeoClient:
+    """获取全局Vertex AI Veo客户端实例"""
+    global _vertex_veo_client
+    if _vertex_veo_client is None:
+        _vertex_veo_client = VertexAIVeoClient()
+    return _vertex_veo_client
+
 async def cleanup_images_client():
     """清理全局客户端实例"""
-    global _images_client
+    global _images_client, _veo3_client, _vertex_veo_client
     if _images_client:
         await _images_client.close()
         _images_client = None
+    if _veo3_client:
+        await _veo3_client.close()
+        _veo3_client = None
+    if _vertex_veo_client:
+        await _vertex_veo_client.close()
+        _vertex_veo_client = None

@@ -134,38 +134,38 @@ class SimpleMCPServer:
             }
         )
         
-        # 即梦3.0图像生成工具
-        tools['create_seedream_image'] = MCPTool(
-            name='create_seedream_image',
-            description='创建即梦3.0图像生成任务 - 先进的图像生成技术',
-            parameters={
-                'type': 'object',
-                'properties': {
-                    'prompt': {'type': 'string', 'description': '图像描述提示词'},
-                    'aspect_ratio': {'type': 'string', 'default': '1:1', 'description': '宽高比'},
-                    'negative_prompt': {'type': 'string', 'description': '负面提示词（可选）'},
-                    'cfg_scale': {'type': 'number', 'default': 7.5, 'description': 'CFG缩放值'},
-                    'seed': {'type': 'integer', 'description': '随机种子（可选）'}
-                },
-                'required': ['prompt']
-            }
-        )
+        # 即梦3.0图像生成工具 - 暂时屏蔽
+        # tools['create_seedream_image'] = MCPTool(
+        #     name='create_seedream_image',
+        #     description='创建即梦3.0图像生成任务 - 先进的图像生成技术',
+        #     parameters={
+        #         'type': 'object',
+        #         'properties': {
+        #             'prompt': {'type': 'string', 'description': '图像描述提示词'},
+        #             'aspect_ratio': {'type': 'string', 'default': '1:1', 'description': '宽高比'},
+        #             'negative_prompt': {'type': 'string', 'description': '负面提示词（可选）'},
+        #             'cfg_scale': {'type': 'number', 'default': 7.5, 'description': 'CFG缩放值'},
+        #             'seed': {'type': 'integer', 'description': '随机种子（可选）'}
+        #         },
+        #         'required': ['prompt']
+        #     }
+        # )
         
-        # 即梦垫图生成工具
-        tools['create_seededit_image'] = MCPTool(
-            name='create_seededit_image',
-            description='创建即梦垫图生成任务 - 基于现有图像的智能编辑',
-            parameters={
-                'type': 'object',
-                'properties': {
-                    'image_url': {'type': 'string', 'description': '原始图像URL地址'},
-                    'prompt': {'type': 'string', 'description': '编辑提示词'},
-                    'strength': {'type': 'number', 'default': 0.8, 'description': '编辑强度'},
-                    'seed': {'type': 'integer', 'description': '随机种子（可选）'}
-                },
-                'required': ['image_url', 'prompt']
-            }
-        )
+        # 即梦垫图生成工具 - 暂时屏蔽
+        # tools['create_seededit_image'] = MCPTool(
+        #     name='create_seededit_image',
+        #     description='创建即梦垫图生成任务 - 基于现有图像的智能编辑',
+        #     parameters={
+        #         'type': 'object',
+        #         'properties': {
+        #             'image_url': {'type': 'string', 'description': '原始图像URL地址'},
+        #             'prompt': {'type': 'string', 'description': '编辑提示词'},
+        #             'strength': {'type': 'number', 'default': 0.8, 'description': '编辑强度'},
+        #             'seed': {'type': 'integer', 'description': '随机种子（可选）'}
+        #         },
+        #         'required': ['image_url', 'prompt']
+        #     }
+        # )
         
         # FLUX图像生成工具
         tools['create_flux_image'] = MCPTool(
@@ -184,20 +184,20 @@ class SimpleMCPServer:
             }
         )
         
-        # StableDiffusion图像生成工具
-        tools['create_stable_diffusion_image'] = MCPTool(
-            name='create_stable_diffusion_image',
-            description='创建StableDiffusion图像生成任务 - 经典的开源图像生成模型',
-            parameters={
-                'type': 'object',
-                'properties': {
-                    'prompt': {'type': 'string', 'description': '图像描述提示词'},
-                    'size': {'type': 'string', 'default': '1:1', 'description': '图像尺寸比例'},
-                    'n': {'type': 'integer', 'default': 1, 'description': '生成图像数量'}
-                },
-                'required': ['prompt']
-            }
-        )
+        # StableDiffusion图像生成工具 - 暂时屏蔽
+        # tools['create_stable_diffusion_image'] = MCPTool(
+        #     name='create_stable_diffusion_image',
+        #     description='创建StableDiffusion图像生成任务 - 经典的开源图像生成模型',
+        #     parameters={
+        #         'type': 'object',
+        #         'properties': {
+        #             'prompt': {'type': 'string', 'description': '图像描述提示词'},
+        #             'size': {'type': 'string', 'default': '1:1', 'description': '图像尺寸比例'},
+        #             'n': {'type': 'integer', 'default': 1, 'description': '生成图像数量'}
+        #         },
+        #         'required': ['prompt']
+        #     }
+        # )
         
         # 海螺图片生成工具
         tools['create_hailuo_image'] = MCPTool(
@@ -271,6 +271,39 @@ class SimpleMCPServer:
                     'folder': {'type': 'string', 'default': 'uploads', 'description': '存储文件夹名称'}
                 },
                 'required': ['file_description']
+            }
+        )
+        
+        # Google官方Veo3视频生成工具
+        tools['create_gemini_veo3_video'] = MCPTool(
+            name='create_gemini_veo3_video',
+            description='创建Google官方Veo3视频生成任务 - 使用Google Gemini API的Veo3模型生成高质量视频',
+            parameters={
+                'type': 'object',
+                'properties': {
+                    'prompt': {'type': 'string', 'description': '视频描述提示词，详细描述想要生成的视频内容'},
+                    'duration': {'type': 'string', 'default': '8s', 'description': '视频时长，支持1s-8s，默认8s'},
+                    'aspect_ratio': {'type': 'string', 'default': '16:9', 'description': '宽高比，支持16:9, 9:16, 1:1，默认16:9'},
+                    'seed': {'type': 'integer', 'description': '随机种子，用于可重复的生成结果'},
+                    'temperature': {'type': 'number', 'default': 0.9, 'description': '生成温度，控制创意程度，默认0.9'},
+                    'top_p': {'type': 'number', 'default': 0.8, 'description': 'Top-p采样参数，默认0.8'},
+                    'top_k': {'type': 'integer', 'default': 40, 'description': 'Top-k采样参数，默认40'},
+                    'max_output_tokens': {'type': 'integer', 'default': 8192, 'description': '最大输出token数，默认8192'}
+                },
+                'required': ['prompt']
+            }
+        )
+        
+        # Google Veo3任务状态查询工具
+        tools['get_gemini_veo3_task'] = MCPTool(
+            name='get_gemini_veo3_task',
+            description='获取Google Veo3视频任务状态 - 查询Google Gemini API中的任务进度和结果',
+            parameters={
+                'type': 'object',
+                'properties': {
+                    'task_id': {'type': 'string', 'description': 'Google Gemini API返回的任务ID'}
+                },
+                'required': ['task_id']
             }
         )
         

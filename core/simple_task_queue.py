@@ -86,10 +86,10 @@ class SimpleTaskQueue:
     def __init__(self):
         """初始化任务队列"""
         self.redis = redis.Redis(
-            host=getattr(settings, 'REDIS_HOST', 'localhost'),
-            port=getattr(settings, 'REDIS_PORT', 6379),
-            password=getattr(settings, 'REDIS_PASSWORD', None),
-            db=getattr(settings, 'REDIS_DB', 0),
+            host=settings.redis.host,
+            port=settings.redis.port,
+            password=settings.redis.password,
+            db=settings.redis.db,
             decode_responses=True,
             socket_keepalive=True,
             health_check_interval=30

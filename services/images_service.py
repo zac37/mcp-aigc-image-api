@@ -14,6 +14,7 @@ from datetime import datetime
 from core.images_client import get_images_client, ImagesAPIError
 from core.logger import get_api_logger, log_exception, log_performance
 from core.config import settings
+from core.veo3_client import veo3_client, Veo3APIError
 
 logger = get_api_logger()
 
@@ -161,7 +162,10 @@ class ImagesService:
                 raise ValueError("Image must be a valid image file")
                 
             # 验证文件大小（4MB）
-            if image.size and image.size > 4 * 1024 * 1024:
+            # 处理bytes对象（从API路由层传来）或UploadFile对象
+            if hasattr(image, 'size') and image.size and image.size > 4 * 1024 * 1024:
+                raise ValueError("Image file must be smaller than 4MB")
+            elif isinstance(image, bytes) and len(image) > 4 * 1024 * 1024:
                 raise ValueError("Image file must be smaller than 4MB")
                 
             # 验证model参数
@@ -824,6 +828,210 @@ class ImagesService:
             raise
         except Exception as e:
             log_exception(logger, e, "Unexpected error in Veo3 task query")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
+    # =============================================================================
+    # Google官方Veo3视频生成服务
+    # =============================================================================
+    
+    async def create_veo3_official_video(
+        self,
+        prompt: str,
+        duration: int = 5,
+        aspect_ratio: str = "16:9",
+        wait_for_completion: bool = False,
+        max_wait: int = 600,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        使用Google官方API创建Veo3视频生成任务
+        
+        Args:
+            prompt: 视频生成提示词
+            duration: 视频时长(秒)，默认5秒
+            aspect_ratio: 宽高比，默认16:9
+            wait_for_completion: 是否等待完成，默认False
+            max_wait: 最大等待时间(秒)，默认600秒
+            **kwargs: 其他可选参数（如seed, guidanceScale等）
+        
+        Returns:
+            视频生成任务结果
+        """
+        try:
+            logger.info(f"Creating official Veo3 video generation task: {prompt[:50]}...")
+            
+            # 参数验证
+            if not prompt or not prompt.strip():
+                raise ValueError("Prompt cannot be empty")
+            
+            if duration < 1 or duration > 30:
+                raise ValueError("Duration must be between 1 and 30 seconds")
+            
+            valid_ratios = ["16:9", "9:16", "1:1", "4:3", "3:4"]
+            if aspect_ratio not in valid_ratios:
+                raise ValueError(f"Aspect ratio must be one of: {', '.join(valid_ratios)}")
+            
+            if max_wait < 60 or max_wait > 1800:
+                raise ValueError("Max wait time must be between 60 and 1800 seconds")
+            
+            # 使用官方Veo3客户端生成视频
+            result = await veo3_client.generate_video_async(
+                prompt=prompt.strip(),
+                duration=duration,
+                aspect_ratio=aspect_ratio,
+                wait_for_completion=wait_for_completion,
+                max_wait=max_wait,
+                **kwargs
+            )
+            
+            logger.info(f"Official Veo3 video generation task created successfully - Operation ID: {result.get('operation_id')}")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for official Veo3 video generation: {e}")
+            raise
+        except Veo3APIError as e:
+            log_exception(logger, e, "Failed to create official Veo3 video generation task")
+            raise ImagesAPIError(f"Veo3 API error: {str(e)}")
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in official Veo3 video generation")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
+    async def check_veo3_official_status(
+        self,
+        operation_id: str
+    ) -> Dict[str, Any]:
+        """
+        检查Google官方Veo3任务状态
+        
+        Args:
+            operation_id: 任务操作ID
+        
+        Returns:
+            任务状态信息
+        """
+        try:
+            logger.info(f"Checking official Veo3 task status: {operation_id}")
+            
+            if not operation_id or not operation_id.strip():
+                raise ValueError("Operation ID cannot be empty")
+            
+            # 检查任务状态
+            status, data = await veo3_client.check_status_async(operation_id.strip())
+            
+            result = {
+                'operation_id': operation_id,
+                'status': status,
+                'data': data
+            }
+            
+            # 如果任务完成，尝试提取视频URL
+            if status == 'completed' and data:
+                # 处理新的响应格式
+                if 'videos' in data:
+                    videos = data['videos']
+                    if videos and len(videos) > 0:
+                        video_info = videos[0]
+                        gcs_uri = video_info.get('gcsUri')
+                        if gcs_uri:
+                            result['gcs_uri'] = gcs_uri
+                            
+                            # 构建公开访问URL（假设存储桶是公开的）
+                            # 解析 gs://bucket/path 格式
+                            if gcs_uri.startswith('gs://'):
+                                uri_parts = gcs_uri[5:].split('/', 1)  # 移除 'gs://'
+                                if len(uri_parts) == 2:
+                                    bucket_name = uri_parts[0]
+                                    blob_path = uri_parts[1]
+                                    public_url = f"https://storage.googleapis.com/{bucket_name}/{blob_path}"
+                                    result['public_url'] = public_url
+                                    result['video_url'] = public_url  # 向后兼容
+                # 兼容旧的响应格式
+                elif 'predictions' in data:
+                    predictions = data['predictions']
+                    if predictions and len(predictions) > 0:
+                        prediction = predictions[0]
+                        if 'videoUri' in prediction:
+                            result['video_url'] = prediction['videoUri']
+            
+            logger.info(f"Official Veo3 task status checked: {status}")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for official Veo3 status check: {e}")
+            raise
+        except Veo3APIError as e:
+            log_exception(logger, e, "Failed to check official Veo3 task status")
+            raise ImagesAPIError(f"Veo3 API error: {str(e)}")
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in official Veo3 status check")
+            raise ImagesAPIError(f"Service error: {str(e)}")
+    
+    async def wait_veo3_official_completion(
+        self,
+        operation_id: str,
+        max_wait: int = 600,
+        check_interval: int = 15
+    ) -> Dict[str, Any]:
+        """
+        等待Google官方Veo3任务完成
+        
+        Args:
+            operation_id: 任务操作ID
+            max_wait: 最大等待时间(秒)
+            check_interval: 检查间隔(秒)
+        
+        Returns:
+            任务完成结果
+        """
+        try:
+            logger.info(f"Waiting for official Veo3 task completion: {operation_id}")
+            
+            if not operation_id or not operation_id.strip():
+                raise ValueError("Operation ID cannot be empty")
+            
+            if max_wait < 60 or max_wait > 1800:
+                raise ValueError("Max wait time must be between 60 and 1800 seconds")
+            
+            if check_interval < 5 or check_interval > 60:
+                raise ValueError("Check interval must be between 5 and 60 seconds")
+            
+            # 等待任务完成
+            success, data = await veo3_client.wait_for_completion_async(
+                operation_id.strip(),
+                max_wait=max_wait,
+                check_interval=check_interval
+            )
+            
+            result = {
+                'operation_id': operation_id,
+                'success': success,
+                'data': data
+            }
+            
+            # 如果成功完成，尝试提取视频URL
+            if success and data:
+                if 'predictions' in data:
+                    predictions = data['predictions']
+                    if predictions and len(predictions) > 0:
+                        prediction = predictions[0]
+                        if 'videoUri' in prediction:
+                            result['video_url'] = prediction['videoUri']
+                result['status'] = 'completed'
+            else:
+                result['status'] = 'failed' if data else 'timeout'
+            
+            logger.info(f"Official Veo3 task completion result: {result['status']}")
+            return result
+            
+        except ValueError as e:
+            logger.warning(f"Invalid parameters for official Veo3 completion wait: {e}")
+            raise
+        except Veo3APIError as e:
+            log_exception(logger, e, "Failed to wait for official Veo3 task completion")
+            raise ImagesAPIError(f"Veo3 API error: {str(e)}")
+        except Exception as e:
+            log_exception(logger, e, "Unexpected error in official Veo3 completion wait")
             raise ImagesAPIError(f"Service error: {str(e)}")
 
 # =============================================================================

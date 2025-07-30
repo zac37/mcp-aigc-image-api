@@ -53,8 +53,8 @@ class MinIOClient:
             )
             logger.info(f"MinIO client initialized successfully: {settings.minio.endpoint}")
             
-            # 检查并创建存储桶
-            self._ensure_bucket_exists()
+            # 跳过存储桶检查，假设存储桶已存在
+            logger.info(f"MinIO client initialized, assuming bucket exists: {self.bucket_name}")
             
         except Exception as e:
             log_exception(logger, e, "Failed to initialize MinIO client")
@@ -63,12 +63,34 @@ class MinIOClient:
     def _ensure_bucket_exists(self):
         """确保存储桶存在"""
         try:
-            if not self.client.bucket_exists(self.bucket_name):
+            # 首先检查存储桶是否存在
+            bucket_exists = self.client.bucket_exists(self.bucket_name)
+            if bucket_exists:
+                logger.info(f"Bucket already exists: {self.bucket_name}")
+                return
+            
+            # 如果不存在，尝试创建
+            try:
                 self.client.make_bucket(self.bucket_name, location=settings.minio.region)
                 logger.info(f"Created bucket: {self.bucket_name}")
-            else:
-                logger.info(f"Bucket already exists: {self.bucket_name}")
+            except Exception as create_error:
+                # 再次检查是否存在（可能是并发创建）
+                if self.client.bucket_exists(self.bucket_name):
+                    logger.info(f"Bucket was created by another process: {self.bucket_name}")
+                    return
+                else:
+                    raise create_error
+                    
         except Exception as e:
+            # 如果检查存在性和创建都失败，但存储桶可能实际存在，尝试继续
+            try:
+                # 最后一次检查
+                if self.client.bucket_exists(self.bucket_name):
+                    logger.warning(f"Bucket exists despite error during creation check: {self.bucket_name}")
+                    return
+            except:
+                pass
+            
             log_exception(logger, e, f"Failed to ensure bucket exists: {self.bucket_name}")
             raise MinIOError(f"Bucket creation failed: {str(e)}")
     

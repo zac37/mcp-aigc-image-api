@@ -37,9 +37,12 @@ async def lifespan(app: FastAPI):
     
     # 关闭时执行
     logger.info("Shutting down Images API service...")
+    
     await cleanup_images_client()
     await cleanup_minio_client()
     logger.info("Cleanup completed")
+
+
 
 # 创建 FastAPI 应用
 app = FastAPI(
