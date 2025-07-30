@@ -49,6 +49,16 @@ services:
       start_period: 40s
     networks:
       - jarvis-v2_default
+    # 🎯 方案一：简化的Celery Worker启动命令（包含MCP服务）
+    command: >
+      sh -c "
+        echo '🚀 启动简化的单队列Celery架构 + MCP服务' &&
+        python main.py &
+        python scripts/run_mcp_streamable.py &
+        sleep 10 &&
+        celery -A celery_config worker --loglevel=info --pool=threads --concurrency=4 &
+        wait
+      "
 
 networks:
   jarvis-v2_default:
