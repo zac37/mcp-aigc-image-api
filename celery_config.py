@@ -28,12 +28,9 @@ app.conf.update(
     task_acks_late=True,
     worker_max_tasks_per_child=50,
     
-    # 任务路由
-    task_routes={
-        'celery_tasks.monitor_video_tasks': {'queue': 'video_monitor_queue'},
-        'celery_tasks.start_video_monitoring': {'queue': 'video_monitor_queue'},
-        'celery_tasks.store_images_to_minio': {'queue': 'image_queue'},
-    },
+    # 🎯 方案一：简化架构 - 移除任务路由，使用单一默认队列
+    # 所有任务自动路由到 'celery' 默认队列，降低配置复杂度
+    # task_routes={},  # 已移除：原三队列架构路由配置
     
     # 重试配置
     task_default_retry_delay=60,  # 默认重试延迟60秒
