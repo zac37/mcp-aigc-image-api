@@ -21,16 +21,16 @@ from core.logger import get_mcp_logger
 
 logger = get_mcp_logger()
 
-async def main():
+def main():
     """主函数：启动Images API MCP服务"""
     try:
         logger.info("Starting Images API MCP Service...")
         logger.info(f"Python version: {sys.version}")
         logger.info(f"Service will run on {settings.mcp.host}:{settings.mcp.port}")
         
-        # 导入并运行我们的增强版MCP服务
+        # 导入并运行我们的FastMCP服务
         from routers.mcp.main import main as mcp_main
-        await mcp_main()
+        mcp_main()
         
     except Exception as e:
         logger.error(f"Failed to start MCP service: {e}")
@@ -39,4 +39,4 @@ async def main():
         raise
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

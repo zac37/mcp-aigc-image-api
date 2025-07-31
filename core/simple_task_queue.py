@@ -33,6 +33,7 @@ class VideoTask:
     result_url: Optional[str] = None
     minio_url: Optional[str] = None
     error_message: Optional[str] = None
+    external_status: Optional[str] = None  # 外部API状态
     metadata: Optional[Dict[str, Any]] = None
 
     def __post_init__(self):
@@ -67,7 +68,7 @@ class VideoTask:
                 processed_data['metadata'] = {}
         
         # 处理空字符串转为None
-        none_fields = ['result_url', 'minio_url', 'error_message']
+        none_fields = ['result_url', 'minio_url', 'error_message', 'external_status']
         for field in none_fields:
             if field in processed_data and processed_data[field] == "":
                 processed_data[field] = None
@@ -365,6 +366,7 @@ class ImageTask:
     updated_at: str = ""
     minio_urls: Optional[List[str]] = None  # MinIO存储URL列表
     generation_params: Optional[Dict[str, Any]] = None  # 生成参数
+    enhanced_prompt: Optional[str] = None  # 增强后的提示词
     error_message: Optional[str] = None
 
     def __post_init__(self):

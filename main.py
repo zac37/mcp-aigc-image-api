@@ -90,32 +90,32 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 添加请求日志中间件
-@app.middleware("http")
-async def log_requests(request: Request, call_next):
-    """请求日志中间件"""
-    import time
-    from core.logger import get_access_logger
-    
-    access_logger = get_access_logger()
-    start_time = time.time()
-    
-    # 记录请求
-    client_ip = request.client.host if request.client else "unknown"
-    user_agent = request.headers.get("user-agent", "unknown")
-    
-    response = await call_next(request)
-    
-    # 计算处理时间
-    process_time = time.time() - start_time
-    
-    # 记录访问日志
-    access_logger.info(
-        f"{client_ip} - \"{request.method} {request.url.path}\" "
-        f"{response.status_code} - {process_time:.3f}s - \"{user_agent}\""
-    )
-    
-    return response
+# 添加请求日志中间件（临时禁用以解决权限问题）
+# @app.middleware("http")
+# async def log_requests(request: Request, call_next):
+#     """请求日志中间件"""
+#     import time
+#     from core.logger import get_access_logger
+#     
+#     access_logger = get_access_logger()
+#     start_time = time.time()
+#     
+#     # 记录请求
+#     client_ip = request.client.host if request.client else "unknown"
+#     user_agent = request.headers.get("user-agent", "unknown")
+#     
+#     response = await call_next(request)
+#     
+#     # 计算处理时间
+#     process_time = time.time() - start_time
+#     
+#     # 记录访问日志
+#     access_logger.info(
+#         f"{client_ip} - \"{request.method} {request.url.path}\" "
+#         f"{response.status_code} - {process_time:.3f}s - \"{user_agent}\""
+#     )
+#     
+#     return response
 
 # 全局异常处理
 @app.exception_handler(Exception)

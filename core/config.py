@@ -26,11 +26,6 @@ class ImagesConfig(BaseModel):
         default="sk-idDBqyoDVqCXInnO9uaGLUfwsxY7RhzHSn166z5jOBCBvFmY",
         description="Images API密钥，服务器端统一配置"
     )
-    # Google Gemini API配置
-    gemini_api_key: str = Field(
-        default=os.getenv("GEMINI_API_KEY", "AIzaSyDXn7uxY35vwHs3Ds9Z3dmJ9W2i4QBoLrc"),
-        description="Google Gemini API密钥"
-    )
     # Google Vertex AI配置
     vertex_project_id: str = Field(
         default=os.getenv("VERTEX_PROJECT_ID", ""),
@@ -164,7 +159,7 @@ class MinIOConfig(BaseModel):
         description="MinIO访问密钥"
     )
     secret_key: str = Field(
-        default=os.getenv("MINIO_SECRET_KEY", "minioadmin123"),
+        default="minioadmin123",  # 直接使用正确的密钥
         description="MinIO私钥"
     )
     secure: bool = Field(
@@ -257,6 +252,45 @@ class PerformanceConfig(BaseModel):
         description="最大并发请求数"
     )
 
+class JarvisIntegrationConfig(BaseModel):
+    """JARVIS-V2 集成配置"""
+    enabled: bool = Field(
+        default=os.getenv("JARVIS_INTEGRATION_ENABLED", "True").lower() == "true",
+        description="是否启用JARVIS集成"
+    )
+    api_base_url: str = Field(
+        default=os.getenv("JARVIS_API_BASE_URL", "http://localhost:8000"),
+        description="JARVIS-V2 API基础URL"
+    )
+    callback_endpoint: str = Field(
+        default=os.getenv("JARVIS_CALLBACK_ENDPOINT", "/api/assets/upload"),
+        description="JARVIS资产库回调端点"
+    )
+    timeout: int = Field(
+        default=int(os.getenv("JARVIS_TIMEOUT", "30")),
+        description="JARVIS API请求超时时间(秒)"
+    )
+    retry_count: int = Field(
+        default=int(os.getenv("JARVIS_RETRY_COUNT", "3")),
+        description="JARVIS API请求重试次数"
+    )
+    retry_delay: int = Field(
+        default=int(os.getenv("JARVIS_RETRY_DELAY", "5")),
+        description="重试间隔时间(秒)"
+    )
+    api_key: str = Field(
+        default=os.getenv("JARVIS_API_KEY", ""),
+        description="JARVIS API密钥（如需要）"
+    )
+    default_product_id: int = Field(
+        default=int(os.getenv("JARVIS_DEFAULT_PRODUCT_ID", "1")),
+        description="默认产品ID"
+    )
+    default_tag_id: int = Field(
+        default=int(os.getenv("JARVIS_DEFAULT_TAG_ID", "1")),
+        description="默认标签ID"
+    )
+
 class Settings(BaseModel):
     """应用全局配置"""
     images: ImagesConfig = Field(default_factory=ImagesConfig)
@@ -265,6 +299,7 @@ class Settings(BaseModel):
     minio: MinIOConfig = Field(default_factory=MinIOConfig)
     redis: RedisConfig = Field(default_factory=RedisConfig)
     performance: PerformanceConfig = Field(default_factory=PerformanceConfig)
+    jarvis: JarvisIntegrationConfig = Field(default_factory=JarvisIntegrationConfig)
 
     # 其他配置项
     project_name: str = Field(

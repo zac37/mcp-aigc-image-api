@@ -83,21 +83,28 @@ def setup_logger(
     console_handler.setFormatter(console_formatter)
     logger.addHandler(console_handler)
     
-    # 文件处理器
+    # 文件处理器 - 安全的文件写入
     if log_file:
-        file_path = LOG_DIR / log_file
-        file_handler = RotatingFileHandler(
-            file_path,
-            maxBytes=max_bytes,
-            backupCount=backup_count,
-            encoding='utf-8'
-        )
-        file_handler.setLevel(logging.DEBUG)
-        
-        # 文件使用普通格式化器
-        file_formatter = logging.Formatter(LOG_FORMAT, DATE_FORMAT)
-        file_handler.setFormatter(file_formatter)
-        logger.addHandler(file_handler)
+        try:
+            file_path = LOG_DIR / log_file
+            # 确保日志目录存在
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            file_handler = RotatingFileHandler(
+                file_path,
+                maxBytes=max_bytes,
+                backupCount=backup_count,
+                encoding='utf-8'
+            )
+            file_handler.setLevel(logging.DEBUG)
+            
+            # 文件使用普通格式化器
+            file_formatter = logging.Formatter(LOG_FORMAT, DATE_FORMAT)
+            file_handler.setFormatter(file_formatter)
+            logger.addHandler(file_handler)
+        except (PermissionError, OSError) as e:
+            # 如果文件权限有问题，只使用控制台输出
+            print(f"⚠️  日志文件写入失败，使用控制台输出: {e}")
     
     return logger
 

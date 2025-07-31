@@ -33,7 +33,8 @@ def submit_image_storage_async(
     prompt: str,
     model: str,
     result_data: Any,
-    generation_params: Optional[Dict[str, Any]] = None
+    generation_params: Optional[Dict[str, Any]] = None,
+    enhanced_prompt: Optional[str] = None
 ):
     """
     异步提交图片存储任务（KISS原则：简单直接）
@@ -44,6 +45,7 @@ def submit_image_storage_async(
         model: 使用的模型
         result_data: API返回的结果数据
         generation_params: 生成参数
+        enhanced_prompt: 增强后的提示词
     """
     try:
         # 提取图片URLs
@@ -71,12 +73,21 @@ def submit_image_storage_async(
             # 动态导入避免循环依赖
             from celery_tasks import submit_image_storage_task
             
+            # 如果没有直接传递enhanced_prompt，尝试从result_data中提取
+            if not enhanced_prompt and isinstance(result_data, dict):
+                enhanced_prompt = result_data.get('enhanced_prompt') or result_data.get('enhancedPrompt')
+                if not enhanced_prompt and 'data' in result_data:
+                    # 某些API可能在data字段中包含enhanced_prompt
+                    if isinstance(result_data['data'], dict):
+                        enhanced_prompt = result_data['data'].get('enhanced_prompt') or result_data['data'].get('enhancedPrompt')
+            
             celery_task_id = submit_image_storage_task(
                 request_id=request_id,
                 prompt=prompt,
                 model=model,
                 image_urls=image_urls,
-                generation_params=generation_params
+                generation_params=generation_params,
+                enhanced_prompt=enhanced_prompt
             )
             
             logger.info(f"[{request_id}] 异步图片存储任务已提交: {celery_task_id}")
@@ -1040,6 +1051,22 @@ async def health_check(storage: MinIOClient = Depends(get_storage)):
                 "delete": f"{settings.api_prefix}/files/{{object_name}}",
                 "list": f"{settings.api_prefix}/files"
             }
+        },
+        "material_management": {
+            "enabled": True,
+            "description": "素材管理API，用于其他项目定期同步素材",
+            "endpoints": {
+                "list_materials": f"{settings.api_prefix}/materials/list"
+            },
+            "features": [
+                "分页查询",
+                "内容类型过滤 (ai_generated/manual_uploads)",
+                "素材类型过滤 (images/videos/files)",
+                "模型过滤",
+                "日期范围过滤",
+                "完整元数据",
+                "统计信息"
+            ]
         }
     }
 
@@ -1350,6 +1377,308 @@ async def create_doubao_image(
 # =============================================================================
 
 
+
+# =============================================================================
+# 素材管理API
+# =============================================================================
+
+class MaterialsListRequest(BaseModel):
+    """素材列表查询请求"""
+    content_type: Optional[str] = Field(None, description="内容类型过滤：ai_generated, manual_uploads")
+    asset_type: Optional[str] = Field(None, description="素材类型过滤：images, videos, files")
+    model: Optional[str] = Field(None, description="生成模型过滤：gpt, recraft, veo3等")
+    date_from: Optional[str] = Field(None, description="开始日期过滤：YYYY-MM-DD格式")
+    date_to: Optional[str] = Field(None, description="结束日期过滤：YYYY-MM-DD格式")
+    page: int = Field(default=1, description="页码", ge=1)
+    page_size: int = Field(default=50, description="每页条数", ge=1, le=200)
+    include_metadata: bool = Field(default=True, description="是否包含详细元数据")
+
+class MaterialItem(BaseModel):
+    """单个素材项"""
+    object_name: str = Field(..., description="MinIO对象名称")
+    filename: str = Field(..., description="文件名")
+    content_type: str = Field(..., description="内容类型：ai_generated或manual_uploads")
+    asset_type: str = Field(..., description="素材类型：images, videos, files")  
+    size: int = Field(..., description="文件大小（字节）")
+    last_modified: str = Field(..., description="最后修改时间")
+    etag: str = Field(..., description="文件ETag")
+    storage_url: str = Field(..., description="MinIO存储访问URL")
+    direct_url: str = Field(..., description="直接访问URL")
+    # 可选的详细信息
+    original_filename: Optional[str] = Field(None, description="原始文件名")
+    upload_time: Optional[str] = Field(None, description="上传时间")
+    file_hash: Optional[str] = Field(None, description="文件哈希值")
+    model: Optional[str] = Field(None, description="生成模型")
+    prompt: Optional[str] = Field(None, description="生成提示词")
+    enhanced_prompt: Optional[str] = Field(None, description="增强后的提示词")
+    generation_params: Optional[Dict[str, Any]] = Field(None, description="生成参数")
+
+class MaterialsListResponse(BaseModel):
+    """素材列表响应"""
+    success: bool = True
+    data: Dict[str, Any] = Field(..., description="响应数据")
+    request_id: str = Field(..., description="请求ID")
+    timestamp: str = Field(default_factory=lambda: datetime.now().isoformat())
+
+@router.get("/materials/list", response_model=MaterialsListResponse)
+async def list_materials(
+    content_type: Optional[str] = Query(None, description="内容类型过滤：ai_generated, manual_uploads"),
+    asset_type: Optional[str] = Query(None, description="素材类型过滤：images, videos, files"),
+    model: Optional[str] = Query(None, description="生成模型过滤：gpt, recraft, veo3等"),
+    date_from: Optional[str] = Query(None, description="开始日期过滤：YYYY-MM-DD格式"),
+    date_to: Optional[str] = Query(None, description="结束日期过滤：YYYY-MM-DD格式"),
+    page: int = Query(default=1, description="页码", ge=1),
+    page_size: int = Query(default=50, description="每页条数", ge=1, le=200),
+    include_metadata: bool = Query(default=True, description="是否包含详细元数据"),
+    storage: MinIOClient = Depends(get_storage)
+):
+    """
+    获取所有素材列表API
+    
+    这个API端点用于让其他项目定期同步素材到本地。
+    返回所有存储在MinIO中的素材，包含完整的元数据和存储地址。
+    """
+    request_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[{request_id}] 获取素材列表，参数: content_type={content_type}, asset_type={asset_type}, model={model}")
+        
+        # 构建前缀过滤器 - 这里不使用前缀过滤，因为我们有新旧两种路径格式
+        # 而是在后面进行逻辑过滤，这样更灵活
+        search_prefix = ""
+        
+        # 验证参数
+        if content_type and content_type not in ['ai_generated', 'manual_uploads']:
+            raise HTTPException(status_code=400, detail="content_type必须是ai_generated或manual_uploads")
+            
+        if asset_type and asset_type not in ['images', 'videos', 'files']:
+            raise HTTPException(status_code=400, detail="asset_type必须是images, videos或files")
+        
+        # 获取所有文件（不限制数量，用于统计和过滤）
+        all_files = await storage.list_files(prefix=search_prefix, limit=10000)
+        
+        logger.info(f"[{request_id}] 从MinIO获取到 {len(all_files)} 个文件")
+        
+        # 解析和过滤文件
+        materials = []
+        for file_info in all_files:
+            try:
+                object_name = file_info['object_name']
+                
+                # 解析对象路径获取信息
+                path_parts = object_name.split('/')
+                filename = path_parts[-1]
+                
+                # 处理两种路径格式：
+                # 1. 新格式: {content_type}/{asset_type}/{YYYY/MM/DD}/{filename}
+                # 2. 旧格式: {asset_type}/{YYYY/MM/DD}/{filename}
+                
+                if len(path_parts) >= 5 and path_parts[0] in ['ai_generated', 'manual_uploads']:
+                    # 新格式路径
+                    file_content_type = path_parts[0]
+                    file_asset_type = path_parts[1]
+                    file_date_str = f"{path_parts[2]}-{path_parts[3].zfill(2)}-{path_parts[4].zfill(2)}"
+                elif len(path_parts) >= 4:
+                    # 旧格式路径，推断内容类型
+                    file_content_type = "ai_generated"  # 默认假设是AI生成
+                    file_asset_type = path_parts[0]
+                    file_date_str = f"{path_parts[1]}-{path_parts[2].zfill(2)}-{path_parts[3].zfill(2)}"
+                else:
+                    # 路径太短，跳过
+                    continue
+                
+                # 应用过滤器
+                if content_type and file_content_type != content_type:
+                    continue
+                if asset_type and file_asset_type != asset_type:
+                    continue
+                
+                # 日期过滤
+                try:
+                    if date_from and file_date_str < date_from:
+                        continue
+                    if date_to and file_date_str > date_to:
+                        continue
+                except (IndexError, ValueError):
+                    # 日期解析失败，跳过日期过滤
+                    pass
+                
+                # 构建素材项
+                material = MaterialItem(
+                    object_name=object_name,
+                    filename=filename,
+                    content_type=file_content_type,
+                    asset_type=file_asset_type,
+                    size=file_info['size'],
+                    last_modified=file_info['last_modified'],
+                    etag=file_info['etag'],
+                    storage_url=await storage.get_presigned_url(object_name, 24),  # 24小时有效
+                    direct_url=f"{settings.server.base_url}/api/images/{object_name}"
+                )
+                
+                # 如果需要详细元数据，从Redis获取对象的元数据
+                if include_metadata:
+                    try:
+                        # 从Redis获取元数据
+                        import redis
+                        import json
+                        import base64
+                        
+                        redis_client = redis.Redis(
+                            host=settings.redis.host,
+                            port=settings.redis.port,
+                            password=settings.redis.password,
+                            db=0,
+                            decode_responses=True
+                        )
+                        
+                        # 构建Redis键
+                        bucket_name = "images"  # 假设都在images桶中
+                        redis_key = f"minio_metadata:{bucket_name}:{object_name}"
+                        
+                        # 获取元数据JSON
+                        metadata_json = redis_client.get(redis_key)
+                        
+                        if metadata_json:
+                            metadata = json.loads(metadata_json)
+                            
+                            # 设置基础元数据
+                            material.original_filename = metadata.get('original-filename')
+                            material.upload_time = metadata.get('upload-time')
+                            material.file_hash = metadata.get('file-hash')
+                            material.model = metadata.get('model')
+                            
+                            # 处理prompt（可能是base64编码的）
+                            prompt = metadata.get('prompt', '')
+                            if prompt and prompt.startswith('base64:'):
+                                try:
+                                    decoded_prompt = base64.b64decode(prompt[7:]).decode('utf-8')
+                                    material.prompt = decoded_prompt
+                                except Exception as decode_error:
+                                    logger.warning(f"[{request_id}] Base64解码prompt失败 {object_name}: {decode_error}")
+                                    material.prompt = prompt  # 保持原值
+                            else:
+                                material.prompt = prompt
+                            
+                            # 处理enhanced_prompt（可能是base64编码的）
+                            enhanced_prompt = metadata.get('enhanced_prompt', '') or metadata.get('enhanced-prompt', '')
+                            if enhanced_prompt and enhanced_prompt.startswith('base64:'):
+                                try:
+                                    decoded_enhanced_prompt = base64.b64decode(enhanced_prompt[7:]).decode('utf-8')
+                                    material.enhanced_prompt = decoded_enhanced_prompt
+                                except Exception as decode_error:
+                                    logger.warning(f"[{request_id}] Base64解码enhanced_prompt失败 {object_name}: {decode_error}")
+                                    material.enhanced_prompt = enhanced_prompt  # 保持原值
+                            else:
+                                material.enhanced_prompt = enhanced_prompt if enhanced_prompt else None
+                            
+                            # 提取生成参数
+                            generation_params = {}
+                            for key, value in metadata.items():
+                                if key.startswith('param-'):
+                                    param_name = key[6:]  # 移除 'param-' 前缀
+                                    # 尝试转换为合适的类型
+                                    try:
+                                        if str(value).lower() in ['true', 'false']:
+                                            generation_params[param_name] = str(value).lower() == 'true'
+                                        elif str(value).replace('.', '').replace('-', '').isdigit():
+                                            generation_params[param_name] = float(value) if '.' in str(value) else int(value)
+                                        else:
+                                            generation_params[param_name] = value
+                                    except (ValueError, AttributeError):
+                                        generation_params[param_name] = value
+                            
+                            if generation_params:
+                                material.generation_params = generation_params
+                                
+                            logger.debug(f"[{request_id}] 从Redis获取到元数据: {object_name}, prompt长度: {len(material.prompt or '')}")
+                        else:
+                            logger.debug(f"[{request_id}] 未找到Redis元数据: {redis_key}")
+                
+                    except Exception as meta_error:
+                        logger.warning(f"[{request_id}] 从Redis获取文件元数据失败: {object_name} - {meta_error}")
+                
+                # 如果元数据中没有模型信息，尝试从文件名推断
+                if not material.model:
+                    if filename.startswith('gpt_') or filename.startswith('gpt-image-1_'):
+                        material.model = 'gpt'
+                    elif filename.startswith('recraft_'):
+                        material.model = 'recraft'
+                    elif filename.startswith('veo3_'):
+                        material.model = 'veo3'
+                    elif '_' in filename:
+                        potential_model = filename.split('_')[0]
+                        if potential_model in ['seedream', 'flux', 'cogview', 'hunyuan', 'kling', 'hailuo', 'doubao']:
+                            material.model = potential_model
+                
+                # 模型过滤
+                if model and material.model != model:
+                    continue
+                
+                materials.append(material)
+                
+            except Exception as e:
+                logger.warning(f"[{request_id}] 处理文件信息失败: {file_info.get('object_name', 'unknown')} - {e}")
+                continue
+        
+        # 按最后修改时间排序（最新的在前）
+        materials.sort(key=lambda x: x.last_modified, reverse=True)
+        
+        # 分页处理
+        total_count = len(materials)
+        start_idx = (page - 1) * page_size
+        end_idx = start_idx + page_size
+        paginated_materials = materials[start_idx:end_idx]
+        
+        # 统计信息
+        stats = {
+            'total_ai_generated': len([m for m in materials if m.content_type == 'ai_generated']),
+            'total_manual_uploads': len([m for m in materials if m.content_type == 'manual_uploads']),
+            'total_images': len([m for m in materials if m.asset_type == 'images']),
+            'total_videos': len([m for m in materials if m.asset_type == 'videos']),
+            'total_files': len([m for m in materials if m.asset_type == 'files']),
+            'total_size_bytes': sum(m.size for m in materials),
+        }
+        
+        # 按模型统计
+        model_stats = {}
+        for material in materials:
+            if material.model:
+                model_stats[material.model] = model_stats.get(material.model, 0) + 1
+        
+        logger.info(f"[{request_id}] 素材列表获取成功: 总数={total_count}, 当前页={len(paginated_materials)} 条")
+        
+        return MaterialsListResponse(
+            success=True,
+            data={
+                "materials": [material.dict() for material in paginated_materials],
+                "pagination": {
+                    "page": page,
+                    "page_size": page_size,
+                    "total_items": total_count,
+                    "total_pages": (total_count + page_size - 1) // page_size,
+                    "has_next": end_idx < total_count,
+                    "has_prev": page > 1
+                },
+                "filters_applied": {
+                    "content_type": content_type,
+                    "asset_type": asset_type,
+                    "model": model,
+                    "date_from": date_from,
+                    "date_to": date_to
+                },
+                "statistics": stats,
+                "model_statistics": model_stats,
+                "search_prefix": search_prefix
+            },
+            request_id=request_id
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        log_exception(logger, e, f"[{request_id}] 获取素材列表失败")
+        raise HTTPException(status_code=500, detail="获取素材列表失败")
 
 # =============================================================================
 # Google官方Veo3 API接口

@@ -13,9 +13,9 @@ app = Celery('video_tasks')
 
 # 配置Redis作为broker和backend
 app.conf.update(
-    # Redis配置
-    broker_url=f'redis://{settings.redis.host}:{settings.redis.port}/1',
-    result_backend=f'redis://{settings.redis.host}:{settings.redis.port}/2',
+    # Redis配置 - 修复：与SimpleTaskQueue使用相同的数据库
+    broker_url=f'redis://{settings.redis.host}:{settings.redis.port}/{settings.redis.db}',
+    result_backend=f'redis://{settings.redis.host}:{settings.redis.port}/{settings.redis.db}',
     
     # 任务配置
     task_serializer='json',
@@ -46,8 +46,10 @@ app.conf.update(
     timezone='UTC',
 )
 
-# 自动发现任务
-app.autodiscover_tasks(['celery_tasks'])
+# 自动发现任务 - 修复模块导入问题
+# app.autodiscover_tasks(['celery_tasks'])  # 旧配置导致ModuleNotFoundError
+# 直接导入任务模块
+import celery_tasks
 
 if __name__ == '__main__':
     app.start()

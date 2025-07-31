@@ -1,0 +1,136 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+*.log.*
+logs/*.log*
+fastapi_service.log
+mcp_service.log
+celery_worker.log
+celery_beat.log
+
+# PID files
+*.pid
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Redis
+dump.rdb
+
+# Docker
+.dockerignore
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Generated files
+*.mp4
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.webp
+*.svg
+!demo_image.png
+!test_*.png
+!test_*.jpg
+
+# Test files
+test_*
+debug_*
+check_*
+create_*
+upload_*
+download_*
+analyze_*
+extract_*
+parse_*
+monitor_*
+trigger_*
+direct_*
+get_*
+set_*
+list_*
+show_*
+fix_*
+
+# Configuration files with sensitive data
+.mcp.json
+current_veo3_task.txt
+fixed_veo3_task.txt
+veo3_*.json
+veo3_*.txt
+
+# Archive files
+*.tar
+*.zip
+*.gz
+
+# Documentation (keep main docs)
+API_MODELS_LIST.md
+DEPLOYMENT.md
+DEPLOYMENT_GUIDE.md
+DOCKER_DEPLOYMENT_GUIDE.md
+FINAL_VEO3_INTEGRATION_REPORT.md
+GCS_PUBLIC_ACCESS_GUIDE.md
+MINIO_RETRIEVAL_REPORT.md
+PYTHON_REQUIREMENTS.md
+VEO3_VIDEO_ACCESS_GUIDE.md
+Vertex_AI_Veo3_使用指南.md
+vertexAIveo.md
+异步任务处理系统.md
+veo3_api_diagnostic_report_*.md
+
+# Build artifacts
+docker_compatibility_report.txt
+startup.log
+retrieved_veo3_video:*
+
+# Python version
+.python-version
+runtime.txt
+pyproject.toml

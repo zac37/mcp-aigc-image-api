@@ -9,13 +9,93 @@ Images API MCP 工具函数
 
 from typing import Dict, List, Optional, Any, Union
 import json
+import uuid
 
 from services.images_service import get_images_service
-from core.images_client import ImagesAPIError, get_veo3_client
+from core.images_client import ImagesAPIError
 from core.logger import get_mcp_logger, log_exception
 from core.config import settings
+from core.simple_task_queue import simple_task_queue, VideoTask
 
 logger = get_mcp_logger()
+
+# =============================================================================
+# 异步存储辅助函数 (复用FastAPI逻辑)
+# =============================================================================
+
+def submit_image_storage_async(
+    request_id: str,
+    prompt: str,
+    model: str,
+    result_data: Any,
+    generation_params: Optional[Dict[str, Any]] = None,
+    enhanced_prompt: Optional[str] = None
+):
+    """
+    异步提交图片存储任务（KISS原则：简单直接）
+    复用FastAPI中的实现逻辑
+    
+    Args:
+        request_id: API请求ID
+        prompt: 生成提示词
+        model: 使用的模型
+        result_data: API返回的结果数据
+        generation_params: 生成参数
+        enhanced_prompt: 增强后的提示词
+    """
+    try:
+        # 提取图片URLs
+        image_urls = []
+        
+        # 处理不同的返回格式
+        if isinstance(result_data, dict):
+            # 格式1: {"data": [{"url": "..."}, ...]}
+            if 'data' in result_data and isinstance(result_data['data'], list):
+                for item in result_data['data']:
+                    if isinstance(item, dict) and 'url' in item:
+                        image_urls.append(item['url'])
+            # 格式2: 直接是图片列表
+            elif isinstance(result_data, list):
+                for item in result_data:
+                    if isinstance(item, dict) and 'url' in item:
+                        image_urls.append(item['url'])
+        elif isinstance(result_data, list):
+            # 格式3: 直接是图片列表
+            for item in result_data:
+                if isinstance(item, dict) and 'url' in item:
+                    image_urls.append(item['url'])
+        
+        if image_urls:
+            # 动态导入避免循环依赖
+            from celery_tasks import submit_image_storage_task
+            
+            # 如果没有直接传递enhanced_prompt，尝试从result_data中提取
+            if not enhanced_prompt and isinstance(result_data, dict):
+                enhanced_prompt = result_data.get('enhanced_prompt') or result_data.get('enhancedPrompt')
+                if not enhanced_prompt and 'data' in result_data:
+                    # 某些API可能在data字段中包含enhanced_prompt
+                    if isinstance(result_data['data'], dict):
+                        enhanced_prompt = result_data['data'].get('enhanced_prompt') or result_data['data'].get('enhancedPrompt')
+            
+            celery_task_id = submit_image_storage_task(
+                request_id=request_id,
+                prompt=prompt,
+                model=model,
+                image_urls=image_urls,
+                generation_params=generation_params,
+                enhanced_prompt=enhanced_prompt
+            )
+            
+            logger.info(f"[{request_id}] MCP异步图片存储任务已提交: {celery_task_id}")
+            return celery_task_id
+        else:
+            logger.warning(f"[{request_id}] 未找到可存储的图片URL")
+            return None
+            
+    except Exception as e:
+        logger.error(f"[{request_id}] 异步存储任务提交失败: {e}")
+        # 不抛出异常，只记录错误，保证主流程正常
+        return None
 
 # =============================================================================
 # MCP 工具函数实现
@@ -47,6 +127,8 @@ async def create_gpt_image_tool(
     Returns:
         JSON格式的图像生成结果，包含图像URL和相关信息
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -59,6 +141,22 @@ async def create_gpt_image_tool(
             background=background,
             quality=quality,
             moderation=moderation
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model=model,
+            result_data=result,
+            generation_params={
+                "n": n,
+                "response_format": response_format,
+                "size": size,
+                "background": background,
+                "quality": quality,
+                "moderation": moderation
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -207,6 +305,8 @@ async def create_recraft_image_tool(
     Returns:
         JSON格式的图像生成结果
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -215,6 +315,19 @@ async def create_recraft_image_tool(
             style=style,
             size=size,
             image_format=image_format
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="recraft",
+            result_data=result,
+            generation_params={
+                "style": style,
+                "size": size,
+                "image_format": image_format
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -248,6 +361,8 @@ async def create_seedream_image_tool(
     Returns:
         JSON格式的图像生成结果
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -257,6 +372,20 @@ async def create_seedream_image_tool(
             negative_prompt=negative_prompt,
             cfg_scale=cfg_scale,
             seed=seed
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="seedream",
+            result_data=result,
+            generation_params={
+                "aspect_ratio": aspect_ratio,
+                "negative_prompt": negative_prompt,
+                "cfg_scale": cfg_scale,
+                "seed": seed
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -302,6 +431,8 @@ async def create_seededit_image_tool(
         - prompt格式：将image_url和prompt组合为"URL + 空格 + 编辑指令"
         - 推荐使用1.3K~1.5K分辨率获得更好的画质
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -312,6 +443,21 @@ async def create_seededit_image_tool(
             seed=seed,
             model=model,  # 添加model参数
             size=size     # 添加size参数
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=f"{image_url} {prompt}",  # 包含原图URL的提示词
+            model="seededit",
+            result_data=result,
+            generation_params={
+                "image_url": image_url,
+                "strength": strength,
+                "seed": seed,
+                "model": model,
+                "size": size
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -345,6 +491,8 @@ async def create_flux_image_tool(
     Returns:
         JSON格式的图像生成结果
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -354,6 +502,20 @@ async def create_flux_image_tool(
             steps=steps,
             guidance=guidance,
             seed=seed
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="flux",
+            result_data=result,
+            generation_params={
+                "aspect_ratio": aspect_ratio,
+                "steps": steps,
+                "guidance": guidance,
+                "seed": seed
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -377,6 +539,8 @@ async def create_stable_diffusion_image_tool(
     n: int = 1
 ) -> str:
     """创建StableDiffusion图像生成任务"""
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -384,6 +548,18 @@ async def create_stable_diffusion_image_tool(
             prompt=prompt,
             size=size,
             n=n
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="stable_diffusion",
+            result_data=result,
+            generation_params={
+                "size": size,
+                "n": n
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -404,6 +580,8 @@ async def create_hailuo_image_tool(
     seed: Optional[int] = None
 ) -> str:
     """创建海螺图片生成任务"""
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -412,6 +590,19 @@ async def create_hailuo_image_tool(
             size=size,
             quality=quality,
             seed=seed
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="hailuo",
+            result_data=result,
+            generation_params={
+                "size": size,
+                "quality": quality,
+                "seed": seed
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -432,6 +623,8 @@ async def create_doubao_image_tool(
     watermark: bool = True
 ) -> str:
     """创建Doubao图片生成任务"""
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -440,6 +633,19 @@ async def create_doubao_image_tool(
             size=size,
             guidance_scale=guidance_scale,
             watermark=watermark
+        )
+        
+        # 异步提交图片存储任务（复用FastAPI逻辑）
+        submit_image_storage_async(
+            request_id=request_id,
+            prompt=prompt,
+            model="doubao",
+            result_data=result,
+            generation_params={
+                "size": size,
+                "guidance_scale": guidance_scale,
+                "watermark": watermark
+            }
         )
         
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -475,6 +681,8 @@ async def create_veo3_video_tool(
     Returns:
         JSON格式的视频生成结果，包含任务ID和状态信息
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -484,6 +692,38 @@ async def create_veo3_video_tool(
             images=images,
             enhance_prompt=enhance_prompt
         )
+        
+        # 如果任务创建成功，添加到视频队列供Celery处理（第三方veo3也是异步的）
+        if result.get('id'):
+            try:
+                # 创建视频任务对象
+                video_task = VideoTask(
+                    task_id=request_id,
+                    external_task_id=result['id'],
+                    prompt=prompt,
+                    model=model,
+                    status="pending",
+                    metadata={
+                        "images": images,
+                        "enhance_prompt": enhance_prompt,
+                        "mcp_source": True
+                    }
+                )
+                
+                # 添加到任务队列
+                if simple_task_queue.add_task(video_task):
+                    logger.info(f"[{request_id}] MCP第三方Veo3视频任务已添加到队列，等待Celery处理")
+                    
+                    # 在响应中添加队列信息
+                    result['queue_status'] = 'queued'
+                    result['internal_task_id'] = request_id
+                    result['mcp_source'] = True
+                else:
+                    logger.warning(f"[{request_id}] 无法添加第三方Veo3视频任务到队列")
+                    
+            except Exception as e:
+                logger.error(f"[{request_id}] 添加第三方Veo3视频任务到队列失败: {e}")
+                # 不影响主要响应，只记录错误
         
         return json.dumps(result, ensure_ascii=False, indent=2)
         
@@ -621,94 +861,7 @@ fetch('{base_url}/api/files/upload', {{
 # 为上传工具添加描述信息
 upload_image_file_tool.__doc__ = """上传图片文件工具 - 提供图片上传API的使用指导"""
 
-# =============================================================================
-# Google 官方 Veo3 视频生成工具函数
-# =============================================================================
 
-async def create_gemini_veo3_video_tool(
-    prompt: str,
-    duration: str = "8s",
-    aspect_ratio: str = "16:9",
-    seed: Optional[int] = None,
-    temperature: float = 0.9,
-    top_p: float = 0.8,
-    top_k: int = 40,
-    max_output_tokens: int = 8192
-) -> str:
-    """
-    创建Google官方Veo3视频生成任务
-    
-    Args:
-        prompt: 视频描述提示词，详细描述想要生成的视频内容
-        duration: 视频时长，支持1s-8s，默认8s
-        aspect_ratio: 宽高比，支持16:9, 9:16, 1:1，默认16:9
-        seed: 随机种子，用于可重复的生成结果
-        temperature: 生成温度，控制创意程度，默认0.9
-        top_p: Top-p采样参数，默认0.8
-        top_k: Top-k采样参数，默认40
-        max_output_tokens: 最大输出token数，默认8192
-    
-    Returns:
-        JSON格式的视频生成结果，包含视频URL、任务ID等信息
-    """
-    try:
-        veo3_client = get_veo3_client()
-        
-        result = await veo3_client.create_video(
-            prompt=prompt,
-            duration=duration,
-            aspect_ratio=aspect_ratio,
-            seed=seed,
-            temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
-            max_output_tokens=max_output_tokens
-        )
-        
-        return json.dumps(result, ensure_ascii=False, indent=2)
-        
-    except Exception as e:
-        log_exception(logger, e, "Failed to create Google Veo3 video")
-        error_result = {
-            "error": True,
-            "message": str(e),
-            "type": type(e).__name__,
-            "service": "Google Gemini Veo3"
-        }
-        return json.dumps(error_result, ensure_ascii=False, indent=2)
-
-async def get_gemini_veo3_task_tool(
-    task_id: str
-) -> str:
-    """
-    获取Google Veo3视频生成任务状态
-    
-    Args:
-        task_id: Google Gemini API返回的任务ID
-    
-    Returns:
-        JSON格式的任务状态信息，包含完成状态、视频URL等
-    """
-    try:
-        veo3_client = get_veo3_client()
-        
-        result = await veo3_client.get_task_status(task_id)
-        
-        return json.dumps(result, ensure_ascii=False, indent=2)
-        
-    except Exception as e:
-        log_exception(logger, e, "Failed to get Google Veo3 task status")
-        error_result = {
-            "error": True,
-            "message": str(e),
-            "type": type(e).__name__,
-            "service": "Google Gemini Veo3"
-        }
-        return json.dumps(error_result, ensure_ascii=False, indent=2)
-
-# 为Google Veo3工具添加描述信息
-create_gemini_veo3_video_tool.__doc__ = """创建Google官方Veo3视频生成任务 - 使用Google Gemini API的Veo3模型生成高质量视频"""
-get_gemini_veo3_task_tool.__doc__ = """获取Google Veo3视频任务状态 - 查询Google Gemini API中的任务进度和结果"""
 
 # =============================================================================
 # Google Vertex AI 官方Veo3视频生成工具函数
@@ -740,6 +893,8 @@ async def create_veo3_official_video_tool(
     Returns:
         JSON格式的视频生成结果，包含operation_id和状态信息
     """
+    request_id = str(uuid.uuid4())
+    
     try:
         service = get_images_service()
         
@@ -756,10 +911,45 @@ async def create_veo3_official_video_tool(
             prompt=prompt,
             duration=duration,
             aspect_ratio=aspect_ratio,
-            wait_for_completion=wait_for_completion,
-            max_wait=max_wait,
+            wait_for_completion=False,  # 强制异步模式，复用FastAPI逻辑
+            max_wait=60,  # 设置默认值
             **kwargs
         )
+        
+        # 如果任务创建成功，添加到视频队列供Celery处理（复用FastAPI逻辑）
+        if result.get('operation_id'):
+            try:
+                # 创建视频任务对象
+                video_task = VideoTask(
+                    task_id=request_id,
+                    external_task_id=result['operation_id'],
+                    prompt=prompt,
+                    model="veo3-official",
+                    status="pending",
+                    metadata={
+                        "duration": duration,
+                        "aspect_ratio": aspect_ratio,
+                        "guidance_scale": guidance_scale,
+                        "seed": seed,
+                        "negative_prompt": negative_prompt,
+                        "mcp_source": True
+                    }
+                )
+                
+                # 添加到任务队列
+                if simple_task_queue.add_task(video_task):
+                    logger.info(f"[{request_id}] MCP视频任务已添加到队列，等待Celery处理")
+                    
+                    # 在响应中添加队列信息
+                    result['queue_status'] = 'queued'
+                    result['internal_task_id'] = request_id
+                    result['mcp_source'] = True
+                else:
+                    logger.warning(f"[{request_id}] 无法添加视频任务到队列")
+                    
+            except Exception as e:
+                logger.error(f"[{request_id}] 添加视频任务到队列失败: {e}")
+                # 不影响主要响应，只记录错误
         
         return json.dumps(result, ensure_ascii=False, indent=2)
         
@@ -802,44 +992,6 @@ async def check_veo3_official_status_tool(
         }
         return json.dumps(error_result, ensure_ascii=False, indent=2)
 
-async def wait_veo3_official_completion_tool(
-    operation_id: str,
-    max_wait: int = 600,
-    check_interval: int = 15
-) -> str:
-    """
-    等待Google Vertex AI官方Veo3任务完成
-    
-    Args:
-        operation_id: 任务操作ID
-        max_wait: 最大等待时间(秒)，范围60-1800，默认600秒
-        check_interval: 检查间隔(秒)，范围5-60，默认15秒
-    
-    Returns:
-        JSON格式的任务完成结果，包含成功状态、视频URL等
-    """
-    try:
-        service = get_images_service()
-        
-        result = await service.wait_veo3_official_completion(
-            operation_id=operation_id,
-            max_wait=max_wait,
-            check_interval=check_interval
-        )
-        
-        return json.dumps(result, ensure_ascii=False, indent=2)
-        
-    except Exception as e:
-        log_exception(logger, e, "Failed to wait for Vertex AI Veo3 completion")
-        error_result = {
-            "error": True,
-            "message": str(e),
-            "type": type(e).__name__,
-            "service": "Google Vertex AI Veo3"
-        }
-        return json.dumps(error_result, ensure_ascii=False, indent=2)
-
 # 为Vertex AI Veo3工具添加描述信息
-create_veo3_official_video_tool.__doc__ = """创建Google Vertex AI官方Veo3视频生成任务 - 使用Google官方API直接调用Vertex AI的Veo3模型"""
-check_veo3_official_status_tool.__doc__ = """检查Google Vertex AI官方Veo3任务状态 - 查询长时间运行操作的当前状态"""
-wait_veo3_official_completion_tool.__doc__ = """等待Google Vertex AI官方Veo3任务完成 - 轮询等待任务完成并返回最终结果"""
+create_veo3_official_video_tool.__doc__ = """创建Google Vertex AI官方Veo3视频生成任务 - 使用Google官方API直接调用Vertex AI的Veo3模型（纯异步模式）"""
+check_veo3_official_status_tool.__doc__ = """检查Google Vertex AI官方Veo3任务状态 - 查询长时间运行操作的当前状态（异步轮询）"""

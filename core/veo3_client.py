@@ -30,7 +30,10 @@ logger = get_api_logger()
 
 class Veo3APIError(Exception):
     """Veo3 API异常类"""
-    pass
+    def __init__(self, message: str, status_code: Optional[int] = None):
+        super().__init__(message)
+        self.message = message
+        self.status_code = status_code
 
 
 class Veo3Client:
@@ -311,14 +314,19 @@ class Veo3Client:
                     else:
                         error_text = await response.text()
                         logger.error(f"异步状态查询失败: {response.status} - {error_text}")
-                        raise Veo3APIError(f"状态查询失败: {response.status} - {error_text}")
+                        raise Veo3APIError(f"状态查询失败: {response.status} - {error_text}", status_code=response.status)
                         
         except asyncio.TimeoutError:
             logger.error("异步状态查询超时")
             raise Veo3APIError("状态查询超时")
         except Exception as e:
             logger.error(f"异步状态查询失败: {e}")
-            raise Veo3APIError(f"异步状态查询失败: {e}")
+            # 检查是否是404错误（任务过期）
+            error_str = str(e)
+            if "404" in error_str:
+                raise Veo3APIError(f"异步状态查询失败: {e}", status_code=404)
+            else:
+                raise Veo3APIError(f"异步状态查询失败: {e}")
     
     def wait_for_completion(
         self, 

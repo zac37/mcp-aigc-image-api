@@ -94,17 +94,40 @@ class MinIOClient:
             log_exception(logger, e, f"Failed to ensure bucket exists: {self.bucket_name}")
             raise MinIOError(f"Bucket creation failed: {str(e)}")
     
-    def _generate_object_name(self, filename: str, folder: str = "uploads") -> str:
-        """生成对象存储路径"""
+    def _generate_object_name(self, filename: str, folder: str = "uploads", content_type: str = "manual_uploads") -> str:
+        """生成对象存储路径
+        
+        Args:
+            filename: 文件名
+            folder: 存储文件夹 (已废弃，保留兼容性)
+            content_type: 内容类型 ('ai_generated' 或 'manual_uploads')
+            
+        Returns:
+            统一格式的对象路径: {content_type}/{type}/{YYYY/MM/DD}/{filename}
+        """
         # 获取文件扩展名
         file_suffix = Path(filename).suffix.lower()
         
-        # 生成唯一文件名
-        timestamp = datetime.now().strftime("%Y%m%d")
-        unique_id = str(uuid.uuid4())[:8]
+        # 根据文件扩展名确定类型
+        image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg'}
+        video_extensions = {'.mp4', '.avi', '.mov', '.mkv', '.webm', '.flv'}
         
-        # 构建对象路径
-        object_name = f"{folder}/{timestamp}/{unique_id}{file_suffix}"
+        if file_suffix in image_extensions:
+            asset_type = "images"
+        elif file_suffix in video_extensions:
+            asset_type = "videos"
+        else:
+            asset_type = "files"
+        
+        # 生成唯一文件名
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        unique_id = str(uuid.uuid4())[:8]
+        new_filename = f"{Path(filename).stem}_{timestamp}_{unique_id}{file_suffix}"
+        
+        # 构建统一的对象路径: {content_type}/{type}/{YYYY/MM/DD}/{filename}
+        date_path = datetime.now().strftime("%Y/%m/%d")
+        object_name = f"{content_type}/{asset_type}/{date_path}/{new_filename}"
+        
         return object_name
     
     def _get_content_type(self, filename: str) -> str:
@@ -138,16 +161,18 @@ class MinIOClient:
         file: UploadFile, 
         folder: str = "uploads",
         max_size_mb: int = 50,
-        generate_thumbnail: bool = False
+        generate_thumbnail: bool = False,
+        content_type: str = "manual_uploads"
     ) -> Dict[str, Any]:
         """
         上传文件到MinIO
         
         Args:
             file: FastAPI上传文件对象
-            folder: 存储文件夹
+            folder: 存储文件夹 (已废弃，保留兼容性)
             max_size_mb: 最大文件大小(MB)
             generate_thumbnail: 是否生成缩略图
+            content_type: 内容类型 ('ai_generated' 或 'manual_uploads')
             
         Returns:
             包含文件信息的字典
@@ -157,7 +182,7 @@ class MinIOClient:
             self._validate_file(file, max_size_mb)
             
             # 生成对象名称
-            object_name = self._generate_object_name(file.filename, folder)
+            object_name = self._generate_object_name(file.filename, folder, content_type)
             
             # 读取文件内容
             file_data = await file.read()

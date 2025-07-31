@@ -1,0 +1,93 @@
+# Git目录
+.git
+.gitignore
+
+# Python缓存和虚拟环境
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# 日志文件
+*.log
+logs/
+*.pid
+
+# 测试和开发文件
+test_*.py
+check_*.py
+create_*.py
+debug_*.py
+download_*.py
+upload_*.py
+analyze_*.py
+monitor_*.py
+trigger_*.py
+get_*.py
+list_*.py
+parse_*.py
+set_*.py
+setup_*.py
+show_*.py
+extract_*.py
+demo_*.py
+
+# 媒体文件
+*.mp4
+*.mov
+*.avi
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.wav
+*.mp3
+
+# Docker镜像文件
+*.tar
+*.tar.gz
+*.tar.bz2
+
+# 数据和配置文件（排除requirements.txt）
+*.json
+*.txt
+!requirements.txt
+*.md
+*.yml
+*.yaml
+celerybeat-schedule.db
+
+# IDE和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 部署脚本（保留docker-entrypoint.sh）
+deploy*.sh
+restart*.sh
+stop*.sh
+status*.sh
+remote*.sh
+build*.sh
+test*.sh
+check*.sh
+!docker-entrypoint.sh
+
+# Docker文件（构建时会单独复制）
+docker-compose*.yml
+
+# 排除example目录
+example/

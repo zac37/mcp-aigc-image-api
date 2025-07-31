@@ -1,19 +1,44 @@
+# Python版本要求: >=3.10
+# 推荐使用: Python 3.11+
+# 注意: fastmcp需要Python 3.10+，建议使用Python 3.11以获得最佳性能
+
+# Web框架和服务器
 fastapi==0.115.12
 uvicorn==0.34.2
+starlette==0.46.2
+
+# HTTP客户端
 requests==2.31.0
-python-dotenv>=1.0.0
-pydantic>=2.0.2
-starlette>=0.37.2
-typing-extensions==4.8.0
-httpx>=0.25.1
 aiohttp==3.9.1
+httpx==0.28.1
+
+# 数据验证和配置
+pydantic==2.11.7
+pydantic-settings==2.10.1
+python-dotenv==1.1.1
+
+# 文件处理
+python-multipart==0.0.20
+pillow==11.3.0
+
+# 存储服务
 minio==7.2.5
-python-multipart==0.0.7
-redis>=5.0.0
-pillow>=10.0.0
-google-auth>=2.0.0
-google-auth-oauthlib>=0.4.0
-google-cloud-storage>=2.0.0
-celery>=5.3.0
-kombu>=5.3.0
-billiard>=4.2.0
+redis==6.2.0
+
+# Google Cloud服务
+google-auth==2.40.3
+google-auth-oauthlib==1.2.2
+google-cloud-storage==3.2.0
+
+# 任务队列
+celery==5.5.3
+kombu==5.5.4
+billiard==4.2.1
+
+# MCP服务 - 使用固定版本避免依赖冲突
+mcp==1.12.2
+fastmcp==2.10.6
+
+# 开发和测试依赖（可选）
+# opencv-python==4.8.1.78  # 仅用于测试视频生成
+# numpy>=1.24.0  # 仅用于测试

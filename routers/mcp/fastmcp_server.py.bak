@@ -1,0 +1,424 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+基于官方FastMCP的Images API MCP服务器实现
+
+使用官方推荐的FastMCP库，支持streamable HTTP协议
+"""
+
+import asyncio
+from typing import Dict, List, Optional, Any, Union
+from fastmcp import FastMCP
+
+from core.config import settings
+from core.logger import get_mcp_logger
+from .images_tools import (
+    create_gpt_image_tool,
+    create_gpt_image_edit_tool,
+    create_recraft_image_tool,
+    create_seedream_image_tool,
+    create_seededit_image_tool,
+    create_flux_image_tool,
+    create_stable_diffusion_image_tool,
+    create_hailuo_image_tool,
+    create_doubao_image_tool,
+    upload_image_file_tool,
+    create_veo3_video_tool,
+    get_veo3_task_tool,
+    create_veo3_official_video_tool,
+    check_veo3_official_status_tool
+)
+
+logger = get_mcp_logger()
+
+# =============================================================================
+# 创建FastMCP应用
+# =============================================================================
+
+# 创建FastMCP应用实例 - 使用无状态HTTP模式解决session问题
+mcp_app = FastMCP(name="Images API MCP Service", stateless_http=True)
+
+# =============================================================================
+# 图像生成工具注册
+# =============================================================================
+
+@mcp_app.tool()
+def create_gpt_image(
+    prompt: str,
+    model: str = "gpt-image-1", 
+    n: int = 1,
+    response_format: str = "url",
+    size: str = "auto",
+    background: str = "auto",
+    quality: str = "auto",
+    moderation: str = "auto"
+) -> str:
+    """
+    创建GPT图像生成任务 - 使用gpt-image-1模型根据文本描述生成图像
+    
+    Args:
+        prompt: 图像描述提示词，详细描述想要生成的图像内容
+        model: 模型名称，默认 gpt-image-1
+        n: 生成图像数量
+        response_format: 返回格式 (url, b64_json, oss_url)，默认 url
+        size: 图像尺寸 (1024x1024, 1536x1024, 1024x1536, auto)，默认 auto
+        background: 背景类型 (transparent, opaque, auto)，默认 auto
+        quality: 图像质量 (high, medium, low, auto)，默认 auto
+        moderation: 内容审核级别 (low, auto)，默认 auto
+    
+    Returns:
+        JSON格式的图像生成结果
+    """
+    return asyncio.run(create_gpt_image_tool(
+        prompt=prompt, model=model, n=n, response_format=response_format,
+        size=size, background=background, quality=quality, moderation=moderation
+    ))
+
+@mcp_app.tool()
+def create_gpt_image_edit(
+    image_description: str = "请描述您要编辑的图片",
+    prompt: str = "请描述您想要的编辑效果", 
+    model: str = "gpt-image-1",
+    n: int = 1,
+    size: str = "1024x1024",
+    response_format: str = "url"
+) -> str:
+    """
+    GPT图像编辑工具（虚拟接口）- 由于MCP协议不支持文件上传，此工具提供REST API调用指南
+    
+    Args:
+        image_description: 要编辑的图片描述（仅用于说明）
+        prompt: 编辑效果描述
+        model: 模型名称，默认gpt-image-1
+        n: 生成图片数量，1-10之间
+        size: 图片尺寸，256x256/512x512/1024x1024
+        response_format: 返回格式，url或b64_json
+    
+    Returns:
+        JSON格式的使用指南
+    """
+    return asyncio.run(create_gpt_image_edit_tool(
+        image_description=image_description, prompt=prompt, model=model,
+        n=n, size=size, response_format=response_format
+    ))
+
+@mcp_app.tool()
+def create_recraft_image(
+    prompt: str,
+    style: str = "realistic",
+    size: str = "1024x1024", 
+    image_format: str = "png"
+) -> str:
+    """
+    创建Recraft图像生成任务 - 专业的图像创作工具
+    
+    Args:
+        prompt: 图像描述提示词
+        style: 图像风格
+        size: 图像尺寸
+        image_format: 图像格式
+    
+    Returns:
+        JSON格式的图像生成结果
+    """
+    return asyncio.run(create_recraft_image_tool(
+        prompt=prompt, style=style, size=size, image_format=image_format
+    ))
+
+@mcp_app.tool()
+def create_flux_image(
+    prompt: str,
+    aspect_ratio: str = "1:1",
+    steps: int = 20,
+    guidance: float = 7.5,
+    seed: Optional[int] = None
+) -> str:
+    """
+    创建FLUX图像生成任务 - 高质量的开源图像生成模型
+    
+    Args:
+        prompt: 图像描述提示词
+        aspect_ratio: 宽高比
+        steps: 推理步数
+        guidance: 引导强度
+        seed: 随机种子（可选）
+    
+    Returns:
+        JSON格式的图像生成结果
+    """
+    return asyncio.run(create_flux_image_tool(
+        prompt=prompt, aspect_ratio=aspect_ratio, steps=steps,
+        guidance=guidance, seed=seed
+    ))
+
+@mcp_app.tool()
+def create_hailuo_image(
+    prompt: str,
+    size: str = "1024x1024",
+    quality: str = "standard",
+    seed: Optional[int] = None
+) -> str:
+    """
+    创建海螺图片生成任务 - 海螺AI的图像生成
+    
+    Args:
+        prompt: 图像描述提示词
+        size: 图像尺寸
+        quality: 图像质量
+        seed: 随机种子（可选）
+    
+    Returns:
+        JSON格式的图像生成结果
+    """
+    return asyncio.run(create_hailuo_image_tool(
+        prompt=prompt, size=size, quality=quality, seed=seed
+    ))
+
+@mcp_app.tool()
+def create_doubao_image(
+    prompt: str,
+    size: str = "1024x1024",
+    guidance_scale: int = 3,
+    watermark: bool = True
+) -> str:
+    """
+    创建Doubao图片生成任务 - 字节跳动的图像生成
+    
+    Args:
+        prompt: 图像描述提示词
+        size: 图像尺寸
+        guidance_scale: 指导强度
+        watermark: 是否添加水印
+    
+    Returns:
+        JSON格式的图像生成结果
+    """
+    return asyncio.run(create_doubao_image_tool(
+        prompt=prompt, size=size, guidance_scale=guidance_scale, watermark=watermark
+    ))
+
+# =============================================================================
+# 视频生成工具注册
+# =============================================================================
+
+@mcp_app.tool()
+async def create_veo3_video(
+    prompt: str,
+    model: str = "veo3",
+    images: Optional[List[str]] = None,
+    enhance_prompt: bool = True
+) -> str:
+    """
+    创建Veo3视频生成任务 - Google Veo3模型的视频生成功能
+    
+    Args:
+        prompt: 视频描述提示词，详细描述想要生成的视频内容
+        model: 模型名称 (veo3, veo3-frames, veo3-pro, veo3-pro-frames)
+        images: 图像URL列表（图生视频需要，文生视频会忽略）
+        enhance_prompt: 是否增强提示词
+    
+    Returns:
+        JSON格式的视频生成结果
+    """
+    return await create_veo3_video_tool(
+        prompt=prompt, model=model, images=images, enhance_prompt=enhance_prompt
+    )
+
+@mcp_app.tool()
+async def get_veo3_task(task_id: str) -> str:
+    """
+    获取Veo3视频生成任务状态 - 查询任务进度和获取视频结果
+    
+    Args:
+        task_id: 任务ID，从创建任务时返回的响应中获取
+    
+    Returns:
+        JSON格式的任务状态信息
+    """
+    return await get_veo3_task_tool(task_id=task_id)
+
+
+@mcp_app.tool()
+async def create_veo3_official_video(
+    prompt: str,
+    duration: int = 5,
+    aspect_ratio: str = "16:9",
+    seed: Optional[int] = None,
+    guidance_scale: Optional[float] = None,
+    negative_prompt: Optional[str] = None
+) -> str:
+    """
+    创建Google Vertex AI官方Veo3视频生成任务（纯异步模式）
+    
+    Args:
+        prompt: 视频描述提示词，详细描述想要生成的视频内容
+        duration: 视频时长(秒)，范围1-30，默认5秒
+        aspect_ratio: 宽高比，支持16:9, 9:16, 1:1, 4:3, 3:4，默认16:9
+        seed: 随机种子，用于复现结果
+        guidance_scale: 引导缩放值，控制生成与提示词的匹配程度
+        negative_prompt: 负面提示词，描述不想要的内容
+    
+    Returns:
+        JSON格式的视频生成结果，包含operation_id用于后续状态查询
+    """
+    return await create_veo3_official_video_tool(
+        prompt=prompt, duration=duration, aspect_ratio=aspect_ratio,
+        wait_for_completion=False, max_wait=600,  # 强制异步模式
+        seed=seed, guidance_scale=guidance_scale, negative_prompt=negative_prompt
+    )
+
+@mcp_app.tool()
+async def check_veo3_official_status(operation_id: str) -> str:
+    """
+    检查Google Vertex AI官方Veo3任务状态
+    
+    Args:
+        operation_id: 任务操作ID，从创建任务时返回
+    
+    Returns:
+        JSON格式的任务状态信息，包含状态、数据等
+    """
+    return await check_veo3_official_status_tool(operation_id=operation_id)
+
+# =============================================================================
+# 辅助工具注册
+# =============================================================================
+
+@mcp_app.tool()
+def upload_image_file(
+    file_description: str,
+    folder: str = "uploads"
+) -> str:
+    """
+    上传图片文件工具 - 提供图片上传API的使用指导
+    
+    Args:
+        file_description: 图片文件描述（用于提示）
+        folder: 存储文件夹名称
+    
+    Returns:
+        JSON格式的上传指导信息
+    """
+    return asyncio.run(upload_image_file_tool(
+        file_description=file_description, folder=folder
+    ))
+
+# =============================================================================
+# 资源和提示注册
+# =============================================================================
+
+@mcp_app.resource("images://config")
+def get_config():
+    """Images API配置信息"""
+    return {
+        "name": "Images API",
+        "version": "1.0.0",
+        "description": "多种图像生成AI API代理服务的MCP工具集合",
+        "modules": [
+            "gpt_image", "recraft_image", "flux_image", 
+            "hailuo_image", "doubao_image", "veo3_video"
+        ],
+        "supported_models": [
+            "GPT (DALL-E 2/3)", "Recraft", "FLUX", 
+            "海螺AI", "豆包", "Veo3视频"
+        ],
+        "api_key_managed": True,
+        "python_version": "3.11+",
+        "features": [
+            "文生图", "图像编辑", "视频生成", "多模型支持"
+        ]
+    }
+
+@mcp_app.prompt("images_usage_guide")
+def images_usage_guide():
+    """Images API使用指南"""
+    return """
+# Images API 使用指南
+
+## 功能概览
+Images API提供多种AI图像和视频生成功能：
+
+### 1. GPT图像生成 (DALL-E)
+使用OpenAI DALL-E模型生成高质量图像
+- **工具**: create_gpt_image
+- **参数**: prompt（必需）, model, n, size, quality, style
+- **模型**: dall-e-3（推荐）, dall-e-2
+- **尺寸**: 1024x1024, 1792x1024, 1024x1792等
+
+### 2. Recraft图像生成
+专业的图像创作工具，支持多种艺术风格
+- **工具**: create_recraft_image
+- **参数**: prompt（必需）, style, size, image_format
+- **风格**: realistic, artistic, vector等
+- **格式**: png, jpg
+
+### 3. FLUX图像生成
+高质量的开源图像生成模型
+- **工具**: create_flux_image
+- **参数**: prompt（必需）, aspect_ratio, steps, guidance, seed
+- **推理步数**: 1-50，推荐20
+- **引导强度**: 1.0-20.0，推荐7.5
+
+### 4. 海螺AI图像生成
+海螺AI的图像生成服务
+- **工具**: create_hailuo_image
+- **参数**: prompt（必需）, size, quality, seed
+
+### 5. 豆包图像生成
+字节跳动的图像生成服务
+- **工具**: create_doubao_image
+- **参数**: prompt（必需）, size, guidance_scale, watermark
+- **指导强度**: 1-10，推荐3
+
+### 6. Veo3视频生成
+Google Veo3模型的视频生成功能
+- **工具**: create_veo3_video, get_veo3_task
+- **支持**: 文生视频、图生视频
+- **模型**: veo3, veo3-frames, veo3-pro等
+
+### 7. Veo3官方视频生成
+Google Vertex AI官方Veo3服务
+- **工具**: create_veo3_official_video, check_veo3_official_status
+- **支持**: 高质量视频生成，官方API
+
+## 重要提示
+- ✅ API密钥已在服务端配置，无需手动传递
+- 🎯 所有任务都会返回JSON格式结果
+- 📊 包含图像/视频URL、任务信息等完整数据
+- 🔄 支持异步调用和状态查询
+- 📝 详细的错误信息和异常处理
+
+## 最佳实践
+1. **提示词优化**: 详细描述想要的结果，包含风格、情感、环境
+2. **参数调优**: 根据需求调整各种控制参数
+3. **模型选择**: 根据用途选择最适合的生成模型
+4. **错误处理**: 检查返回结果中的错误信息
+
+## 技术架构
+- 🏗️ 基于FastMCP的官方MCP实现
+- 🔧 标准MCP协议兼容，支持AI Agent调用
+- 🚀 异步处理，高性能并发
+- 🛡️ 完整的错误处理和日志记录
+- 📦 统一的响应格式和状态管理
+"""
+
+# =============================================================================
+# 服务启动函数
+# =============================================================================
+
+def run_mcp_server():
+    """运行MCP服务器"""
+    logger.info("✅ FastMCP Images API服务初始化完成")
+    logger.info(f"   🌐 服务地址: {settings.mcp.host}:{settings.mcp.port}")
+    logger.info(f"   🔗 协议: http (FastMCP兼容模式)")
+    
+    # 运行MCP服务器 - FastMCP会内部管理asyncio
+    mcp_app.run(
+        transport="http",
+        host=settings.mcp.host,
+        port=settings.mcp.port
+    )
+
+if __name__ == "__main__":
+    asyncio.run(run_mcp_server())

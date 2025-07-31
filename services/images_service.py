@@ -962,76 +962,11 @@ class ImagesService:
             raise
         except Veo3APIError as e:
             log_exception(logger, e, "Failed to check official Veo3 task status")
-            raise ImagesAPIError(f"Veo3 API error: {str(e)}")
+            # 传递status_code到ImagesAPIError
+            status_code = getattr(e, 'status_code', None)
+            raise ImagesAPIError(f"Veo3 API error: {str(e)}", status_code=status_code)
         except Exception as e:
             log_exception(logger, e, "Unexpected error in official Veo3 status check")
-            raise ImagesAPIError(f"Service error: {str(e)}")
-    
-    async def wait_veo3_official_completion(
-        self,
-        operation_id: str,
-        max_wait: int = 600,
-        check_interval: int = 15
-    ) -> Dict[str, Any]:
-        """
-        等待Google官方Veo3任务完成
-        
-        Args:
-            operation_id: 任务操作ID
-            max_wait: 最大等待时间(秒)
-            check_interval: 检查间隔(秒)
-        
-        Returns:
-            任务完成结果
-        """
-        try:
-            logger.info(f"Waiting for official Veo3 task completion: {operation_id}")
-            
-            if not operation_id or not operation_id.strip():
-                raise ValueError("Operation ID cannot be empty")
-            
-            if max_wait < 60 or max_wait > 1800:
-                raise ValueError("Max wait time must be between 60 and 1800 seconds")
-            
-            if check_interval < 5 or check_interval > 60:
-                raise ValueError("Check interval must be between 5 and 60 seconds")
-            
-            # 等待任务完成
-            success, data = await veo3_client.wait_for_completion_async(
-                operation_id.strip(),
-                max_wait=max_wait,
-                check_interval=check_interval
-            )
-            
-            result = {
-                'operation_id': operation_id,
-                'success': success,
-                'data': data
-            }
-            
-            # 如果成功完成，尝试提取视频URL
-            if success and data:
-                if 'predictions' in data:
-                    predictions = data['predictions']
-                    if predictions and len(predictions) > 0:
-                        prediction = predictions[0]
-                        if 'videoUri' in prediction:
-                            result['video_url'] = prediction['videoUri']
-                result['status'] = 'completed'
-            else:
-                result['status'] = 'failed' if data else 'timeout'
-            
-            logger.info(f"Official Veo3 task completion result: {result['status']}")
-            return result
-            
-        except ValueError as e:
-            logger.warning(f"Invalid parameters for official Veo3 completion wait: {e}")
-            raise
-        except Veo3APIError as e:
-            log_exception(logger, e, "Failed to wait for official Veo3 task completion")
-            raise ImagesAPIError(f"Veo3 API error: {str(e)}")
-        except Exception as e:
-            log_exception(logger, e, "Unexpected error in official Veo3 completion wait")
             raise ImagesAPIError(f"Service error: {str(e)}")
 
 # =============================================================================
