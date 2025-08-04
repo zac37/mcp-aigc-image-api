@@ -20,7 +20,7 @@ from minio import Minio
 from minio.error import S3Error, InvalidResponseError
 from fastapi import HTTPException, UploadFile
 
-from core.config import settings
+from core.simple_config import settings
 from core.logger import get_storage_logger, log_exception
 
 logger = get_storage_logger()
@@ -38,20 +38,20 @@ class MinIOClient:
     def __init__(self):
         """初始化MinIO客户端"""
         self.client = None
-        self.bucket_name = settings.minio.bucket_name
+        self.bucket_name = settings.minio_bucket
         self._initialize_client()
     
     def _initialize_client(self):
         """初始化MinIO客户端连接"""
         try:
             self.client = Minio(
-                endpoint=settings.minio.endpoint,
-                access_key=settings.minio.access_key,
-                secret_key=settings.minio.secret_key,
-                secure=settings.minio.secure,
-                region=settings.minio.region
+                endpoint=settings.minio_endpoint,
+                access_key=settings.minio_access_key,
+                secret_key=settings.minio_secret_key,
+                secure=settings.minio_secure,
+                region=settings.minio_region
             )
-            logger.info(f"MinIO client initialized successfully: {settings.minio.endpoint}")
+            logger.info(f"MinIO client initialized successfully: {settings.minio_endpoint}")
             
             # 跳过存储桶检查，假设存储桶已存在
             logger.info(f"MinIO client initialized, assuming bucket exists: {self.bucket_name}")
@@ -71,7 +71,7 @@ class MinIOClient:
             
             # 如果不存在，尝试创建
             try:
-                self.client.make_bucket(self.bucket_name, location=settings.minio.region)
+                self.client.make_bucket(self.bucket_name, location=settings.minio_region)
                 logger.info(f"Created bucket: {self.bucket_name}")
             except Exception as create_error:
                 # 再次检查是否存在（可能是并发创建）
@@ -249,7 +249,7 @@ class MinIOClient:
             预签名URL
         """
         try:
-            expires_hours = expires_hours or settings.minio.url_expiry_hours
+            expires_hours = expires_hours or settings.minio_url_expiry_hours
             expires = timedelta(hours=expires_hours)
             
             url = await asyncio.get_event_loop().run_in_executor(
@@ -420,10 +420,10 @@ class MinIOClient:
             
             return {
                 'status': 'healthy' if bucket_exists else 'unhealthy',
-                'endpoint': settings.minio.endpoint,
+                'endpoint': settings.minio_endpoint,
                 'bucket': self.bucket_name,
                 'bucket_exists': bucket_exists,
-                'secure': settings.minio.secure
+                'secure': settings.minio_secure
             }
             
         except Exception as e:
@@ -431,7 +431,7 @@ class MinIOClient:
             return {
                 'status': 'unhealthy',
                 'error': str(e),
-                'endpoint': settings.minio.endpoint,
+                'endpoint': settings.minio_endpoint,
                 'bucket': self.bucket_name
             }
 

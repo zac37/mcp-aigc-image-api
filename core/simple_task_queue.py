@@ -15,7 +15,7 @@ from dataclasses import dataclass, asdict
 import redis
 
 from core.logger import get_logger
-from core.config import settings
+from core.simple_config import settings
 
 logger = get_logger(__name__)
 
@@ -87,21 +87,37 @@ class SimpleTaskQueue:
     def __init__(self):
         """初始化任务队列"""
         self.redis = redis.Redis(
-            host=settings.redis.host,
-            port=settings.redis.port,
-            password=settings.redis.password,
-            db=settings.redis.db,
+            host=settings.redis_host,
+            port=settings.redis_port,
+            password=settings.redis_password,
+            db=settings.redis_db,
             decode_responses=True,
             socket_keepalive=True,
             health_check_interval=30
         )
         
-        # 测试连接
+        # 测试连接 - 失败直接抛出异常 (按用户要求，不优雅降级)
         try:
             self.redis.ping()
-            logger.info("SimpleTaskQueue Redis连接成功")
+            logger.info(f"SimpleTaskQueue Redis连接成功: {settings.redis_host}:{settings.redis_port}")
+        except redis.ConnectionError as e:
+            error_msg = f"""
+Redis连接失败 - 配置检查:
+  Host: {settings.redis_host}
+  Port: {settings.redis_port}  
+  DB: {settings.redis_db}
+  Error: {e}
+  
+请检查:
+1. Redis服务是否运行
+2. 网络连接是否正常
+3. 配置信息是否正确
+"""
+            logger.error(error_msg)
+            raise ConnectionError(error_msg) from e
         except Exception as e:
-            logger.error(f"SimpleTaskQueue Redis连接失败: {e}")
+            error_msg = f"SimpleTaskQueue Redis连接失败: {e}"
+            logger.error(error_msg)
             raise
     
     def add_task(self, task: VideoTask) -> bool:

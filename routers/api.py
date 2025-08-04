@@ -15,10 +15,10 @@ import uuid
 from datetime import datetime
 
 from services.images_service import get_images_service, ImagesService
-from core.images_client import ImagesAPIError
+from core.compatibility_adapter import ImagesAPIError
 from core.minio_client import get_minio_client, MinIOClient, MinIOError
 from core.logger import get_api_logger, log_exception
-from core.config import settings
+from core.simple_config import settings
 from core.simple_task_queue import simple_task_queue, VideoTask
 
 logger = get_api_logger()

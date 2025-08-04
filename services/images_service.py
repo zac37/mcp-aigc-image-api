@@ -11,9 +11,9 @@ from typing import Dict, List, Optional, Any, Union
 import asyncio
 from datetime import datetime
 
-from core.images_client import get_images_client, ImagesAPIError
+from core.compatibility_adapter import get_images_client, ImagesAPIError
 from core.logger import get_api_logger, log_exception, log_performance
-from core.config import settings
+from core.simple_config import settings
 from core.veo3_client import veo3_client, Veo3APIError
 
 logger = get_api_logger()
@@ -23,7 +23,7 @@ class ImagesService:
     
     def __init__(self):
         self.client = get_images_client()
-        logger.debug("ImagesService initialized")
+        logger.debug("ImagesService initialized with compatibility adapter")
     
     # =============================================================================
     # GPT图像生成服务

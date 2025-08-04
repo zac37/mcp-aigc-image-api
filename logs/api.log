@@ -2750,3 +2750,63 @@ core.images_client.ImagesAPIError: ImagesAPIError(message='Unexpected error: ', 
 2025-07-24 19:37:30 - images_api.api - [32mINFO[0m - [5eef8d5e-20b6-4f34-bef3-35464205e382] Uploading file: GtMsVoDr0C0DKwaAQwZb9zbtDN3NMU.png
 2025-07-24 19:37:31 - images_api.api - [32mINFO[0m - [5eef8d5e-20b6-4f34-bef3-35464205e382] File uploaded successfully: uploads/20250724/a8fe102e.png
 2025-07-24 19:37:31 - images_api.api - [32mINFO[0m - [5eef8d5e-20b6-4f34-bef3-35464205e382] Direct access URL: http://localhost:5512/api/images/uploads/20250724/a8fe102e.png
+2025-08-02 02:55:34 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 00:40:31 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 00:40:54 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:40:34 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:40:51 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:41:08 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:46:35 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:46:52 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:47:10 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:47:40 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:47:57 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:48:21 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:49:16 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:49:35 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:51:58 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:52:15 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:52:33 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:52:50 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:53:07 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:53:46 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:54:02 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:54:35 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 01:55:47 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:04:37 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:05:09 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:05:57 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:06:33 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:07:04 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:07:36 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:08:06 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:08:39 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:09:40 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:10:13 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:11:00 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 02:11:15 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 04:29:13 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 04:39:36 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 05:00:56 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 05:12:06 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 05:12:22 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 05:44:29 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 07:02:31 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 07:04:31 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 07:07:04 - images_api.api - [32mINFO[0m - 初始化VertexAI客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 07:07:04 - images_api.api - [32mINFO[0m - API网关初始化完成
+2025-08-03 07:07:04 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 12:45:02 - images_api.api - [32mINFO[0m - 初始化VertexAI客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 12:45:02 - images_api.api - [32mINFO[0m - API网关初始化完成
+2025-08-03 12:45:21 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 14:55:55 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 15:01:44 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:05:33 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:05:33 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:05:41 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:11:12 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:11:13 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-03 20:11:20 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-04 10:22:59 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-04 10:23:00 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1
+2025-08-04 10:24:24 - images_api.api - [32mINFO[0m - 初始化Veo3客户端 - 项目: qhhl-veo, 位置: us-central1

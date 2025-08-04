@@ -20,7 +20,7 @@ from celery_config import app
 from core.logger import get_logger
 from core.simple_task_queue import simple_task_queue, VideoTask, ImageTask
 from core.minio_client import get_minio_client
-from core.config import settings
+from core.simple_config import settings
 # 不再直接导入veo3客户端，改为调用FastAPI接口
 
 logger = get_logger(__name__)
@@ -41,13 +41,13 @@ def notify_jarvis_asset_library(task_id: str, task_type: str, minio_url: str,
     Returns:
         通知成功返回True
     """
-    if not settings.jarvis.enabled:
+    if not settings.jarvis_enabled:
         logger.debug("JARVIS集成未启用，跳过通知")
         return True
         
     try:
         # 构建回调URL
-        callback_url = f"{settings.jarvis.api_base_url.rstrip('/')}{settings.jarvis.callback_endpoint}"
+        callback_url = f"{settings.jarvis_api_base_url.rstrip('/')}{settings.jarvis_callback_endpoint}"
         
         # 从MinIO下载文件内容以计算哈希和准备上传
         import tempfile
@@ -89,8 +89,8 @@ def notify_jarvis_asset_library(task_id: str, task_type: str, minio_url: str,
                 
                 # 准备Form数据
                 form_data = {
-                    "product_id": str(settings.jarvis.default_product_id),
-                    "tag_id": str(settings.jarvis.default_tag_id),
+                    "product_id": str(settings.jarvis_default_product_id),
+                    "tag_id": str(settings.jarvis_default_tag_id),
                     "file_hash": file_hash,
                     "platform_type": "ai_generated",
                     "account_id": "ai_system",
@@ -111,18 +111,18 @@ def notify_jarvis_asset_library(task_id: str, task_type: str, minio_url: str,
                 }
                 
                 # 如果配置了API密钥，添加到请求头
-                if settings.jarvis.api_key:
-                    headers['Authorization'] = f'Bearer {settings.jarvis.api_key}'
+                if settings.jarvis_api_key:
+                    headers['Authorization'] = f'Bearer {settings.jarvis_api_key}'
                 
                 # 发送通知请求
-                for attempt in range(settings.jarvis.retry_count + 1):
+                for attempt in range(settings.jarvis_retry_count + 1):
                     try:
                         response = requests.post(
                             callback_url,
                             data=form_data,
                             files=files,
                             headers=headers,
-                            timeout=settings.jarvis.timeout
+                            timeout=settings.jarvis_timeout
                         )
                         
                         if response.status_code in [200, 201]:
@@ -132,13 +132,13 @@ def notify_jarvis_asset_library(task_id: str, task_type: str, minio_url: str,
                             logger.warning(f"JARVIS通知响应异常: {response.status_code} - {response.text}")
                             
                     except requests.exceptions.RequestException as e:
-                        logger.warning(f"JARVIS通知请求失败 (尝试 {attempt + 1}/{settings.jarvis.retry_count + 1}): {e}")
+                        logger.warning(f"JARVIS通知请求失败 (尝试 {attempt + 1}/{settings.jarvis_retry_count + 1}): {e}")
                         
                         # 如果不是最后一次尝试，等待后重试
-                        if attempt < settings.jarvis.retry_count:
-                            time.sleep(settings.jarvis.retry_delay)
+                        if attempt < settings.jarvis_retry_count:
+                            time.sleep(settings.jarvis_retry_delay)
                             
-                logger.error(f"JARVIS资产库通知失败，已重试 {settings.jarvis.retry_count} 次: {task_id}")
+                logger.error(f"JARVIS资产库通知失败，已重试 {settings.jarvis_retry_count} 次: {task_id}")
                 return False
                 
         except Exception as minio_error:

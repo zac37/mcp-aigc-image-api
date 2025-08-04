@@ -16,7 +16,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from core.config import settings
+from core.simple_config import settings
 from core.logger import get_mcp_logger
 
 logger = get_mcp_logger()
@@ -26,7 +26,7 @@ def main():
     try:
         logger.info("Starting Images API MCP Service...")
         logger.info(f"Python version: {sys.version}")
-        logger.info(f"Service will run on {settings.mcp.host}:{settings.mcp.port}")
+        logger.info(f"Service will run on {settings.mcp_host}:{settings.mcp_port}")
         
         # 导入并运行我们的FastMCP服务
         from routers.mcp.main import main as mcp_main

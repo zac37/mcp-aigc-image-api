@@ -12,9 +12,9 @@ import json
 import uuid
 
 from services.images_service import get_images_service
-from core.images_client import ImagesAPIError
+from core.compatibility_adapter import ImagesAPIError
 from core.logger import get_mcp_logger, log_exception
-from core.config import settings
+from core.simple_config import settings
 from core.simple_task_queue import simple_task_queue, VideoTask
 
 logger = get_mcp_logger()

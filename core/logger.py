@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from .config import settings
+from .simple_config import settings
 
 # 创建日志目录
 LOG_DIR = Path("logs")
@@ -70,7 +70,7 @@ def setup_logger(
     
     # 设置日志级别
     if level is None:
-        level = settings.server.log_level.upper()
+        level = settings.log_level.upper()
     
     logger.setLevel(getattr(logging, level, logging.INFO))
     

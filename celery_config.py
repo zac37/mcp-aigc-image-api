@@ -6,7 +6,7 @@ Celery配置文件
 """
 
 from celery import Celery
-from core.config import settings
+from core.simple_config import settings
 
 # 创建Celery应用
 app = Celery('video_tasks')
@@ -14,8 +14,8 @@ app = Celery('video_tasks')
 # 配置Redis作为broker和backend
 app.conf.update(
     # Redis配置 - 修复：与SimpleTaskQueue使用相同的数据库
-    broker_url=f'redis://{settings.redis.host}:{settings.redis.port}/{settings.redis.db}',
-    result_backend=f'redis://{settings.redis.host}:{settings.redis.port}/{settings.redis.db}',
+    broker_url=f'redis://{settings.redis_host}:{settings.redis_port}/{settings.redis_db}',
+    result_backend=f'redis://{settings.redis_host}:{settings.redis_port}/{settings.redis_db}',
     
     # 任务配置
     task_serializer='json',

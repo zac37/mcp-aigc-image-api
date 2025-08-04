@@ -22,7 +22,7 @@ import aiohttp
 from google.auth import default
 from google.auth.transport.requests import Request
 
-from .config import settings
+from .simple_config import settings
 from .logger import get_api_logger
 
 logger = get_api_logger()
@@ -41,10 +41,10 @@ class Veo3Client:
     
     def __init__(self):
         """初始化Veo3客户端"""
-        self.access_token = None
-        self.project_id = settings.images.veo3_project_id
-        self.location = settings.images.veo3_location
-        self.credentials_path = settings.images.google_credentials_path
+        self.credentials = None
+        self.project_id = settings.veo3_project_id
+        self.location = settings.veo3_location
+        self.credentials_path = settings.google_credentials_path
         self.base_url = f"https://{self.location}-aiplatform.googleapis.com/v1"
         self.model_id = "veo-3.0-generate-preview"
         
@@ -54,37 +54,44 @@ class Veo3Client:
         
         logger.info(f"初始化Veo3客户端 - 项目: {self.project_id}, 位置: {self.location}")
     
-    def _authenticate(self) -> Tuple[str, str]:
-        """认证并获取访问令牌"""
-        try:
-            # 从凭据文件获取项目ID
-            if not os.path.exists(self.credentials_path):
-                raise Veo3APIError(f"凭据文件不存在: {self.credentials_path}")
-            
-            with open(self.credentials_path, 'r') as f:
-                creds_data = json.load(f)
-            
-            project_id = creds_data.get('project_id', self.project_id)
-            
-            # 获取访问令牌
-            credentials, _ = default(scopes=['https://www.googleapis.com/auth/cloud-platform'])
-            auth_req = Request()
-            credentials.refresh(auth_req)
-            
-            access_token = credentials.token
-            logger.info(f"认证成功 - 项目: {project_id}")
-            
-            return access_token, project_id
-            
-        except Exception as e:
-            logger.error(f"认证失败: {e}")
-            raise Veo3APIError(f"认证失败: {e}")
+    def _get_credentials(self):
+        """获取并初始化凭据对象"""
+        if self.credentials is None:
+            try:
+                # 从凭据文件获取项目ID
+                if not os.path.exists(self.credentials_path):
+                    raise Veo3APIError(f"凭据文件不存在: {self.credentials_path}")
+                
+                with open(self.credentials_path, 'r') as f:
+                    creds_data = json.load(f)
+                
+                self.project_id = creds_data.get('project_id', self.project_id)
+                
+                # 获取默认凭据
+                self.credentials, _ = default(scopes=['https://www.googleapis.com/auth/cloud-platform'])
+                logger.info(f"凭据初始化成功 - 项目: {self.project_id}")
+                
+            except Exception as e:
+                logger.error(f"凭据初始化失败: {e}")
+                raise Veo3APIError(f"凭据初始化失败: {e}")
+        
+        return self.credentials
     
     def get_access_token(self) -> str:
-        """获取访问令牌，支持缓存"""
-        if not self.access_token:
-            self.access_token, self.project_id = self._authenticate()
-        return self.access_token
+        """获取访问令牌，自动处理令牌刷新"""
+        credentials = self._get_credentials()
+        
+        # 检查令牌是否过期，如果过期则刷新
+        if credentials.expired or not credentials.token:
+            try:
+                auth_req = Request()
+                credentials.refresh(auth_req)
+                logger.info("访问令牌已刷新")
+            except Exception as e:
+                logger.error(f"令牌刷新失败: {e}")
+                raise Veo3APIError(f"令牌刷新失败: {e}")
+        
+        return credentials.token
     
     def create_video(
         self, 
@@ -128,7 +135,7 @@ class Veo3Client:
             if 'storageUri' not in params and 'storageUri' not in kwargs:
                 import time
                 timestamp = int(time.time())
-                params['storageUri'] = f"gs://{settings.images.veo3_storage_bucket}/veo3-videos/{timestamp}/"
+                params['storageUri'] = f"gs://{settings.veo3_storage_bucket}/veo3-videos/{timestamp}/"
             
             # 移除空值
             params = {k: v for k, v in params.items() if v is not None}
@@ -199,7 +206,7 @@ class Veo3Client:
             if 'storageUri' not in params and 'storageUri' not in kwargs:
                 import time
                 timestamp = int(time.time())
-                params['storageUri'] = f"gs://{settings.images.veo3_storage_bucket}/veo3-videos/{timestamp}/"
+                params['storageUri'] = f"gs://{settings.veo3_storage_bucket}/veo3-videos/{timestamp}/"
             
             # 移除空值
             params = {k: v for k, v in params.items() if v is not None}

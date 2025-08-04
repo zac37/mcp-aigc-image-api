@@ -16,9 +16,9 @@ import logging
 from contextlib import asynccontextmanager
 
 from routers import api
-from core.config import settings
+from core.simple_config import compat_settings as settings
 from core.logger import get_main_logger
-from core.images_client import cleanup_images_client
+from core.compatibility_adapter import cleanup_images_client
 from core.minio_client import cleanup_minio_client
 
 # 创建日志记录器
@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
     # 启动时执行
     logger.info("Starting Images API service...")
     logger.info(f"Service will run on {settings.server.host}:{settings.server.port}")
-    logger.info(f"MCP service will run on {settings.mcp.host}:{settings.mcp.port}")
+    logger.info(f"MCP service will run on {settings.mcp.mcp_host}:{settings.mcp.mcp_port}")
     
     yield
     
@@ -150,9 +150,9 @@ async def root():
         "api_prefix": settings.api_prefix,
         "mcp": {
             "enabled": True,
-            "host": settings.mcp.host,
-            "port": settings.mcp.port,
-            "transport": settings.mcp.transport
+            "host": settings.mcp.mcp_host,
+            "port": settings.mcp.mcp_port,
+            "transport": settings.mcp.mcp_transport
         },
         "supported_models": [
             "gpt",
@@ -172,30 +172,30 @@ async def root():
             "doubao"
         ],
         "endpoints": {
-            "gpt_generations": f"{settings.api_prefix}/gpt/generations",
-            "recraft_generate": f"{settings.api_prefix}/recraft/generate",
-            "seedream_generate": f"{settings.api_prefix}/seedream/generate",
-            "seededit_generate": f"{settings.api_prefix}/seededit/generate",
-            "flux_create": f"{settings.api_prefix}/flux/create",
-            "recraftv3_create": f"{settings.api_prefix}/recraftv3/create",
-            "cogview_create": f"{settings.api_prefix}/cogview/create",
-            "hunyuan_create": f"{settings.api_prefix}/hunyuan/create",
-            "kling_create": f"{settings.api_prefix}/kling/create",
-            "stable_diffusion_create": f"{settings.api_prefix}/stable-diffusion/create",
-            "kolors_generate": f"{settings.api_prefix}/kolors/generate",
-            "flux_kontext_generate": f"{settings.api_prefix}/flux-kontext/generate",
-            "hailuo_generate": f"{settings.api_prefix}/hailuo/generate",
-            "doubao_generate": f"{settings.api_prefix}/doubao/generate",
-            "file_upload": f"{settings.api_prefix}/files/upload",
-            "file_access": f"{settings.api_prefix}/files/{{object_name}}",
-            "file_redirect": f"{settings.api_prefix}/files/{{object_name}}/redirect",
-            "file_delete": f"{settings.api_prefix}/files/{{object_name}}",
-            "file_list": f"{settings.api_prefix}/files"
+            "gpt_generations": "/api/gpt/generations",
+            "recraft_generate": "/api/recraft/generate",
+            "seedream_generate": "/api/seedream/generate",
+            "seededit_generate": "/api/seededit/generate",
+            "flux_create": "/api/flux/create",
+            "recraftv3_create": "/api/recraftv3/create",
+            "cogview_create": "/api/cogview/create",
+            "hunyuan_create": "/api/hunyuan/create",
+            "kling_create": "/api/kling/create",
+            "stable_diffusion_create": "/api/stable-diffusion/create",
+            "kolors_generate": "/api/kolors/generate",
+            "flux_kontext_generate": "/api/flux-kontext/generate",
+            "hailuo_generate": "/api/hailuo/generate",
+            "doubao_generate": "/api/doubao/generate",
+            "file_upload": "/api/files/upload",
+            "file_access": "/api/files/{object_name}",
+            "file_redirect": "/api/files/{object_name}/redirect",
+            "file_delete": "/api/files/{object_name}",
+            "file_list": "/api/files"
         },
         "file_storage": {
             "enabled": True,
-            "minio_endpoint": settings.minio.endpoint,
-            "default_bucket": settings.minio.bucket_name,
+            "minio_endpoint": settings.minio.minio_endpoint,
+            "default_bucket": settings.minio.minio_bucket,
             "supported_formats": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg"],
             "max_file_size_mb": 50
         }
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         "main:app",
         host=settings.server.host,
         port=settings.server.port,
-        reload=settings.server.reload,
-        log_level=settings.server.log_level,
+        reload=settings.server.debug,
+        log_level=settings.server.log_level.lower(),
         access_log=False,  # 使用自定义访问日志
     )
